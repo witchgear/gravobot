@@ -4,8 +4,10 @@ Tutorial.prototype =
 	preload: function()
 	{
 		//***TEMP UNTIL ATLAS***
-		//load player spritesheet
-		game.load.spritesheet('idle', 'assets/img/sprites/idle.png', 49, 64);
+		//set load path and load assets
+		game.load.path = 'assets/img/sprites/';
+		game.load.spritesheet('idle', 'idle.png', 49, 64);
+		game.load.image('ball', 'gravityball.png');
 	},
 	create: function()
 	{
@@ -13,24 +15,30 @@ Tutorial.prototype =
 		//display state switching text
 		stateText1 = game.add.text(8, 8, 'State: Tutorial', 
 									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
-		stateText2 = game.add.text(8, 32, 'Press Q to switch states.', 
+		stateText2 = game.add.text(8, 32, 'Press S to switch states.', 
 									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
 		
 		//create player object using prefab
 		player = new Player(game, 420, 420, 'idle', 0);
-		game.add.existing(player);
 		
 		//add player animations
 		player.animations.add('idle', [0, 1, 2, 3, 4], 10, true);
 		player.animations.play('idle');
+		
+		//create gravity ball object using prefab
+		ball = new GravityBall(game, player, 'ball');
+		
+		//place the player after the ball so they're always at the front of the screen
+		game.add.existing(ball);
+		game.add.existing(player);
 	},
 	update: function()
 	{
 		//*****TAKE OUT LATER*****
-		//switch states when player presses space
-		if(Q.justPressed())
+		//switch states when player presses s
+		if(S.justPressed())
 		{
 			game.state.start('Cutscene');
 		}
-	},
+	}
 }

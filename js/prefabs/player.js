@@ -7,13 +7,21 @@ function Player(game, x, y, key, frame) //maybe add more paramaters as needed
 	
 	//add player properties
 	this.walkSpeed = 200;
-	this.jumpSpeed = -400;
+	this.jumpSpeed = -450;
 	this.isJumping = false;
+		
+	//increase player scale
+	//note: p2 automatically centers the anchor
+	this.scale.setTo(2, 2);
 	
 	//enable physics & physics settings
-	game.physics.arcade.enable(this);
+	game.physics.p2.enable(this);
 	this.body.collideWorldBounds = true;
-	this.body.gravity.y = 1000;
+	this.body.data.gravityScale = 1; //scale of gravity's effect on this object
+	this.body.fixedRotation = true; //prevent object from rotating
+	
+	//set player collision box
+	this.body.setRectangle(96, 128, 0, 0);
 }
 
 //link the player object's prototype to the Phaser.Sprite object
@@ -40,7 +48,8 @@ Player.prototype.update = function()
 		this.isJumping = true;
 		this.body.velocity.y = this.jumpSpeed;
 	}
-	if(this.isJumping && this.body.velocity.y == 0)
+	//not jumping if between two semi-arbitrary buffer values
+	if(this.isJumping && this.body.velocity.y < 1 && this.body.velocity.y > -1)
 	{
 		this.isJumping = false;
 	}

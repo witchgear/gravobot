@@ -19,14 +19,17 @@ TitleScreen.prototype =
 		
 		//enable physics system
 		game.physics.startSystem(Phaser.Physics.ARCADE);
+		game.physics.startSystem(Phaser.Physics.P2JS);
+		
+		//set global physics settings
+		game.physics.p2.gravity.y = 1000;
+		game.physics.p2.restitution = 0; //bounciness i think?
 		
 		//Create input keys
 		W = game.input.keyboard.addKey(Phaser.Keyboard.W); //jump/menu up
 		A = game.input.keyboard.addKey(Phaser.Keyboard.A); //move left
 		S = game.input.keyboard.addKey(Phaser.Keyboard.S); //menu down
 		D = game.input.keyboard.addKey(Phaser.Keyboard.D); //move right
-		Q = game.input.keyboard.addKey(Phaser.Keyboard.Q); //push
-		E = game.input.keyboard.addKey(Phaser.Keyboard.E); //pull
 		SPACEBAR = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //also jump
 	},
 	update: function()
@@ -37,5 +40,5 @@ TitleScreen.prototype =
 		{
 			game.state.start('Tutorial');
 		}
-	},
+	}
 }

@@ -21,8 +21,6 @@ var GravityBall = function(game, player, frame){
 	//set gravity ball collision circle with given radius
 	this.body.setCircle(28);
 	
-	//adds seperate
-	
 	//sets gravity ball collision group
 	this.collisionGroup = game.physics.p2.createCollisionGroup();
 	this.body.setCollisionGroup(this.collisionGroup);
@@ -33,7 +31,7 @@ var GravityBall = function(game, player, frame){
 
 } ;
 
-//link the player object's prototype to the Phaser.Sprite object
+//link the gravity ball object's prototype to the Phaser.Sprite object
 GravityBall.prototype = Object.create(Phaser.Sprite.prototype) ;
 GravityBall.prototype.constructor = GravityBall ;
 

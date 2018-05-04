@@ -28,8 +28,12 @@ Tutorial.prototype =
 		//create gravity ball object using prefab
 		ball = new GravityBall(game, player, 'ball');
 		
+		//create gravity influene object using prefab
+		influence = new GravityInfluence(game, ball);
+		
 		//place the player after the ball so they're always at the front of the screen
 		game.add.existing(ball);
+		game.add.existing(influence);
 		game.add.existing(player);
 		
 		//creates collision group for the world bounds

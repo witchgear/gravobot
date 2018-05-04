@@ -13,8 +13,19 @@ var GravityBall = function(game, player, frame){
 	// put it at the same height as the player and a bit to the left
 	this.sprite = Phaser.Sprite.call(this, game, 200, 200, frame) ;
 
-	// once I figure out how P2 physics work I'll enable them here maybe
-	this.anchor.set(0.5) ; // reset anchor
+	//enable physics & physics settings
+	game.physics.p2.enable(this); //enabling P2 automatically centers the anchor
+	this.body.collideWorldBounds = true;
+	this.body.data.gravityScale = 0; //scale of gravity's effect on this object
+	
+	//set gravity ball collision circle with given radius
+	this.body.setCircle(28);
+	
+	//adds seperate
+	
+	//sets gravity ball collision group
+	this.collisionGroup = game.physics.p2.createCollisionGroup();
+	this.body.setCollisionGroup(this.collisionGroup);
 	
 	game.input.mouse.capture = true ; // allow for mouse input
 	// add Q and E keys as valid inputs, Q is now 'push' and E is now 'pull'
@@ -36,8 +47,8 @@ GravityBall.prototype.update = function() {
 	}
 	else { // if the gravity ball is not deployed
 		// update the gravity ball's position
-		this.position.x = this.player.position.x - this.player.width ;
-		this.position.y = this.player.position.y ;
+		this.body.x = this.player.body.x - this.player.width ;
+		this.body.y = this.player.body.y ;
 
 		// if the pointer (mouse, touch, etc) has just been released, deploy the gravity ball
 		if(this.game.input.activePointer.justPressed(20)){
@@ -53,27 +64,27 @@ GravityBall.prototype.update = function() {
 
 	// rotate the ball
 	if(this.direction){ // if the ball is pushing
-		this.angle += 1 ; // rotate right
+		this.body.angle += 1 ; // rotate right
 	}
 	else { // if it is pulling
-		this.angle -= 1 ; // rotate it left
+		this.body.angle -= 1 ; // rotate it left
 	}
 }
 
 deployGravityBall = function(game, player, gravityball){
-	console.log(gravityball.position.x) ;
+	console.log(gravityball.body.x) ;
 	gravityball.deployed = true ; // set deployed equal to true
 
 	// put the gravity ball where the mouse (or touch) is
-	gravityball.position.x = game.input.activePointer.x ;
-	gravityball.position.y = game.input.activePointer.y ;
+	gravityball.body.x = game.input.activePointer.x ;
+	gravityball.body.y = game.input.activePointer.y ;
 }
 
 returnGravityBall = function(game, player, gravityball){
-	console.log(gravityball.position.x) ;
+	console.log(gravityball.body.x) ;
 	gravityball.deployed = false ; // set deployed equal to false
 
 	// move the gravity ball back behind the player
-	gravityball.position.x = player.position.x - player.width ;
-	gravityball.position.y = player.position.y ;
+	gravityball.body.x = player.body.x - player.width ;
+	gravityball.body.y = player.body.y ;
 }

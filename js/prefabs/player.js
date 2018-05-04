@@ -22,6 +22,10 @@ function Player(game, x, y, key, frame) //maybe add more paramaters as needed
 	
 	//set player collision box
 	this.body.setRectangle(96, 128, 0, 0);
+	
+	//sets player collision group
+	this.collisionGroup = game.physics.p2.createCollisionGroup();
+	this.body.setCollisionGroup(this.collisionGroup);
 }
 
 //link the player object's prototype to the Phaser.Sprite object

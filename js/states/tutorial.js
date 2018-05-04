@@ -31,6 +31,9 @@ Tutorial.prototype =
 		//place the player after the ball so they're always at the front of the screen
 		game.add.existing(ball);
 		game.add.existing(player);
+		
+		//creates collision group for the world bounds
+		game.physics.p2.updateBoundsCollisionGroup();
 	},
 	update: function()
 	{

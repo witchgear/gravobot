@@ -24,6 +24,7 @@ TitleScreen.prototype =
 		//set global physics settings
 		game.physics.p2.gravity.y = 1000;
 		game.physics.p2.restitution = 0; //bounciness i think?
+		game.physics.p2.setImpactEvents(true);
 		
 		//Create input keys
 		W = game.input.keyboard.addKey(Phaser.Keyboard.W); //jump/menu up

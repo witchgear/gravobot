@@ -25,11 +25,11 @@ Tutorial.prototype =
 		player.animations.add('idle', [0, 1, 2, 3, 4], 10, true);
 		player.animations.play('idle');
 		
-		//create gravity ball object using prefab
-		ball = new GravityBall(game, player, 'ball');
+		//create gravity influece object using prefab
+		influence = new GravityInfluence(game, player.collisionGroup);
 		
-		//create gravity influene object using prefab
-		influence = new GravityInfluence(game, ball);
+		//create gravity ball object using prefab
+		ball = new GravityBall(game, player, influence, 'ball');
 		
 		//place the player after the ball so they're always at the front of the screen
 		game.add.existing(ball);
@@ -38,6 +38,9 @@ Tutorial.prototype =
 		
 		//creates collision group for the world bounds
 		game.physics.p2.updateBoundsCollisionGroup();
+		
+		influence.body.collides(player.collisionGroup);
+		player.body.collides(influence.collisionGroup);
 	},
 	update: function()
 	{

@@ -15,7 +15,7 @@ function Player(game, x, y, key, frame) //maybe add more paramaters as needed
 	this.scale.setTo(2, 2);
 	
 	//enable physics & physics settings
-	game.physics.p2.enable(this);
+	game.physics.p2.enable(this, true);
 	this.body.collideWorldBounds = true;
 	this.body.data.gravityScale = 1; //scale of gravity's effect on this object
 	this.body.fixedRotation = true; //prevent object from rotating

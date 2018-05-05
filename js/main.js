@@ -19,12 +19,9 @@ TitleScreen.prototype =
 		
 		//enable physics system
 		game.physics.startSystem(Phaser.Physics.ARCADE);
-		game.physics.startSystem(Phaser.Physics.P2JS);
 		
-		//set global physics settings
-		game.physics.p2.gravity.y = 1000;
-		game.physics.p2.restitution = 0; //bounciness i think?
-		game.physics.p2.setImpactEvents(true);
+		//set variable for global gravity setting
+		worldGravity = 1000;
 		
 		//Create input keys
 		W = game.input.keyboard.addKey(Phaser.Keyboard.W); //jump/menu up

@@ -1,29 +1,28 @@
-var GravityBall = function(game, player, influence, frame){
+var GravityBall = function(game, player, frame){
 	// to access these variables, use GravityBall instead of this (GravityBall.deployed)
 	this.deployed = false ;	// whether or not the ball has been deployed
-	this.direction = true ; // the direction of gravity; true = push, false = pull
+	this.activated = false; //whether or not the ball is exerting gravity
+	this.direction = false ; // the direction of gravity; true = push, false = pull
 	this.controls ; // controls for the ball
 
 	// these are just pointers to the actual player and game objects
 	// so i can access them in the update function
 	this.player = player ;
 	this.game = game ;
-	this.influence = influence;
 
 	// call Sprite constructor within this object
 	// put it at the same height as the player and a bit to the left
 	this.sprite = Phaser.Sprite.call(this, game, 200, 200, frame) ;
+	
+	//set anchor
+	this.anchor.x = 0.5;
+	this.anchor.y = 0.5;
 
 	//enable physics & physics settings
-	game.physics.p2.enable(this); //enabling P2 automatically centers the anchor
-	this.body.data.gravityScale = 0; //scale of gravity's effect on this object
+	game.physics.arcade.enable(this);	
 	
 	//set gravity ball collision circle with given radius
-	this.body.setCircle(28);
-	
-	//sets gravity ball collision group
-	this.collisionGroup = game.physics.p2.createCollisionGroup();
-	this.body.setCollisionGroup(this.collisionGroup);
+	this.body.setCircle(28, -3, -3);
 	
 	game.input.mouse.capture = true ; // allow for mouse input
 	// add Q and E keys as valid inputs, Q is now 'push' and E is now 'pull'
@@ -40,7 +39,7 @@ GravityBall.prototype.update = function() {
 	if(this.deployed){
 		// if the pointer (mouse, touch, etc) has just been released while the gravity ball is deployed, undeploy it
 		if(this.game.input.activePointer.justPressed(20)){
-			returnGravityBall(this.game, this.player, this, this.influence) ;
+			returnGravityBall(this.game, this.player, this) ;
 		}
 	}
 	else { // if the gravity ball is not deployed
@@ -50,7 +49,7 @@ GravityBall.prototype.update = function() {
 
 		// if the pointer (mouse, touch, etc) has just been released, deploy the gravity ball
 		if(this.game.input.activePointer.justPressed(20)){
-			deployGravityBall(this.game, this.player, this, this.influence) ;
+			deployGravityBall(this.game, this.player, this) ;
 		}
 	}
 	if(this.controls.push.justPressed()){ // if Q was just pressed
@@ -62,18 +61,29 @@ GravityBall.prototype.update = function() {
 
 	// rotate the ball
 	if(this.direction){ // if the ball is pushing
-		this.body.angle += 1 ; // rotate right
+		this.body.rotation += 1 ; // rotate right
 	}
 	else { // if it is pulling
-		this.body.angle -= 1 ; // rotate it left
+		this.body.rotation -= 1 ; // rotate it left
 	}
-	
-	//update position of influence so it is always attached to the gravity ball
-	this.influence.body.x = this.body.x;
-	this.influence.body.y = this.body.y;
 }
 
-deployGravityBall = function(game, player, gravityball, influence){
+//sets a small delay before setting activated to true for collision bugfix reasons
+setActivationDelay = function(gravityball)
+{
+	//set a timer to run setDeployed after a second
+	//time.events.add(period, function, context, args);
+	game.time.events.add(Phaser.Timer.SECOND, setActivated, this, gravityball);
+	console.log("Activating Gravity Ball...");
+}
+
+setActivated = function(gravityball)
+{
+	gravityball.activated = true;
+	console.log("Gravity Ball Activated");
+}
+
+deployGravityBall = function(game, player, gravityball){
 	console.log(gravityball.body.x) ;
 	gravityball.deployed = true ; // set deployed equal to true
 	
@@ -81,18 +91,19 @@ deployGravityBall = function(game, player, gravityball, influence){
 	gravityball.body.x = game.input.activePointer.x ;
 	gravityball.body.y = game.input.activePointer.y ;
 	
-	//adds collision event to exert gravity on objects when they hit the influence circle
-	//signal.add(function, context, priority, additional arguments)
-	//influence.body.onBeginContact.add(exertGravity, this, 0, gravityball.deployed, influence);
+	//activate the gravity ball after a short delay
+	setActivationDelay(gravityball);
 }
 
-returnGravityBall = function(game, player, gravityball, influence){
+returnGravityBall = function(game, player, gravityball){
 	console.log(gravityball.body.x) ;
 	gravityball.deployed = false ; // set deployed equal to false
+	gravityball.activated = false; //deactivate the ball
 
 	// move the gravity ball back behind the player
 	gravityball.body.x = player.body.x - player.width ;
 	gravityball.body.y = player.body.y ;
 	
-	//influence.body.onBeginContact.removeAll();
+	//*****NOTE: change to array
+	player.influenced = false;
 }

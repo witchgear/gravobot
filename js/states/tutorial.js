@@ -53,8 +53,8 @@ Tutorial.prototype =
 	},
 	render: function()
 	{
-		game.debug.body(player);
+		/*game.debug.body(player);
 		game.debug.body(influence);
-		game.debug.body(ball);
+		game.debug.body(ball);*/
 	}
 }

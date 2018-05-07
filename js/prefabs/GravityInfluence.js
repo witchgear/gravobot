@@ -10,7 +10,8 @@ function GravityInfluence(game, gravityBall, player)
 	this.player = player;
 	
 	//set the strength of the gravity that the ball exerts
-	this.influenceStrength = 1000;
+	this.strengthX = 20000;
+	this.strengthY = 1000;
 	
 	//set anchor
 	this.anchor.x = 0.5;
@@ -20,7 +21,7 @@ function GravityInfluence(game, gravityBall, player)
 	game.physics.arcade.enable(this);	
 		
 	//sets collision circle of influence with given radius
-	this.body.setCircle(200); //*****NOTE: Arbitrary value, decide as a group later
+	this.body.setCircle(250);
 }
 
 //link the gravity influence object's prototype to the Phaser.Sprite object
@@ -30,14 +31,38 @@ GravityInfluence.prototype.constructor = GravityInfluence;
 GravityInfluence.prototype.update = function()
 {
 	//update position of influence so it is always attached to the gravity ball
-	this.body.x = this.gravityBall.body.x - 170;
-	this.body.y = this.gravityBall.body.y - 170;
+	this.body.x = this.gravityBall.body.x - 220;
+	this.body.y = this.gravityBall.body.y - 220;
 	
 	//if the ball is activated
 	if(this.gravityBall.activated)
 	{
 		//if influence and player colliding, run exertGravity
-		game.physics.arcade.overlap(this, player, exertGravity);
+		this.game.physics.arcade.overlap(this, player, exertGravity);
+	}
+	
+	//collide the player and gravityball if the player is being influenced
+	//strange movement occurs if they don't collide
+	if(this.player.influenced)
+	{
+		this.game.physics.arcade.collide(this.player, this.gravityBall);
+		
+	}
+	
+	//for each item in influencedArray
+	for(var i = 0; i < this.gravityBall.influencedArray.length; i++)
+	{
+		//make sure that the object is being influenced
+		if(this.gravityBall.influencedArray[i].influenced)
+		{
+			//get the angle between the object and the gravity ball
+			var angle = this.game.physics.arcade.angleBetween(this.gravityBall.influencedArray[i], 
+															  this.gravityBall);
+
+			//exert gravity towards the gravity ball
+			this.gravityBall.influencedArray[i].body.gravity.x = Math.cos(angle) * this.strengthX;
+			this.gravityBall.influencedArray[i].body.gravity.y = Math.sin(angle) * this.strengthY;
+		}		
 	}
 }
 
@@ -49,12 +74,8 @@ exertGravity = function(influence, influencedBody)
 	{
 		//set influenced property to true
 		influencedBody.influenced = true;
-		console.log("GRAVITY BEING EXERTED!!!");
+		
+		//add the body to an array of influenced bodies
+		influence.gravityBall.influencedArray.push(influencedBody);
 	}
 }
-
-//add body to ball array (ball needs to access array when return called)
-//in influence update, for all in array, exert force
-//force: set gravity x and y towards the ball (cos/sin(angle) * influenceStrength)
-//when ball return is called, set all "being influenced" of objects in array to false
-//remove objects from array, reset gravity to normal

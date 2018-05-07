@@ -17,12 +17,6 @@ TitleScreen.prototype =
 		stateText1 = game.add.text(8, 32, 'Press Spacebar to switch states.', 
 									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
 		
-		//enable physics system
-		game.physics.startSystem(Phaser.Physics.ARCADE);
-		
-		//set variable for global gravity setting
-		worldGravity = 1000;
-		
 		//Create input keys
 		W = game.input.keyboard.addKey(Phaser.Keyboard.W); //jump/menu up
 		A = game.input.keyboard.addKey(Phaser.Keyboard.A); //move left

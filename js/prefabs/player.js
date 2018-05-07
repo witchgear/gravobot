@@ -1,5 +1,5 @@
 //Player constructor function
-function Player(game, x, y, key, frame) //maybe add more paramaters as needed
+function Player(game, x, y, key, frame)
 {
 	//call Phaser.Sprite from this object
 	//call(object to call function in, game object, x, y, key, frame)

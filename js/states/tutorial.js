@@ -18,6 +18,12 @@ Tutorial.prototype =
 		stateText2 = game.add.text(8, 32, 'Press S to switch states.', 
 									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
 		
+		//enable physics system
+		game.physics.startSystem(Phaser.Physics.ARCADE);
+		
+		//set variable for global gravity setting
+		worldGravity = 1000;
+		
 		//create player object using prefab
 		player = new Player(game, 420, 420, 'idle', 0);
 		

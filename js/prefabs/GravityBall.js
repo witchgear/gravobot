@@ -27,7 +27,7 @@ var GravityBall = function(game, player, frame){
 	this.body.immovable = true; //prevents gravity ball from being moved by objects being pulled
 	
 	//set gravity ball collision circle with given radius
-	this.body.setCircle(28, -3, -3);
+	this.body.setCircle(24);
 	
 	game.input.mouse.capture = true ; // allow for mouse input
 	// add Q and E keys as valid inputs, Q is now 'push' and E is now 'pull'
@@ -42,6 +42,9 @@ GravityBall.prototype.constructor = GravityBall ;
 GravityBall.prototype.update = function() {
 	// if the gravity ball is deployed
 	if(this.deployed && this.activated){
+		// rotate the ball
+		this.body.rotation -= 1 ;
+
 		// if the pointer (mouse, touch, etc) has just been released while the gravity ball is deployed, undeploy it
 		if(this.game.input.activePointer.justPressed(20)){
 			returnGravityBall(this.game, this.player, this) ;
@@ -64,12 +67,11 @@ GravityBall.prototype.update = function() {
 		this.direction = false ;
 	}*/
 
-	// rotate the ball
 	/*if(this.direction){ // if the ball is pushing
 		this.body.rotation += 1 ; // rotate right
 	}*/
 	//else { // if it is pulling
-		this.body.rotation -= 1 ; // rotate it left
+		 // rotate it left
 	//}
 }
 
@@ -99,9 +101,10 @@ deployGravityBall = function(game, player, gravityball){
 	console.log(gravityball.body.x) ;
 	gravityball.deployed = true ; // set deployed equal to true
 
-	// tween the ball over to where the mouse is in 800 ms 
+	// tween the ball over to where the mouse is in 400 ms 
 	// game.add.tween(object).to({properties to tween to}, time (in ms), easing, auto-start) 
-	game.add.tween(gravityball).to({ x: game.input.activePointer.x, y: game.input.activePointer.y }, 800, Phaser.Easing.Elastic.Out, true) ;
+	game.add.tween(gravityball).to({ x: game.input.activePointer.x, y: game.input.activePointer.y }, 400, Phaser.Easing.Quadratic.Out, true) ;
+	console.log("Gravity Ball Tweening...") ;
 
 	// put the gravity ball where the mouse (or touch) is
 	//gravityball.body.x = game.input.activePointer.x ;

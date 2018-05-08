@@ -2,6 +2,7 @@ var GravityBall = function(game, player, frame){
 	// to access these variables, use GravityBall instead of this (GravityBall.deployed)
 	this.deployed = false ;	// whether or not the ball has been deployed
 	this.activated = false; //whether or not the ball is exerting gravity
+	this.tweening = false ; // whether or not the ball is currently tweening
 	//this.direction = false ; // the direction of gravity; true = push, false = pull
 	//this.controls ; // controls for the ball
 
@@ -26,7 +27,7 @@ var GravityBall = function(game, player, frame){
 	this.body.immovable = true; //prevents gravity ball from being moved by objects being pulled
 	
 	//set gravity ball collision circle with given radius
-	this.body.setCircle(28, -3, -3);
+	this.body.setCircle(24);
 	
 	game.input.mouse.capture = true ; // allow for mouse input
 	// add Q and E keys as valid inputs, Q is now 'push' and E is now 'pull'
@@ -41,12 +42,15 @@ GravityBall.prototype.constructor = GravityBall ;
 GravityBall.prototype.update = function() {
 	// if the gravity ball is deployed
 	if(this.deployed && this.activated){
+		// rotate the ball
+		this.body.rotation -= 1 ;
+
 		// if the pointer (mouse, touch, etc) has just been released while the gravity ball is deployed, undeploy it
 		if(this.game.input.activePointer.justPressed(20)){
 			returnGravityBall(this.game, this.player, this) ;
 		}
 	}
-	else if(!this.deployed && !this.activated) { // if the gravity ball is not deployed
+	else if(!this.deployed && !this.activated && !this.tweening) { // if the gravity ball is not deployed
 		// update the gravity ball's position
 		this.body.x = this.player.body.x - this.player.width ;
 		this.body.y = this.player.body.y ;
@@ -63,12 +67,11 @@ GravityBall.prototype.update = function() {
 		this.direction = false ;
 	}*/
 
-	// rotate the ball
 	/*if(this.direction){ // if the ball is pushing
 		this.body.rotation += 1 ; // rotate right
 	}*/
 	//else { // if it is pulling
-		this.body.rotation -= 1 ; // rotate it left
+		 // rotate it left
 	//}
 }
 
@@ -87,13 +90,25 @@ setActivated = function(gravityball)
 	console.log("Gravity Ball Activated");
 }
 
+// set the ball to not tweening so it follows the player again
+setNotTweening = function(gravityball) {
+	gravityball.tweening = false ;
+	console.log("Gravity Ball Finished Tweening") ;
+}
+
+
 deployGravityBall = function(game, player, gravityball){
 	console.log(gravityball.body.x) ;
 	gravityball.deployed = true ; // set deployed equal to true
-	
+
+	// tween the ball over to where the mouse is in 400 ms 
+	// game.add.tween(object).to({properties to tween to}, time (in ms), easing, auto-start) 
+	game.add.tween(gravityball).to({ x: game.input.activePointer.x, y: game.input.activePointer.y }, 400, Phaser.Easing.Quadratic.Out, true) ;
+	console.log("Gravity Ball Tweening...") ;
+
 	// put the gravity ball where the mouse (or touch) is
-	gravityball.body.x = game.input.activePointer.x ;
-	gravityball.body.y = game.input.activePointer.y ;
+	//gravityball.body.x = game.input.activePointer.x ;
+	//gravityball.body.y = game.input.activePointer.y ;
 	
 	//activate the gravity ball after a short delay
 	setActivationDelay(gravityball);
@@ -101,12 +116,18 @@ deployGravityBall = function(game, player, gravityball){
 
 returnGravityBall = function(game, player, gravityball){
 	console.log(gravityball.body.x) ;
-	gravityball.deployed = false ; // set deployed equal to false
 	gravityball.activated = false; //deactivate the ball
+	gravityball.deployed = false ; // set deployed equal to false
+
+	// tween the ball to the player is in 100 ms 
+	// game.add.tween(object).to({properties to tween to}, time (in ms), easing, auto-start)
+	game.add.tween(gravityball).to({ x: (player.body.x - player.width), y: player.body.y }, 100, Phaser.Easing.Quadratic.Out, true) ;
+	gravityball.tweening = true ; // the ball is now tweening
+	game.time.events.add(Phaser.Timer.SECOND * 0.1, setNotTweening, this, gravityball); // after 100 ms, the ball is no longer tweening
 
 	// move the gravity ball back behind the player
-	gravityball.body.x = player.body.x - player.width ;
-	gravityball.body.y = player.body.y ;
+	//gravityball.body.x = player.body.x - player.width ;
+	//gravityball.body.y = player.body.y ;
 	
 	//for each object being influenced, from the top of the array
 	for(var i = gravityball.influencedArray.length - 1; i >= 0; i--)
@@ -121,5 +142,6 @@ returnGravityBall = function(game, player, gravityball){
 		//remove the object from the array
 		gravityball.influencedArray.pop();
 	}
-	
+
+
 }

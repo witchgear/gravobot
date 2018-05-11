@@ -55,6 +55,8 @@ Tutorial.prototype =
 		//add player animations
 		player.animations.add('idle', [0, 1, 2, 3, 4], 10, true);
 		player.animations.play('idle');
+
+		//camera = new Camera(game, player, 0, 0) ;
 		
 		//create gravity ball object using prefab
 		ball = new GravityBall(game, player, 'ball');

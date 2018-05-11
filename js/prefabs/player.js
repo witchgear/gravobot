@@ -4,6 +4,9 @@ function Player(game, x, y, key, frame)
 	//call Phaser.Sprite from this object
 	//call(object to call function in, game object, x, y, key, frame)
 	Phaser.Sprite.call(this, game, x, y, key, frame);
+
+	// store pointer to game object
+	this.game = game ;
 	
 	//add player properties
 	this.walkSpeed = 200;
@@ -53,5 +56,22 @@ Player.prototype.update = function()
 	if(this.isJumping && this.body.velocity.y == 0)
 	{
 		this.isJumping = false;
+	}
+
+	// update the camera
+	updateCamera(this, this.game) ;
+}
+
+// update the game camera depending on the player's position
+// moves by snapping to the next area when the player begins to go off-screen
+updateCamera = function(player, game)
+{
+	// if the player is to the right of the camera's position plus the game width
+	if(player.position.x > (game.camera.position.x + game.width)) {
+		game.camera.x += game.width ; // move the camera to the right by the game's width
+	}
+	// if the player is to the left of the camera
+	else if(player.position.x < game.camera.position.x) {
+		game.camera.x -= game.width ; // move the camera to the left by the game's width
 	}
 }

@@ -1,5 +1,5 @@
 //creates game variable
-var game = new Phaser.Game(1000, 600, Phaser.AUTO);
+var game = new Phaser.Game(1024, 576, Phaser.AUTO);
 
 var TitleScreen = function(game){};
 TitleScreen.prototype =

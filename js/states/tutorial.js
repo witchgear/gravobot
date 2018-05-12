@@ -9,7 +9,11 @@ Tutorial.prototype =
 		game.load.spritesheet('idle', 'idle.png', 49, 64);
 		game.load.image('ball', 'gravityball.png');
 		game.load.image('box', 'box.png');
-
+		
+		//load audio assets
+		game.load.path = 'assets/music/';
+		game.load.audio('tutorial', ['tutorial.mp3', 'tutorial.ogg']);
+		
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
 		game.load.spritesheet('tutorialtiles', 'tutorialtiles.png', 32, 32) ;
@@ -72,6 +76,13 @@ Tutorial.prototype =
 		
 		//add box to group here because it wont get added if its not onscreen
 		this.boxes.add(this.box);
+		
+		//create the sound objects
+		//add.audio(key, volume, loop)
+		this.tutorialTheme = game.add.audio('tutorial', 0.5, true);
+		
+		//play tutorial
+		this.tutorialTheme.play();
 	},
 	update: function()
 	{
@@ -86,6 +97,7 @@ Tutorial.prototype =
 		//switch states when player presses s
 		if(S.justPressed())
 		{
+			this.tutorialTheme.stop(); //stop playing
 			game.state.start('Cutscene');
 		}
 	},

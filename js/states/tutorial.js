@@ -17,9 +17,6 @@ Tutorial.prototype =
 	},
 	create: function()
 	{
-		//enable physics system
-		game.physics.startSystem(Phaser.Physics.ARCADE);
-
 		// add tileset from json file
 		this.terrain = game.add.tilemap('map') ;
 
@@ -44,9 +41,6 @@ Tutorial.prototype =
 									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
 		stateText2 = game.add.text(8, 32, 'Press S to switch states.', 
 									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
-		
-		//set variable for global gravity setting
-		worldGravity = 1000;
 		
 		//create player object using prefab
 		this.player = new Player(game, 200, 100, 'idle', 0); 

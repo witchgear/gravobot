@@ -1,6 +1,6 @@
 //this object represents the circle of influence on gravity that the gravity ball exerts
 //constructor function
-function GravityInfluence(game, gravityBall, player)
+function GravityInfluence(game, gravityBall, player, boxes)
 {
 	//call Phaser.Sprite from this object
 	Phaser.Sprite.call(this, game, 0, 0);
@@ -8,6 +8,7 @@ function GravityInfluence(game, gravityBall, player)
 	//store references to objects
 	this.gravityBall = gravityBall;
 	this.player = player;
+	this.boxes = boxes;
 	
 	//set the strength of the gravity that the ball exerts
 	this.strengthX = 20000;
@@ -37,8 +38,9 @@ GravityInfluence.prototype.update = function()
 	//if the ball is activated
 	if(this.gravityBall.activated)
 	{
-		//if influence and player colliding, run exertGravity
-		this.game.physics.arcade.overlap(this, player, exertGravity);
+		//if influence and player or boxes colliding, run exertGravity
+		this.game.physics.arcade.overlap(this, this.player, exertGravity);
+		this.game.physics.arcade.overlap(this, this.boxes, exertGravity);
 	}
 	
 	//collide the player and gravityball if the player is being influenced
@@ -46,7 +48,6 @@ GravityInfluence.prototype.update = function()
 	if(this.player.influenced)
 	{
 		this.game.physics.arcade.collide(this.player, this.gravityBall);
-		
 	}
 	
 	//for each item in influencedArray

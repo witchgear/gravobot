@@ -8,6 +8,7 @@ Tutorial.prototype =
 		game.load.path = 'assets/img/sprites/';
 		game.load.spritesheet('idle', 'idle.png', 49, 64);
 		game.load.image('ball', 'gravityball.png');
+		game.load.image('box', 'box.png');
 
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
@@ -18,7 +19,6 @@ Tutorial.prototype =
 	{
 		//enable physics system
 		game.physics.startSystem(Phaser.Physics.ARCADE);
-		
 
 		// add tileset from json file
 		this.terrain = game.add.tilemap('map') ;
@@ -49,30 +49,43 @@ Tutorial.prototype =
 		worldGravity = 1000;
 		
 		//create player object using prefab
-		player = new Player(game, 100, 100, 'idle', 0); 
-		this.player = player ; // create pointer to the player object so it can be accessed from update()
+		this.player = new Player(game, 200, 100, 'idle', 0); 
 		
 		//add player animations
-		player.animations.add('idle', [0, 1, 2, 3, 4], 10, true);
-		player.animations.play('idle');
+		this.player.animations.add('idle', [0, 1, 2, 3, 4], 10, true);
+		this.player.animations.play('idle');
 
 		//camera = new Camera(game, player, 0, 0) ;
 		
 		//create gravity ball object using prefab
-		ball = new GravityBall(game, player, 'ball');
+		this.ball = new GravityBall(game, this.player, 'ball');
+		
+		//create group for gravity boxes
+		this.boxes = game.add.group();
+		this.boxes.enableBody = true;
+		
+		//create a box using prefab
+		this.box = new GravityBox(game, 800, 100, 'box');
 		
 		//create gravity influece object using prefab
-		influence = new GravityInfluence(game, ball, player);
+		this.influence = new GravityInfluence(game, this.ball, this.player, this.boxes);
 		
 		//place the player after the ball so they're always at the front of the screen
-		game.add.existing(ball);
-		game.add.existing(influence);
-		game.add.existing(player);
+		game.add.existing(this.ball);
+		game.add.existing(this.influence);
+		game.add.existing(this.box);
+		game.add.existing(this.player);
+		
+		//add box to group here because it wont get added if its not onscreen
+		this.boxes.add(this.box);
 	},
 	update: function()
 	{
-		// collide the player with the ground
-		game.physics.arcade.collide(this.ground, this.player) ;
+		//handle collision
+		game.physics.arcade.collide(this.ground, this.player);
+		game.physics.arcade.collide(this.ground, this.boxes);
+		game.physics.arcade.collide(this.player, this.boxes);
+		game.physics.arcade.collide(this.ball, this.boxes);
 
 		//*****TAKE OUT LATER*****
 		//switch states when player presses s
@@ -83,8 +96,9 @@ Tutorial.prototype =
 	},
 	render: function()
 	{
-		/*game.debug.body(player);
-		game.debug.body(influence);
-		game.debug.body(ball);*/
+		//game.debug.body(this.player);
+		//game.debug.body(this.influence);
+		//game.debug.body(this.ball);
+		//game.debug.body(this.box);
 	}
 }

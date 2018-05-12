@@ -25,7 +25,7 @@ function Player(game, x, y, key, frame)
 	this.body.gravity.y = worldGravity;
 	
 	//set player collision box
-	this.body.setSize(48, 66, 0, 0);
+	this.body.setSize(40, 62, 4, 2);
 }
 
 //link the player object's prototype to the Phaser.Sprite object

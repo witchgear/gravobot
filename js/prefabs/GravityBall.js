@@ -103,7 +103,9 @@ deployGravityBall = function(game, player, gravityball){
 
 	// tween the ball over to where the mouse is in 400 ms 
 	// game.add.tween(object).to({properties to tween to}, time (in ms), easing, auto-start) 
-	game.add.tween(gravityball).to({ x: game.input.activePointer.x, y: game.input.activePointer.y }, 400, Phaser.Easing.Quadratic.Out, true) ;
+	var newX = game.camera.x + game.input.activePointer.x ;
+	var newY = game.camera.y + game.input.activePointer.y ;
+	game.add.tween(gravityball).to({ x: newX, y: newY }, 400, Phaser.Easing.Quadratic.Out, true) ;
 	console.log("Gravity Ball Tweening...") ;
 
 	// put the gravity ball where the mouse (or touch) is

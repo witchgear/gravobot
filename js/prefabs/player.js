@@ -59,19 +59,22 @@ Player.prototype.update = function()
 	}
 
 	// update the camera
-	updateCamera(this, this.game) ;
+	//updateCamera(this, this.game) ;
 }
 
 // update the game camera depending on the player's position
 // moves by snapping to the next area when the player begins to go off-screen
-updateCamera = function(player, game)
+updateCamera = function(player, game, gravityball)
 {
+	// console.log('updating Camera') ;
 	// if the player is to the right of the camera's position plus the game width
 	if(player.position.x > (game.camera.position.x + game.width)) {
 		game.camera.x += game.width ; // move the camera to the right by the game's width
+		returnGravityBall(game, player, gravityball) ; // return the gravity ball
 	}
 	// if the player is to the left of the camera
 	else if(player.position.x < game.camera.position.x) {
 		game.camera.x -= game.width ; // move the camera to the left by the game's width
+		returnGravityBall(game, player, gravityball) ; // return the gravity ball
 	}
 }

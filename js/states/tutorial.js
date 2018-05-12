@@ -80,6 +80,7 @@ Tutorial.prototype =
 		game.physics.arcade.collide(this.ground, this.boxes);
 		game.physics.arcade.collide(this.player, this.boxes);
 		game.physics.arcade.collide(this.ball, this.boxes);
+		updateCamera(this.player, game, this.ball) ;
 
 		//*****TAKE OUT LATER*****
 		//switch states when player presses s

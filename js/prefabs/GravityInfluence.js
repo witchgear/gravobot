@@ -64,10 +64,15 @@ exertGravity = function(influence, influencedBody)
 	//if the body is not currently being influenced
 	if(influencedBody.influenced == false)
 	{
-		//set influenced property to true
-		influencedBody.influenced = true;
+		//if the body is on screen
+		if(influencedBody.body.x > game.camera.position.x 
+		&& influencedBody.body.x < game.camera.position.x + game.width)
+		{
+			//set influenced property to true
+			influencedBody.influenced = true;
 		
-		//add the body to an array of influenced bodies
-		influence.gravityBall.influencedArray.push(influencedBody);
+			//add the body to an array of influenced bodies
+			influence.gravityBall.influencedArray.push(influencedBody);
+		}
 	}
 }

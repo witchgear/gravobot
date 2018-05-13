@@ -6,14 +6,15 @@ Tutorial.prototype =
 		//***TEMP UNTIL ATLAS***
 		//set load path and load assets
 		game.load.path = 'assets/img/sprites/';
-		game.load.spritesheet('idle', 'idle.png', 49, 64);
-		game.load.image('ball', 'gravityball.png');
-		game.load.image('box', 'box.png');
-		
+		//game.load.spritesheet('idle', 'idle.png', 49, 64);
+		//game.load.image('ball', 'gravityball.png');
+		//game.load.image('box', 'box.png');
+		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ;
+    
 		//load audio assets
 		game.load.path = 'assets/music/';
 		game.load.audio('tutorial', ['tutorial.mp3', 'tutorial.ogg']);
-		
+
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
 		game.load.spritesheet('tutorialtiles', 'tutorialtiles.png', 32, 32) ;
@@ -47,23 +48,24 @@ Tutorial.prototype =
 									{font: 'Courier New', fontSize: '24px', fill: "#000"});
 		
 		//create player object using prefab
-		this.player = new Player(game, 200, 100, 'idle', 0); 
+		this.player = new Player(game, 200, 100, 'tutorial_atlas', 'idle0001'); 
 		
 		//add player animations
-		this.player.animations.add('idle', [0, 1, 2, 3, 4], 10, true);
+		this.player.animations.add('idle', Phaser.Animation.generateFrameNames('idle', 1, 4, '', 4), 10, true);
+		this.player.animations.add('walk', Phaser.Animation.generateFrameNames('walk', 1, 4, '', 4), 10, true);
 		this.player.animations.play('idle');
 
 		//camera = new Camera(game, player, 0, 0) ;
 		
 		//create gravity ball object using prefab
-		this.ball = new GravityBall(game, this.player, 'ball');
+		this.ball = new GravityBall(game, this.player, 'tutorial_atlas', 'gravityball');
 		
 		//create group for gravity boxes
 		this.boxes = game.add.group();
 		this.boxes.enableBody = true;
 		
 		//create a box using prefab
-		this.box = new GravityBox(game, 800, 100, 'box');
+		this.box = new GravityBox(game, 800, 100, 'tutorial_atlas', 'box');
 		
 		//create gravity influece object using prefab
 		this.influence = new GravityInfluence(game, this.ball, this.boxes);
@@ -107,5 +109,6 @@ Tutorial.prototype =
 		//game.debug.body(this.influence);
 		//game.debug.body(this.ball);
 		//game.debug.body(this.box);
+		//game.debug.body(this.ground) ;
 	}
 }

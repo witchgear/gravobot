@@ -1,4 +1,4 @@
-var GravityBall = function(game, player, frame){
+var GravityBall = function(game, player, key, frame){
 	// to access these variables, use GravityBall instead of this (GravityBall.deployed)
 	this.deployed = false ;	// whether or not the ball has been deployed
 	this.activated = false; //whether or not the ball is exerting gravity
@@ -16,7 +16,7 @@ var GravityBall = function(game, player, frame){
 	
 	// call Sprite constructor within this object
 	// put it at the same height as the player and a bit to the left
-	this.sprite = Phaser.Sprite.call(this, game, 200, 200, frame) ;
+	this.sprite = Phaser.Sprite.call(this, game, 200, 200, key, frame) ;
 	
 	//set anchor
 	this.anchor.x = 0.5;
@@ -27,7 +27,7 @@ var GravityBall = function(game, player, frame){
 	this.body.immovable = true; //prevents gravity ball from being moved by objects being pulled
 	
 	//set gravity ball collision circle with given radius
-	this.body.setCircle(24);
+	this.body.setCircle(32);
 	
 	game.input.mouse.capture = true ; // allow for mouse input
 	// add Q and E keys as valid inputs, Q is now 'push' and E is now 'pull'

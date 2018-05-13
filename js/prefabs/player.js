@@ -12,7 +12,7 @@ function Player(game, x, y, key, frame)
 	this.walkSpeed = 200;
 	this.jumpSpeed = -450;
 	this.isJumping = false;
-	this.influenced = false;
+	this.onBox = false;
 		
 	//increase player scale and set anchor
 	this.scale.setTo(2, 2);
@@ -35,8 +35,10 @@ Player.prototype.constructor = Player;
 //player object's individual update loop
 Player.prototype.update = function()
 {
-	//handle movement
+	//reset velocity every frame
 	this.body.velocity.x = 0;
+	
+	//handle movement
 	if(A.isDown)
 	{
 		this.body.velocity.x += -this.walkSpeed;
@@ -51,15 +53,27 @@ Player.prototype.update = function()
 	{
 		this.isJumping = true;
 		this.body.velocity.y += this.jumpSpeed;
+		this.onBox = false;
 	}
-	//not jumping if velocity 0
-	if(this.isJumping && this.body.velocity.y == 0)
+	//not jumping if velocity 0 (standing on floor) or standing on box
+	if(this.isJumping && (this.body.velocity.y == 0 || (this.onBox && this.body.touching.down)))
 	{
 		this.isJumping = false;
 	}
-
+	
 	// update the camera
 	//updateCamera(this, this.game) ;
+}
+
+//move player with box while they're standing on it
+attachToBox = function(player, box)
+{
+	//only if the player is standing on the box, not colliding left or right
+	if(player.body.touching.down && box.influenced)
+	{
+		player.body.gravity.x = box.body.gravity.x;
+		player.body.gravity.y = box.body.gravity.y;
+	}
 }
 
 // update the game camera depending on the player's position

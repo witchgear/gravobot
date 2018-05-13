@@ -42,9 +42,9 @@ Tutorial.prototype =
 		//*****TAKE OUT LATER*****
 		//display state switching text
 		stateText1 = game.add.text(8, 8, 'State: Tutorial', 
-									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
-		stateText2 = game.add.text(8, 32, 'Press S to switch states.', 
-									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
+									{font: 'Courier New', fontSize: '24px', fill: "#000"});
+		stateText2 = game.add.text(8, 32, 'Press Q to switch states.', 
+									{font: 'Courier New', fontSize: '24px', fill: "#000"});
 		
 		//create player object using prefab
 		this.player = new Player(game, 200, 100, 'idle', 0); 
@@ -66,7 +66,7 @@ Tutorial.prototype =
 		this.box = new GravityBox(game, 800, 100, 'box');
 		
 		//create gravity influece object using prefab
-		this.influence = new GravityInfluence(game, this.ball, this.player, this.boxes);
+		this.influence = new GravityInfluence(game, this.ball, this.boxes);
 		
 		//place the player after the ball so they're always at the front of the screen
 		game.add.existing(this.ball);
@@ -89,13 +89,13 @@ Tutorial.prototype =
 		//handle collision
 		game.physics.arcade.collide(this.ground, this.player);
 		game.physics.arcade.collide(this.ground, this.boxes);
-		game.physics.arcade.collide(this.player, this.boxes);
+		this.player.onBox = game.physics.arcade.collide(this.player, this.boxes);
 		game.physics.arcade.collide(this.ball, this.boxes);
 		updateCamera(this.player, game, this.ball) ;
 
 		//*****TAKE OUT LATER*****
-		//switch states when player presses s
-		if(S.justPressed())
+		//switch states when player presses Q
+		if(Q.justPressed())
 		{
 			this.tutorialTheme.stop(); //stop playing
 			game.state.start('Cutscene');
@@ -104,7 +104,7 @@ Tutorial.prototype =
 	render: function()
 	{
 		//game.debug.body(this.player);
-		//game.debug.body(this.influence);
+		game.debug.body(this.influence);
 		//game.debug.body(this.ball);
 		//game.debug.body(this.box);
 	}

@@ -12,6 +12,7 @@ Boot.prototype =
 		S = game.input.keyboard.addKey(Phaser.Keyboard.S); //menu down
 		D = game.input.keyboard.addKey(Phaser.Keyboard.D); //move right
 		SPACEBAR = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //also jump, confirm
+		Q = game.input.keyboard.addKey(Phaser.Keyboard.Q); //debug functions
 		
 		//enable physics system
 		game.physics.startSystem(Phaser.Physics.ARCADE);

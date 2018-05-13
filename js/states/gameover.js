@@ -20,7 +20,7 @@ GameOver.prototype =
 		//switch states when player presses space
 		if(SPACEBAR.justPressed())
 		{
-			game.state.start('TitleScreen');
+			game.state.start('Tutorial');
 		}
 	},
 }

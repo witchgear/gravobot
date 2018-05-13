@@ -1,13 +1,13 @@
 //this object represents the circle of influence on gravity that the gravity ball exerts
 //constructor function
-function GravityInfluence(game, gravityBall, player)
+function GravityInfluence(game, gravityBall, boxes)
 {
 	//call Phaser.Sprite from this object
 	Phaser.Sprite.call(this, game, 0, 0);
 	
 	//store references to objects
 	this.gravityBall = gravityBall;
-	this.player = player;
+	this.boxes = boxes;
 	
 	//set the strength of the gravity that the ball exerts
 	this.strengthX = 20000;
@@ -37,16 +37,8 @@ GravityInfluence.prototype.update = function()
 	//if the ball is activated
 	if(this.gravityBall.activated)
 	{
-		//if influence and player colliding, run exertGravity
-		this.game.physics.arcade.overlap(this, player, exertGravity);
-	}
-	
-	//collide the player and gravityball if the player is being influenced
-	//strange movement occurs if they don't collide
-	if(this.player.influenced)
-	{
-		this.game.physics.arcade.collide(this.player, this.gravityBall);
-		
+		//if influence and boxes colliding, run exertGravity
+		this.game.physics.arcade.overlap(this, this.boxes, exertGravity);
 	}
 	
 	//for each item in influencedArray
@@ -72,10 +64,15 @@ exertGravity = function(influence, influencedBody)
 	//if the body is not currently being influenced
 	if(influencedBody.influenced == false)
 	{
-		//set influenced property to true
-		influencedBody.influenced = true;
+		//if the body is on screen
+		if(influencedBody.body.x > game.camera.position.x 
+		&& influencedBody.body.x < game.camera.position.x + game.width)
+		{
+			//set influenced property to true
+			influencedBody.influenced = true;
 		
-		//add the body to an array of influenced bodies
-		influence.gravityBall.influencedArray.push(influencedBody);
+			//add the body to an array of influenced bodies
+			influence.gravityBall.influencedArray.push(influencedBody);
+		}
 	}
 }

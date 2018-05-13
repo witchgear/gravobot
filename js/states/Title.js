@@ -6,17 +6,27 @@ note: here what i call a "menu state" is basically a place where the cursor is i
 	  is settings. making a new menu state woudl basically be a new option or place to go on the title menu, and any code held within a menu state is where
 	  you can put what happens on a space or enter or whatever press in the title screen / menu/ etc. for any further questions contact phi.
 */
-
-var game = new Phaser.Game(1000,600,Phaser.AUTO);
 var menuExists = false;
 var menuState = 1;
 
 var Title = function(game) {};
 Title.prototype = {
 	preload: function() {
+		game.load.path = 'assets/img/backgrounds/';
 		game.load.image('logo','logov1.png'); // loads logo
+		game.load.path = 'assets/img/sprites/';
 		game.load.image('icon','tempicon.png'); //loads an image to be a scroller, its labelled as temp in case we want to use a different image later
-		game.load.bitmapFont('menutext','font/font.png','font/font.fnt'); //loads bitmap font
+		game.load.path = 'assets/font/';
+		game.load.bitmapFont('menutext','font.png','font.fnt'); //loads bitmap font
+		
+		//load sound assets
+		game.load.path = 'assets/music/';
+		game.load.audio('title', ['title.mp3', 'title.ogg']);
+		
+		game.load.path = 'assets/sfx/';
+		game.load.audio('scroll', ['scroll.mp3', 'scroll.ogg']);
+		game.load.audio('confirm', ['confirm.mp3', 'confirm.ogg']);
+		game.load.audio('back', ['back.mp3', 'back.ogg']);
 	},
 	create: function() {
 		game.stage.backgroundColor = "#0b094e"; //background
@@ -28,21 +38,29 @@ Title.prototype = {
 		this.logo = this.add.sprite(500,250,'logo');
 		this.logo.anchor.x = 0.5;
 		this.logo.anchor.y = 0.5;
-		//keys		
-		this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //makes space work
-		cursors = this.input.keyboard.createCursorKeys(); //arrow keys (didnt wind up using them but i dont think i needed to delete)
-		this.down = game.input.keyboard.addKey(Phaser.Keyboard.S); //wasd up
-		this.up = game.input.keyboard.addKey(Phaser.Keyboard.W); //wasd down
+		
+		//create the sound objects
+		//add.audio(key, volume, loop)
+		this.confirmSound = game.add.audio('confirm', 0.7, false);
+		this.scrollSound = game.add.audio('scroll', 0.7, false);
+		this.titleTheme = game.add.audio('title', 0.5, true);
+		
+		//play title
+		this.titleTheme.play();
 	},
 	update: function() {
-		//calls create menu
-		if (this.spaceKey.justPressed()&&menuExists==false){
-			this.createMenu();
-		}
 		//works the existing menu
+		//needs to happen before create so the same button press doesn't both create menu and start game
 		if (menuExists){
 			this.workMenu();
 		}
+		
+		//calls create menu
+		if (SPACEBAR.justPressed()&&menuExists==false){
+			this.confirmSound.play();
+			this.createMenu();
+		}
+		
 	},
 	createMenu: function() {
 		this.titleText.kill(); //deletes the space to start text
@@ -71,12 +89,16 @@ Title.prototype = {
 	},
 	workMenu: function(){
 		//moves menu state down on a down button
-		if (this.down.justPressed()){
+		if (S.justPressed()){
 			menuState=menuState+1;
+			
+			this.scrollSound.play(); //play sound
 		}
 		//moves menu state up on an up button
-		if (this.up.justPressed()){
+		if (W.justPressed()){
 			menuState=menuState-1;
+			
+			this.scrollSound.play(); //play sound
 		}
 		//if you go down too far, loop back to the top
 		if (menuState>=3){ //IMPORTANT NOTE: if menu state list is updated make this number one above the new number of enu states
@@ -90,8 +112,14 @@ Title.prototype = {
 		if (menuState==1){
 			this.icon.position.x=500-this.newGame.width*.75;
 			this.icon.position.y=this.newGame.y;
-			//IMPORTANT NOTE: any things you want to happen upon reaching this part, 
-			//eg on space press in this state start game: write code here
+			
+			//if space pressed on new game, go to tutorial state
+			if(SPACEBAR.justPressed())
+			{
+				this.titleTheme.stop();
+				this.confirmSound.play();
+				game.state.start('Tutorial');
+			}
 		}
 		//in state two, this occurs
 		else if (menuState==2){
@@ -103,5 +131,3 @@ Title.prototype = {
 
 	}
 }
-game.state.add('Title', Title);
-game.state.start('Title');

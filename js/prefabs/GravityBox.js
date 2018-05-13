@@ -1,8 +1,8 @@
 //Player constructor function
-function GravityBox(game, x, y, key)
+function GravityBox(game, x, y, key, frame)
 {
 	//call Phaser.Sprite from this object
-	Phaser.Sprite.call(this, game, x, y, key);
+	Phaser.Sprite.call(this, game, x, y, key, frame);
 	
 	//add object properties
 	this.influenced = false;
@@ -18,7 +18,7 @@ function GravityBox(game, x, y, key)
 	this.body.immovable = true; //prevents gravity box from being pushed by player
 	
 	//set collision box
-	this.body.setSize(44, 46, 2, 2);
+	//this.body.setSize(44, 46, 2, 2);
 }
 
 //link the object's prototype to the Phaser.Sprite object

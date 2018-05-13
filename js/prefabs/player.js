@@ -15,7 +15,7 @@ function Player(game, x, y, key, frame)
 	this.influenced = false;
 		
 	//increase player scale and set anchor
-	this.scale.setTo(2, 2);
+	//this.scale.setTo(2, 2);
 	this.anchor.x = 0.5;
 	this.anchor.y = 0.5;
 	
@@ -25,7 +25,7 @@ function Player(game, x, y, key, frame)
 	this.body.gravity.y = worldGravity;
 	
 	//set player collision box
-	this.body.setSize(40, 62, 4, 2);
+	this.body.setSize(48, 124, 24, 4);
 }
 
 //link the player object's prototype to the Phaser.Sprite object
@@ -40,10 +40,18 @@ Player.prototype.update = function()
 	if(A.isDown)
 	{
 		this.body.velocity.x += -this.walkSpeed;
+		this.animations.play('walk') ; // play walk animation
+		this.scale.x = -1 ; // flip sprite so it faces left
 	}
-	if(D.isDown)
+	else if(D.isDown)
 	{
 		this.body.velocity.x += this.walkSpeed;
+		this.animations.play('walk') ; // play walk animation
+		this.scale.x = 1 ; // make sure sprite is facing right
+	}
+	else // if player is not moving horizontally
+	{
+		this.animations.play('idle') ; // play idle animation
 	}
 	
 	//handle jump

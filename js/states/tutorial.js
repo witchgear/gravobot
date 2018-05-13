@@ -62,10 +62,21 @@ Tutorial.prototype =
 		
 		//create group for gravity boxes
 		this.boxes = game.add.group();
-		this.boxes.enableBody = true;
 		
-		//create a box using prefab
-		this.box = new GravityBox(game, 800, 100, 'tutorial_atlas', 'box');
+		//array of gravity box x coordinates
+		this.boxPlacements = [game.width * 2 + 32 * 10, game.width * 3 + 32 * 5]
+		
+		//create boxes
+		for(var i = 0; i < 2; i++)
+		{
+			//create a box using prefab
+			this.box = new GravityBox(game, this.boxPlacements[i], 0, 'tutorial_atlas', 'box');
+			
+			//add the box to the game world and to the group
+			game.add.existing(this.box);
+			this.boxes.add(this.box);
+		}
+		
 		
 		//create gravity influece object using prefab
 		this.influence = new GravityInfluence(game, this.ball, this.boxes);
@@ -73,11 +84,7 @@ Tutorial.prototype =
 		//place the player after the ball so they're always at the front of the screen
 		game.add.existing(this.ball);
 		game.add.existing(this.influence);
-		game.add.existing(this.box);
 		game.add.existing(this.player);
-		
-		//add box to group here because it wont get added if its not onscreen
-		this.boxes.add(this.box);
 		
 		//create the sound objects
 		//add.audio(key, volume, loop)
@@ -108,7 +115,7 @@ Tutorial.prototype =
 		//game.debug.body(this.player);
 		//game.debug.body(this.influence);
 		//game.debug.body(this.ball);
-		//game.debug.body(this.box);
+		//game.debug.physicsGroup(this.boxes);
 		//game.debug.body(this.ground) ;
 	}
 }

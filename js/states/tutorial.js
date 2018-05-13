@@ -9,7 +9,11 @@ Tutorial.prototype =
 		//game.load.spritesheet('idle', 'idle.png', 49, 64);
 		//game.load.image('ball', 'gravityball.png');
 		//game.load.image('box', 'box.png');
-		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json')
+		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ;
+    
+		//load audio assets
+		game.load.path = 'assets/music/';
+		game.load.audio('tutorial', ['tutorial.mp3', 'tutorial.ogg']);
 
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
@@ -39,9 +43,9 @@ Tutorial.prototype =
 		//*****TAKE OUT LATER*****
 		//display state switching text
 		stateText1 = game.add.text(8, 8, 'State: Tutorial', 
-									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
-		stateText2 = game.add.text(8, 32, 'Press S to switch states.', 
-									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
+									{font: 'Courier New', fontSize: '24px', fill: "#000"});
+		stateText2 = game.add.text(8, 32, 'Press Q to switch states.', 
+									{font: 'Courier New', fontSize: '24px', fill: "#000"});
 		
 		//create player object using prefab
 		this.player = new Player(game, 200, 100, 'tutorial_atlas', 'idle0001'); 
@@ -64,7 +68,7 @@ Tutorial.prototype =
 		this.box = new GravityBox(game, 800, 100, 'tutorial_atlas', 'box');
 		
 		//create gravity influece object using prefab
-		this.influence = new GravityInfluence(game, this.ball, this.player, this.boxes);
+		this.influence = new GravityInfluence(game, this.ball, this.boxes);
 		
 		//place the player after the ball so they're always at the front of the screen
 		game.add.existing(this.ball);
@@ -74,20 +78,28 @@ Tutorial.prototype =
 		
 		//add box to group here because it wont get added if its not onscreen
 		this.boxes.add(this.box);
+		
+		//create the sound objects
+		//add.audio(key, volume, loop)
+		this.tutorialTheme = game.add.audio('tutorial', 0.5, true);
+		
+		//play tutorial
+		this.tutorialTheme.play();
 	},
 	update: function()
 	{
 		//handle collision
 		game.physics.arcade.collide(this.ground, this.player);
 		game.physics.arcade.collide(this.ground, this.boxes);
-		game.physics.arcade.collide(this.player, this.boxes);
+		this.player.onBox = game.physics.arcade.collide(this.player, this.boxes);
 		game.physics.arcade.collide(this.ball, this.boxes);
 		updateCamera(this.player, game, this.ball) ;
 
 		//*****TAKE OUT LATER*****
-		//switch states when player presses s
-		if(S.justPressed())
+		//switch states when player presses Q
+		if(Q.justPressed())
 		{
+			this.tutorialTheme.stop(); //stop playing
 			game.state.start('Cutscene');
 		}
 	},

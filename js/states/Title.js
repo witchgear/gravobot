@@ -18,6 +18,15 @@ Title.prototype = {
 		game.load.image('icon','tempicon.png'); //loads an image to be a scroller, its labelled as temp in case we want to use a different image later
 		game.load.path = 'assets/font/';
 		game.load.bitmapFont('menutext','font.png','font.fnt'); //loads bitmap font
+		
+		//load sound assets
+		game.load.path = 'assets/music/';
+		game.load.audio('title', ['title.mp3', 'title.ogg']);
+		
+		game.load.path = 'assets/sfx/';
+		game.load.audio('scroll', ['scroll.mp3', 'scroll.ogg']);
+		game.load.audio('confirm', ['confirm.mp3', 'confirm.ogg']);
+		game.load.audio('back', ['back.mp3', 'back.ogg']);
 	},
 	create: function() {
 		game.stage.backgroundColor = "#0b094e"; //background
@@ -29,6 +38,15 @@ Title.prototype = {
 		this.logo = this.add.sprite(500,250,'logo');
 		this.logo.anchor.x = 0.5;
 		this.logo.anchor.y = 0.5;
+		
+		//create the sound objects
+		//add.audio(key, volume, loop)
+		this.confirmSound = game.add.audio('confirm', 0.7, false);
+		this.scrollSound = game.add.audio('scroll', 0.7, false);
+		this.titleTheme = game.add.audio('title', 0.5, true);
+		
+		//play title
+		this.titleTheme.play();
 	},
 	update: function() {
 		//works the existing menu
@@ -39,6 +57,7 @@ Title.prototype = {
 		
 		//calls create menu
 		if (SPACEBAR.justPressed()&&menuExists==false){
+			this.confirmSound.play();
 			this.createMenu();
 		}
 		
@@ -72,10 +91,14 @@ Title.prototype = {
 		//moves menu state down on a down button
 		if (S.justPressed()){
 			menuState=menuState+1;
+			
+			this.scrollSound.play(); //play sound
 		}
 		//moves menu state up on an up button
 		if (W.justPressed()){
 			menuState=menuState-1;
+			
+			this.scrollSound.play(); //play sound
 		}
 		//if you go down too far, loop back to the top
 		if (menuState>=3){ //IMPORTANT NOTE: if menu state list is updated make this number one above the new number of enu states
@@ -93,6 +116,8 @@ Title.prototype = {
 			//if space pressed on new game, go to tutorial state
 			if(SPACEBAR.justPressed())
 			{
+				this.titleTheme.stop();
+				this.confirmSound.play();
 				game.state.start('Tutorial');
 			}
 		}

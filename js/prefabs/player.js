@@ -14,8 +14,7 @@ function Player(game, x, y, key, frame)
 	this.isJumping = false;
 	this.onBox = false;
 		
-	//increase player scale and set anchor
-	//this.scale.setTo(2, 2);
+	//set anchor
 	this.anchor.x = 0.5;
 	this.anchor.y = 0.5;
 	

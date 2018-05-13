@@ -37,7 +37,7 @@ Tutorial.prototype =
 
 		// set collision for the ground tiles on the ground layer
 		// tilemap.setCollision([tiles], collide (boolean), layer)
-		this.terrain.setCollision([12, 20], true, 'Ground') ;
+		this.terrain.setCollision([12, 20, 41, 42, 43, 49, 50, 51, 57, 58, 59], true, 'Ground') ;
 
 
 		//*****TAKE OUT LATER*****

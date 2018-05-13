@@ -104,7 +104,7 @@ Tutorial.prototype =
 	render: function()
 	{
 		//game.debug.body(this.player);
-		game.debug.body(this.influence);
+		//game.debug.body(this.influence);
 		//game.debug.body(this.ball);
 		//game.debug.body(this.box);
 	}

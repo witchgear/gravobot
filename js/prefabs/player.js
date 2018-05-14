@@ -67,6 +67,11 @@ Player.prototype.update = function()
 	{
 		this.isJumping = false;
 	}
+
+	if(this.body.y > this.game.height){
+		this.body.x = game.camera.x + Math.abs(this.width) ;
+		this.body.y = game.camera.y - this.height ;
+	}
 	
 	// update the camera
 	//updateCamera(this, this.game) ;

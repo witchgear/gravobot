@@ -29,6 +29,10 @@ Title.prototype = {
 		game.load.audio('back', ['back.mp3', 'back.ogg']);
 	},
 	create: function() {
+		game.camera.x = game.camera.y = 0 ; // reset game camera to (0, 0) just in case
+		menuState = 1 ; // reset menu state variable to 1
+		menuExists = false ; // reset menuExists to false
+		
 		game.stage.backgroundColor = "#0b094e"; //background
 		//space to start text
 		this.titleText = game.add.bitmapText(500, 450, 'menutext','Press Space to Start', 32);
@@ -110,6 +114,8 @@ Title.prototype = {
 		}
 		//in state one, this occurs
 		if (menuState==1){
+			// console.log(this.newGame) ;
+			// console.log(this.newGame) ;
 			this.icon.position.x=500-this.newGame.width*.75;
 			this.icon.position.y=this.newGame.y;
 			

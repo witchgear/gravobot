@@ -13,6 +13,8 @@ function Player(game, x, y, key, frame)
 	this.jumpSpeed = -450;
 	this.isJumping = false;
 	this.onBox = false;
+	this.onGround = false;
+	this.nearestBoxY = 0 ;
 		
 	//set anchor
 	this.anchor.x = 0.5;
@@ -68,9 +70,18 @@ Player.prototype.update = function()
 		this.isJumping = false;
 	}
 
-	if(this.body.y > this.game.height){
-		this.body.x = game.camera.x + Math.abs(this.width) ;
+	// if the player somehow clips through the floor
+	if(this.body.y > this.game.height){ 
+		this.body.x = game.camera.x + Math.abs(this.width) ; // put them back at the beginning of the area
 		this.body.y = game.camera.y - this.height ;
+	}
+
+	// if the player is being hit by a box while touching the ground
+	if(this.onBox && this.onGround && this.body.touching.up) {
+		this.body.immovable = true ; // temporarily make them immovable so the box doesn't push them into the floor
+	}
+	else {
+		this.body.immovable = false ; // otherwise the player is immovable
 	}
 	
 	// update the camera

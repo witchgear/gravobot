@@ -39,6 +39,8 @@ Tutorial.prototype =
 		// tilemap.setCollision([tiles], collide (boolean), layer)
 		this.terrain.setCollision([12, 20, 41, 42, 43, 49, 50, 51, 57, 58, 59], true, 'Ground') ;
 
+		// set tile bias to 64 so collision is handled better
+		game.physics.arcade.TILE_BIAS = 64 ;
 
 		//*****TAKE OUT LATER*****
 		//display state switching text
@@ -96,10 +98,11 @@ Tutorial.prototype =
 	update: function()
 	{
 		//handle collision
-		game.physics.arcade.collide(this.ground, this.player);
+		this.player.onGround = game.physics.arcade.collide(this.ground, this.player);
 		game.physics.arcade.collide(this.ground, this.boxes);
-		this.player.onBox = game.physics.arcade.collide(this.player, this.boxes);
+		this.player.onBox = game.physics.arcade.collide(this.player, this.boxes) ;
 		game.physics.arcade.collide(this.ball, this.boxes);
+		
 		updateCamera(this.player, game, this.ball) ;
 
 		//*****TAKE OUT LATER*****

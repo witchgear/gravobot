@@ -20,7 +20,7 @@ Cutscene.prototype =
 		//switch states when player presses space
 		if(SPACEBAR.justPressed())
 		{
-			game.state.start('Level1');
+			game.state.start('Level2');
 		}
 	},
 }

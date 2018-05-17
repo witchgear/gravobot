@@ -124,7 +124,7 @@ Player.prototype.handleJump = function(player)
 Player.prototype.handleCrouch = function(player)
 {
 	//S was pressed down && the player is standing on something
-	if(!player.isCrouching && S.justPressed() && player.body.touching.down 
+	if(!player.isCrouching && S.isDown && player.body.touching.down 
 	&& player.objectStandingOn != null)
 	{
 		//set isCrouching to true

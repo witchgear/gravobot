@@ -98,12 +98,9 @@ Tutorial.prototype =
 	update: function()
 	{
 		//handle collision
-		this.player.onGround = game.physics.arcade.collide(this.ground, this.player);
-		game.physics.arcade.collide(this.ground, this.boxes);
-		this.player.onBox = game.physics.arcade.collide(this.player, this.boxes) ;
-		game.physics.arcade.collide(this.ball, this.boxes);
+		handleCollision(this.player, this.ball, this.boxes, this.ground);
 		
-		updateCamera(this.player, game, this.ball) ;
+		updateCamera(this.player, game, this.ball);
 
 		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
@@ -121,4 +118,13 @@ Tutorial.prototype =
 		//game.debug.physicsGroup(this.boxes);
 		//game.debug.body(this.ground) ;
 	}
+}
+
+//function that handles the necessary collision for each state
+handleCollision = function(player, ball, boxes, ground)
+{
+	player.onGround = game.physics.arcade.collide(ground, player);
+	game.physics.arcade.collide(ground, boxes);
+	player.onBox = game.physics.arcade.collide(player, boxes);
+	game.physics.arcade.collide(ball, boxes);
 }

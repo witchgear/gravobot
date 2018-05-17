@@ -40,35 +40,10 @@ Player.prototype.update = function()
 	this.body.velocity.x = 0;
 	
 	//handle movement
-	if(A.isDown)
-	{
-		this.body.velocity.x += -this.walkSpeed;
-		this.animations.play('walk') ; // play walk animation
-		this.scale.x = -1 ; // flip sprite so it faces left
-	}
-	else if(D.isDown)
-	{
-		this.body.velocity.x += this.walkSpeed;
-		this.animations.play('walk') ; // play walk animation
-		this.scale.x = 1 ; // make sure sprite is facing right
-	}
-	else // if player is not moving horizontally
-	{
-		this.animations.play('idle') ; // play idle animation
-	}
+	this.handleMovement(this);
 	
 	//handle jump
-	if(this.isJumping == false && (SPACEBAR.justPressed() || W.justPressed()))
-	{
-		this.isJumping = true;
-		this.body.velocity.y += this.jumpSpeed;
-		this.onBox = false;
-	}
-	//not jumping if velocity 0 (standing on floor) or standing on box
-	if(this.isJumping && (this.body.velocity.y == 0 || (this.onBox && this.body.touching.down)))
-	{
-		this.isJumping = false;
-	}
+	this.handleJump(this);
 
 	// if the player somehow clips through the floor
 	if(this.body.y > this.game.height){ 
@@ -88,8 +63,45 @@ Player.prototype.update = function()
 	//updateCamera(this, this.game) ;
 }
 
+Player.prototype.handleMovement = function(player)
+{
+	//walk left if holding A
+	if(A.isDown)
+	{
+		player.body.velocity.x += -player.walkSpeed;
+		player.animations.play('walk') ; // play walk animation
+		player.scale.x = -1 ; // flip sprite so it faces left
+	}
+	//walk right if holding D
+	else if(D.isDown)
+	{
+		player.body.velocity.x += player.walkSpeed;
+		player.animations.play('walk') ; // play walk animation
+		player.scale.x = 1 ; // make sure sprite is facing right
+	}
+	else // if player is not moving horizontally
+	{
+		player.animations.play('idle') ; // play idle animation
+	}
+}
+
+Player.prototype.handleJump = function(player)
+{
+	if(player.isJumping == false && (SPACEBAR.justPressed() || W.justPressed()))
+	{
+		player.isJumping = player;
+		player.body.velocity.y += player.jumpSpeed;
+		player.onBox = false;
+	}
+	//not jumping if velocity 0 (standing on floor) or standing on box
+	if(player.isJumping && (player.body.velocity.y == 0 || (player.onBox && player.body.touching.down)))
+	{
+		player.isJumping = false;
+	}
+}
+
 //move player with box while they're standing on it
-attachToBox = function(player, box)
+Player.prototype.attachToBox = function(player, box)
 {
 	//only if the player is standing on the box, not colliding left or right
 	if(player.body.touching.down && box.influenced)

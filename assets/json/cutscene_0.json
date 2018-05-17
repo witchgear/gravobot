@@ -1,0 +1,14 @@
+{
+	"dialogue":[
+		{
+			"actor": "Space Queen",
+			"voice": "queentalk",
+			"line": "Hohoho!!! You've done it, Gravobot!\nYou've broken everything!!!!"
+		},
+
+		{
+			"actor": "Gravobot",
+			"voice": "queentalk",
+			"line": "Oh, sowwee...."
+		}]
+}

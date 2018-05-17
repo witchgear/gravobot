@@ -11,10 +11,19 @@ function Player(game, x, y, key, frame)
 	//add player properties
 	this.walkSpeed = 200;
 	this.jumpSpeed = -450;
+	
+	this.canWalk = true;
+	this.canJump = true;
+	this.isCrouching = false;
 	this.isJumping = false;
-	this.onBox = false;
-	this.onGround = false;
-	this.nearestBoxY = 0 ;
+	
+	this.objectStandingOn = null; //reference to the object the player is standing on
+	this.relativeX = 0; //x location relative to object being stood on
+	this.relativeY = 0; //y
+	
+	this.onBox = false; //whether the player is colliding with a box
+	this.onPlatform = false; //whether the player is colliding with a platform
+	this.onGround = false; //whether the player is colliding with the ground
 		
 	//set anchor
 	this.anchor.x = 0.5;
@@ -39,12 +48,21 @@ Player.prototype.update = function()
 	//reset velocity every frame
 	this.body.velocity.x = 0;
 	
-	//handle movement
-	this.handleMovement(this);
+	//handle movement if the player can walk
+	if(this.canWalk)
+	{
+		this.handleMovement(this);
+	}
 	
-	//handle jump
-	this.handleJump(this);
-
+	//handle jump if the player can jump
+	if(this.canJump)
+	{
+		this.handleJump(this);
+	}
+	
+	//handle crouch
+	this.handleCrouch(this);
+	
 	// if the player somehow clips through the floor
 	if(this.body.y > this.game.height){ 
 		this.body.x = game.camera.x + Math.abs(this.width) ; // put them back at the beginning of the area
@@ -79,7 +97,7 @@ Player.prototype.handleMovement = function(player)
 		player.animations.play('walk') ; // play walk animation
 		player.scale.x = 1 ; // make sure sprite is facing right
 	}
-	else // if player is not moving horizontally
+	else if(!this.isCrouching) // if player is not moving horizontally && not crouching
 	{
 		player.animations.play('idle') ; // play idle animation
 	}
@@ -92,22 +110,79 @@ Player.prototype.handleJump = function(player)
 		player.isJumping = player;
 		player.body.velocity.y += player.jumpSpeed;
 		player.onBox = false;
+		player.onPlatform = false;
 	}
-	//not jumping if velocity 0 (standing on floor) or standing on box
-	if(player.isJumping && (player.body.velocity.y == 0 || (player.onBox && player.body.touching.down)))
+	//not jumping if velocity 0 (standing on floor) or standing on box or platform
+	if(player.isJumping && (player.body.velocity.y == 0 || ((player.onBox || player.onPlatform)
+	&& player.body.touching.down)))
 	{
 		player.isJumping = false;
 	}
 }
 
-//move player with box while they're standing on it
-Player.prototype.attachToBox = function(player, box)
+//handles crouch, allowing player to stick to a box/platform while they're standing on it
+Player.prototype.handleCrouch = function(player)
 {
-	//only if the player is standing on the box, not colliding left or right
-	if(player.body.touching.down && box.influenced)
+	//S was pressed down && the player is standing on something
+	if(!player.isCrouching && S.justPressed() && player.body.touching.down 
+	&& player.objectStandingOn != null)
 	{
-		player.body.gravity.x = box.body.gravity.x;
-		player.body.gravity.y = box.body.gravity.y;
+		//set isCrouching to true
+		player.isCrouching = true;
+		
+		//save the player's position relative to the object
+		player.relativeX = player.body.x - player.objectStandingOn.body.x;
+		player.relativeY = player.body.y - player.objectStandingOn.body.y;
+		
+		//disable gravity, jumping, and walking
+		player.body.gravity.y = 0;
+		player.canJump = false;
+		player.canWalk = false;
+		
+		//play crouch animation
+		//player.animations.play('crouch'); uncomment when there is an animation
+	}
+	
+	//player is crouching
+	if(player.isCrouching)
+	{
+		//move the player to the object's location + offset
+		player.body.x = player.objectStandingOn.body.x + player.relativeX;
+		player.body.y = player.objectStandingOn.body.y + player.relativeY;
+		
+		//reset offset in case player flies off
+		player.relativeX = player.body.x - player.objectStandingOn.body.x;
+		player.relativeY = player.body.y - player.objectStandingOn.body.y;
+	}
+	
+	//S was released or no longer standing on anything
+	if(player.isCrouching && S.justReleased())
+	{
+		//set isCrouching to false
+		player.isCrouching = false;
+		
+		//re-enable gravity, jumping, and walking
+		player.body.velocity.y = 0; //reset velocity so gravobot doesn't fly upward 
+		player.body.gravity.y = worldGravity;
+		player.canJump = true;
+		player.canWalk = true;
+		
+		//reset animation to idle
+		player.animations.play('idle');
+		
+		//reset pointer for objectStandingOn
+		player.objectStandingOn = null;
+	}
+}
+
+//saves a pointer to the object the player is standing on
+Player.prototype.saveObject = function(player, object)
+{
+	//if there is no object saved already && colliding from above
+	if(player.objectStandingOn == null && player.body.touching.down)
+	{
+		//set pointer
+		player.objectStandingOn = object;
 	}
 }
 

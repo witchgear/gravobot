@@ -79,7 +79,6 @@ Tutorial.prototype =
 			this.boxes.add(this.box);
 		}
 		
-		
 		//create gravity influece object using prefab
 		this.influence = new GravityInfluence(game, this.ball, this.boxes);
 		
@@ -123,8 +122,16 @@ Tutorial.prototype =
 //function that handles the necessary collision for each state
 handleCollision = function(player, ball, boxes, ground)
 {
+	//collide player and ground and save result in player
 	player.onGround = game.physics.arcade.collide(ground, player);
+	
+	//collide ground and boxes
 	game.physics.arcade.collide(ground, boxes);
-	player.onBox = game.physics.arcade.collide(player, boxes);
+	
+	//collide player and boxes/platform, save result, and run saveObject
+	player.onBox = game.physics.arcade.collide(player, boxes, player.saveObject);
+	//player.onPlatform = game.physics.arcade.collide(player, platforms, player.saveObject);
+	
+	//collide ball and boxes
 	game.physics.arcade.collide(ball, boxes);
 }

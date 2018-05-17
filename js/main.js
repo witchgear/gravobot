@@ -7,9 +7,9 @@ Boot.prototype =
 	create: function()
 	{
 		//Create input keys
-		W = game.input.keyboard.addKey(Phaser.Keyboard.W); //jump/menu up
+		W = game.input.keyboard.addKey(Phaser.Keyboard.W); //jump, menu up
 		A = game.input.keyboard.addKey(Phaser.Keyboard.A); //move left
-		S = game.input.keyboard.addKey(Phaser.Keyboard.S); //menu down
+		S = game.input.keyboard.addKey(Phaser.Keyboard.S); //crouch, menu down
 		D = game.input.keyboard.addKey(Phaser.Keyboard.D); //move right
 		SPACEBAR = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //also jump, confirm
 		Q = game.input.keyboard.addKey(Phaser.Keyboard.Q); //debug functions

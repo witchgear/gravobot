@@ -64,7 +64,7 @@ GravityInfluence.prototype.influenceObject = function(influence, influencedBody)
 	}
 }
 
-//
+//exert gravity on all influenced objects
 GravityInfluence.prototype.exertForce = function(influence)
 {
 	//for each item in influencedArray

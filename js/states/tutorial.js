@@ -70,7 +70,7 @@ Tutorial.prototype =
 		this.boxPlacements = [game.width * 2 + 32 * 10, game.width * 3 + 32 * 5]
 		
 		//create boxes
-		for(var i = 0; i < 2; i++)
+		for(var i = 0; i < this.boxPlacements.length; i++)
 		{
 			//create a box using prefab
 			this.box = new GravityBox(game, this.boxPlacements[i], 0, 'tutorial_atlas', 'box');
@@ -80,8 +80,26 @@ Tutorial.prototype =
 			this.boxes.add(this.box);
 		}
 		
+		//create group for sliding platforms
+		this.platforms = game.add.group();
+		
+		//2D array of platform of platform parameters, each array contains [x, y, direction, limitA, limitB]
+		this.platformParameters = [[600, 450, "horizontal", 200, 600], [800, 450, "vertical", 100, 450]];
+		
+		for(var i = 0; i < this.platformParameters.length; i++)
+		{
+			//create new platform with (game, x, y, key, frame, direction, limitA, limitB)
+			this.platform = new Platform(game, this.platformParameters[i][0], this.platformParameters[i][1],
+										'tutorial_atlas', 'box', this.platformParameters[i][2],
+										this.platformParameters[i][3], this.platformParameters[i][4]);
+			
+			//add the platform to the game world and to the group
+			game.add.existing(this.platform);
+			this.platforms.add(this.platform);
+		}			
+		
 		//create gravity influece object using prefab
-		this.influence = new GravityInfluence(game, 'radius', this.ball, this.boxes);
+		this.influence = new GravityInfluence(game, 'radius', this.ball, this.boxes, this.platforms);
 		
 		//place the player after the ball so they're always at the front of the screen
 		game.add.existing(this.ball);
@@ -98,7 +116,7 @@ Tutorial.prototype =
 	update: function()
 	{
 		//handle collision
-		handleCollision(this.player, this.ball, this.boxes, this.ground);
+		handleCollision(this.player, this.ball, this.boxes, this.platforms, this.ground);
 		
 		updateCamera(this.player, game, this.ball);
 
@@ -121,7 +139,7 @@ Tutorial.prototype =
 }
 
 //function that handles the necessary collision for each state
-handleCollision = function(player, ball, boxes, ground)
+handleCollision = function(player, ball, boxes, platforms, ground)
 {
 	//collide player and ground and save result in player
 	player.onGround = game.physics.arcade.collide(ground, player);
@@ -131,7 +149,7 @@ handleCollision = function(player, ball, boxes, ground)
 	
 	//collide player and boxes/platform, save result, and run saveObject
 	player.onBox = game.physics.arcade.collide(player, boxes, player.saveObject);
-	//player.onPlatform = game.physics.arcade.collide(player, platforms, player.saveObject);
+	player.onPlatform = game.physics.arcade.collide(player, platforms, player.saveObject);
 	
 	//collide ball and boxes
 	game.physics.arcade.collide(ball, boxes);

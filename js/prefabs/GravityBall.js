@@ -141,6 +141,13 @@ returnGravityBall = function(game, player, gravityball){
 		gravityball.influencedArray[i].body.gravity.x = 0;
 		gravityball.influencedArray[i].body.gravity.y = worldGravity;
 		
+		//if the object is a platform actually set gravity to 0
+		if(gravityball.influencedArray[i].direction == "horizontal" 
+		|| gravityball.influencedArray[i].direction == "vertical")
+		{
+			gravityball.influencedArray[i].body.gravity.y = 0;
+		}
+		
 		//remove the object from the array
 		gravityball.influencedArray.pop();
 	}

@@ -1,6 +1,6 @@
 //this object represents the circle of influence on gravity that the gravity ball exerts
 //constructor function
-function GravityInfluence(game, key, gravityBall, boxes)
+function GravityInfluence(game, key, gravityBall, boxes, platforms)
 {
 	//call Phaser.Sprite from this object
 	Phaser.Sprite.call(this, game, 0, 0, key);
@@ -8,6 +8,7 @@ function GravityInfluence(game, key, gravityBall, boxes)
 	//store references to objects
 	this.gravityBall = gravityBall;
 	this.boxes = boxes;
+	this.platforms = platforms;
 	
 	//set the strength of the gravity that the ball exerts
 	this.strengthX = 20000;
@@ -41,8 +42,9 @@ GravityInfluence.prototype.update = function()
 		//set the alpha to 1, making the radius visible
 		this.alpha = 1;
 		
-		//if influence and boxes colliding, run influenceObject
+		//if influence and boxes or platforms colliding, run influenceObject
 		this.game.physics.arcade.overlap(this, this.boxes, this.influenceObject);
+		this.game.physics.arcade.overlap(this, this.platforms, this.influenceObject);
 	}
 	else //the ball is not activated
 	{
@@ -86,9 +88,61 @@ GravityInfluence.prototype.exertForce = function(influence)
 			var angle = this.game.physics.arcade.angleBetween(this.gravityBall.influencedArray[i], 
 															  this.gravityBall);
 
-			//exert gravity towards the gravity ball
-			this.gravityBall.influencedArray[i].body.gravity.x = Math.cos(angle) * this.strengthX;
-			this.gravityBall.influencedArray[i].body.gravity.y = Math.sin(angle) * this.strengthY;
+			//if it is omnidirectional
+			if(this.gravityBall.influencedArray[i].direction == "omni")
+			{
+				//exert gravity towards the gravity ball
+				this.gravityBall.influencedArray[i].body.gravity.x = Math.cos(angle) * this.strengthX;
+				this.gravityBall.influencedArray[i].body.gravity.y = Math.sin(angle) * this.strengthY;
+			}
+			
+			//if it is a horizontal platform
+			if(this.gravityBall.influencedArray[i].direction == "horizontal")
+			{
+				//if being influenced to the right and the platform is not too far right (bc fuck fascists)
+				if((-Math.PI / 2) <= angle && angle <= (Math.PI / 2) &&
+					this.gravityBall.influencedArray[i].body.x < this.gravityBall.influencedArray[i].limitB)
+				{
+					//exert gravity
+					this.gravityBall.influencedArray[i].body.gravity.x = Math.cos(angle) * this.strengthX;
+				}
+				//else being influenced to the left and platform is not too far left
+				else if((((Math.PI / 2) < angle && angle < Math.PI) || (-Math.PI < angle && angle < (-Math.PI / 2)))
+					&& this.gravityBall.influencedArray[i].body.x > this.gravityBall.influencedArray[i].limitA)
+				{
+					//exert gravity
+					this.gravityBall.influencedArray[i].body.gravity.x = Math.cos(angle) * this.strengthX;
+				}
+				else //else something weird going on
+				{
+					//reset gravity
+					this.gravityBall.influencedArray[i].body.gravity.x = 0;
+				}
+			}
+		
+			//if it is a vertical platform
+			if(this.gravityBall.influencedArray[i].direction == "vertical")
+			{
+				//if being influenced downwards and the platform is not too down
+				if(0 <= angle && angle <= Math.PI && this.gravityBall.influencedArray[i].body.y <
+					this.gravityBall.influencedArray[i].limitB)
+				{
+					//exert gravity
+					this.gravityBall.influencedArray[i].body.gravity.y = Math.sin(angle) * this.strengthY * 10;
+				}
+				//else being influenced upward and platform is not too far upward
+				else if(-Math.PI <= angle && angle < 0 && this.gravityBall.influencedArray[i].body.y >
+						this.gravityBall.influencedArray[i].limitA)
+				{
+					//exert gravity
+					this.gravityBall.influencedArray[i].body.gravity.y = Math.sin(angle) * this.strengthY * 10;
+				}
+				else //else something weird going on
+				{
+					//reset gravity
+					this.gravityBall.influencedArray[i].body.gravity.y = 0;
+				}
+			}
 		}		
 	}
 }

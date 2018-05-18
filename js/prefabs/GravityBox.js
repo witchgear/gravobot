@@ -1,4 +1,4 @@
-//Player constructor function
+//Gravity Box constructor function
 function GravityBox(game, x, y, key, frame)
 {
 	//call Phaser.Sprite from this object
@@ -6,6 +6,7 @@ function GravityBox(game, x, y, key, frame)
 	
 	//add object properties
 	this.influenced = false;
+	this.direction = "omni"; //direction box can move, do not change
 		
 	//set anchor
 	this.anchor.x = 0.5;

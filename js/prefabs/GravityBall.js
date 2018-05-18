@@ -1,4 +1,4 @@
-var GravityBall = function(game, player, key, frame){
+var GravityBall = function(game, player, key, frame, radius, particle){
 	// to access these variables, use GravityBall instead of this (GravityBall.deployed)
 	this.deployed = false ;	// whether or not the ball has been deployed
 	this.activated = false; //whether or not the ball is exerting gravity
@@ -13,6 +13,14 @@ var GravityBall = function(game, player, key, frame){
 
 	//array to hold references to objects that are being influenced 
 	this.influencedArray = [];
+
+	//this.radius = radius ;
+	//this.radius.anchor = (0.5, 0.5) ;
+	//this.radius.alpha = 1 ;
+
+	//this.particle = particle ;
+
+	this.emitBuffer = 0 ;
 	
 	// call Sprite constructor within this object
 	// put it at the same height as the player and a bit to the left
@@ -45,6 +53,12 @@ GravityBall.prototype.update = function() {
 		// rotate the ball
 		this.body.rotation -= 1 ;
 
+		//this.emitBuffer++ ;
+
+		//if(this.emitBuffer % 4 == 0) {
+			//emitParticles(this.game, this) ;
+		//}
+
 		// if the pointer (mouse, touch, etc) has just been released while the gravity ball is deployed, undeploy it
 		if(this.game.input.activePointer.justPressed(20)){
 			returnGravityBall(this.game, this.player, this) ;
@@ -60,6 +74,9 @@ GravityBall.prototype.update = function() {
 			deployGravityBall(this.game, this.player, this) ;
 		}
 	}
+
+	// this.radius.position.x = this.position.x ;
+	// this.radius.position.y = this.position.y ;
 	/*if(this.controls.push.justPressed()){ // if Q was just pressed
 		this.direction = true ; // the gravity ball is now pushing
 	}
@@ -106,6 +123,7 @@ deployGravityBall = function(game, player, gravityball){
 	var newX = game.camera.x + game.input.activePointer.x ;
 	var newY = game.camera.y + game.input.activePointer.y ;
 	game.add.tween(gravityball).to({ x: newX, y: newY }, 400, Phaser.Easing.Quadratic.Out, true) ;
+	//game.add.tween(gravityball.radius).to( { alpha: 0.5 }, 800, Phaser.Easing.Linear.Out, true) ;
 	console.log("Gravity Ball Tweening...") ;
 
 	// put the gravity ball where the mouse (or touch) is
@@ -124,6 +142,7 @@ returnGravityBall = function(game, player, gravityball){
 	// tween the ball to the player is in 100 ms 
 	// game.add.tween(object).to({properties to tween to}, time (in ms), easing, auto-start)
 	game.add.tween(gravityball).to({ x: (player.body.x - player.width), y: player.body.y }, 100, Phaser.Easing.Quadratic.Out, true) ;
+	//game.add.tween(gravityball.radius).to( { alpha: 0 }, 100, Phaser.Easing.Linear.Out, true) ;
 	gravityball.tweening = true ; // the ball is now tweening
 	game.time.events.add(Phaser.Timer.SECOND * 0.1, setNotTweening, this, gravityball); // after 100 ms, the ball is no longer tweening
 
@@ -144,6 +163,16 @@ returnGravityBall = function(game, player, gravityball){
 		//remove the object from the array
 		gravityball.influencedArray.pop();
 	}
-
-
 }
+
+// emitParticles = function(game, gravityball)
+// {
+// 	var emitter = game.add.emitter(gravityball.body.x,gravityball.body.y) ;
+// 	emitter.area = 96 ;
+// 	let gravity = new Phaser.Point(gravityball.body.x,gravityball.body.y);
+// 	emitter.gravity = gravity;
+// 	emitter.makeParticles(gravityball.particle) ;
+// 	emitter.setAlpha(0.5, 1) ;
+// 	emitter.start(true, 1000) ;
+// 	console.log(emitter) ;
+// }

@@ -10,6 +10,8 @@ Tutorial.prototype =
 		//game.load.image('ball', 'gravityball.png');
 		//game.load.image('box', 'box.png');
 		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ;
+		game.load.image('radius', 'radius.png') ;
+		game.load.image('particle', 'radiusparticle.png') ;
     
 		//load audio assets
 		game.load.path = 'assets/music/';
@@ -56,9 +58,15 @@ Tutorial.prototype =
 		this.player.animations.play('idle');
 
 		//camera = new Camera(game, player, 0, 0) ;
-		
+
+
+		this.radius = game.add.sprite(0, 0, 'radius') ;	
+		this.radius.anchor.x = 0.5 ;
+		this.radius.anchor.y = 0.5 ;
+		//this.radius.alpha = 0.5 ;
+		//this.radius.scale.setTo(2, 2) ;	
 		//create gravity ball object using prefab
-		this.ball = new GravityBall(game, this.player, 'tutorial_atlas', 'gravityball');
+		this.ball = new GravityBall(game, this.player, 'tutorial_atlas', 'gravityball', this.radius, 'particle');
 		
 		//create group for gravity boxes
 		this.boxes = game.add.group();
@@ -100,7 +108,11 @@ Tutorial.prototype =
 		game.physics.arcade.collide(this.ground, this.boxes);
 		this.player.onBox = game.physics.arcade.collide(this.player, this.boxes);
 		game.physics.arcade.collide(this.ball, this.boxes);
+
+		this.radius.position.x = this.ball.position.x
+		this.radius.position.y = this.ball.position.y ;
 		updateCamera(this.player, game, this.ball) ;
+
 
 		//*****TAKE OUT LATER*****
 		//switch states when player presses Q

@@ -21,7 +21,7 @@ function GravityInfluence(game, gravityBall, boxes)
 	game.physics.arcade.enable(this);	
 		
 	//sets collision circle of influence with given radius
-	this.body.setCircle(250);
+	this.body.setCircle(256);
 }
 
 //link the gravity influence object's prototype to the Phaser.Sprite object

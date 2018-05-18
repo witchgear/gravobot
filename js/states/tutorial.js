@@ -10,6 +10,7 @@ Tutorial.prototype =
 		//game.load.image('ball', 'gravityball.png');
 		//game.load.image('box', 'box.png');
 		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ;
+		game.load.image('radius', 'radius.png');
     
 		//load audio assets
 		game.load.path = 'assets/music/';
@@ -80,7 +81,7 @@ Tutorial.prototype =
 		}
 		
 		//create gravity influece object using prefab
-		this.influence = new GravityInfluence(game, this.ball, this.boxes);
+		this.influence = new GravityInfluence(game, 'radius', this.ball, this.boxes);
 		
 		//place the player after the ball so they're always at the front of the screen
 		game.add.existing(this.ball);

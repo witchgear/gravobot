@@ -18,6 +18,9 @@ Title.prototype = {
 		game.load.image('icon','tempicon.png'); //loads an image to be a scroller, its labelled as temp in case we want to use a different image later
 		game.load.path = 'assets/font/';
 		game.load.bitmapFont('menutext','font.png','font.fnt'); //loads bitmap font
+
+		game.load.path = 'assets/img/sprites/' ;
+		game.load.atlas('atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ; // load atlas with gravity ball
 		
 		//load sound assets
 		game.load.path = 'assets/music/';
@@ -38,6 +41,9 @@ Title.prototype = {
 		this.logo = this.add.sprite(500,250,'logo');
 		this.logo.anchor.x = 0.5;
 		this.logo.anchor.y = 0.5;
+
+		this.ball = this.add.sprite(598, 216, 'atlas', 'gravityball') ; // add gravity ball to logo
+		this.ball.anchor.x = this.ball.anchor.y = 0.5; // set anchor to middle of ball
 		
 		//create the sound objects
 		//add.audio(key, volume, loop)
@@ -60,6 +66,8 @@ Title.prototype = {
 			this.confirmSound.play();
 			this.createMenu();
 		}
+
+		this.ball.angle += 1 ; // rotate ball
 		
 	},
 	createMenu: function() {

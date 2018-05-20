@@ -67,15 +67,14 @@ Tutorial.prototype =
 		this.boxes = game.add.group();
 		
 		//array of gravity box x coordinates
-		this.boxPlacements = [game.width * 2 + 32 * 10, game.width * 3 + 32 * 5]
+		this.boxPlacements = [game.width * 3 + 32 * 6, game.width * 5 +32 * 6,game.width*6+32*4,game.width*7+32*10,game.width*8+32*5]
 		
 		//create boxes
 		for(var i = 0; i < this.boxPlacements.length; i++)
 		{
 			//create a box using prefab
 			this.box = new GravityBox(game, this.boxPlacements[i], 0, 'tutorial_atlas', 'box');
-			
-			//add the box to the game world and to the group
+						//add the box to the game world and to the group
 			game.add.existing(this.box);
 			this.boxes.add(this.box);
 		}
@@ -84,7 +83,10 @@ Tutorial.prototype =
 		this.platforms = game.add.group();
 		
 		//2D array of platform of platform parameters, each array contains [x, y, direction, limitA, limitB]
-		this.platformParameters = [[600, 450, "horizontal", 200, 600], [800, 450, "vertical", 100, 450]];
+		this.platformParameters = [[game.width * 4 + 32 * 8, 32*11, "horizontal",game.width * 4 + 32 * 8,game.width * 4 + 32 *16], 
+		[game.width*4+32*22+16, 32*15, "vertical", 32*11,32*15],[game.width*5+32*20+16,32*14,"vertical",32*8,32*14],
+		[game.width*8+32*18,32*13,"horizontal",game.width*8+32*11,game.width*8+32*18],[game.width*8+32*25+16,32*8,"vertical",32*8,32*12],
+		[game.width*8+32*25+16,32*10,"vertical",32*10,32*14]];
 		
 		for(var i = 0; i < this.platformParameters.length; i++)
 		{

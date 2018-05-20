@@ -18,6 +18,9 @@ function GravityBox(game, x, y, key, frame)
 	this.body.gravity.y = worldGravity;
 	this.body.immovable = true; //prevents gravity box from being pushed by player
 	
+	this.originalX = x;
+
+
 	//set collision box
 	//this.body.setSize(44, 46, 2, 2);
 }
@@ -39,4 +42,9 @@ GravityBox.prototype.update = function()
 	}
 	
 	this.body.velocity.x = 0; //reset velocity every frame
+
+	if(this.body.y > this.game.height){ 
+		this.body.x = this.originalX; // put them back at the beginning of the area
+		this.body.y = game.camera.y - this.height ;
+	}
 }

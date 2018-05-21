@@ -3,12 +3,8 @@ Tutorial.prototype =
 {
 	preload: function()
 	{
-		//***TEMP UNTIL ATLAS***
 		//set load path and load assets
 		game.load.path = 'assets/img/sprites/';
-		//game.load.spritesheet('idle', 'idle.png', 49, 64);
-		//game.load.image('ball', 'gravityball.png');
-		//game.load.image('box', 'box.png');
 		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ;
 		game.load.image('radius', 'radius.png');
     
@@ -59,7 +55,7 @@ Tutorial.prototype =
 		this.player.animations.play('idle');
 
 		//camera = new Camera(game, player, 0, 0) ;
-		
+
 		//create gravity ball object using prefab
 		this.ball = new GravityBall(game, this.player, 'tutorial_atlas', 'gravityball');
 		

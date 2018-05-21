@@ -30,9 +30,6 @@ var GravityBall = function(game, player, key, frame){
 	this.body.setCircle(32);
 	
 	game.input.mouse.capture = true ; // allow for mouse input
-	// add Q and E keys as valid inputs, Q is now 'push' and E is now 'pull'
-	//this.controls = game.input.keyboard.addKeys({'push': Phaser.KeyCode.Q, 'pull': Phaser.KeyCode.E}) ;
-
 } ;
 
 //link the gravity ball object's prototype to the Phaser.Sprite object
@@ -60,19 +57,6 @@ GravityBall.prototype.update = function() {
 			deployGravityBall(this.game, this.player, this) ;
 		}
 	}
-	/*if(this.controls.push.justPressed()){ // if Q was just pressed
-		this.direction = true ; // the gravity ball is now pushing
-	}
-	else if(this.controls.pull.justPressed()){ // else if E was just pressed
-		this.direction = false ;
-	}*/
-
-	/*if(this.direction){ // if the ball is pushing
-		this.body.rotation += 1 ; // rotate right
-	}*/
-	//else { // if it is pulling
-		 // rotate it left
-	//}
 }
 
 //sets a small delay before setting activated to true for balance and bugfix reasons
@@ -151,6 +135,4 @@ returnGravityBall = function(game, player, gravityball){
 		//remove the object from the array
 		gravityball.influencedArray.pop();
 	}
-
-
 }

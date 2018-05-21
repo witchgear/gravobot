@@ -123,7 +123,7 @@ Tutorial.prototype =
 		if(Q.justPressed())
 		{
 			this.tutorialTheme.stop(); //stop playing
-			game.state.start('Cutscene');
+			game.state.start('Cutscene2');
 		}
 	},
 	render: function()

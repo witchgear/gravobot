@@ -127,12 +127,12 @@ Title.prototype = {
 			this.icon.position.x=500-this.newGame.width*.75;
 			this.icon.position.y=this.newGame.y;
 			
-			//if space pressed on new game, go to tutorial state
+			//if space pressed on new game, go to first cutscene state
 			if(SPACEBAR.justPressed())
 			{
 				this.titleTheme.stop();
 				this.confirmSound.play();
-				game.state.start('Tutorial');
+				game.state.start('Cutscene1');
 			}
 		}
 		//in state two, this occurs

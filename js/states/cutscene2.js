@@ -1,5 +1,5 @@
-var Level2 = function(game){};
-Level2.prototype =
+var Cutscene2 = function(game){};
+Cutscene2.prototype =
 {
 	preload: function()
 	{
@@ -9,7 +9,7 @@ Level2.prototype =
 	{
 		//*****TAKE OUT LATER*****
 		//display state switching text
-		stateText1 = game.add.text(8, 8, 'State: Level 2', 
+		stateText1 = game.add.text(8, 8, 'State: Cutscene 2', 
 									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
 		stateText1 = game.add.text(8, 32, 'Press Q to switch states.', 
 									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
@@ -20,7 +20,7 @@ Level2.prototype =
 		//switch states when player presses Q
 		if(Q.justPressed())
 		{
-			game.state.start('Cutscene3');
+			game.state.start('Level2');
 		}
 	},
 }

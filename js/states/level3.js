@@ -11,14 +11,14 @@ Level3.prototype =
 		//display state switching text
 		stateText1 = game.add.text(8, 8, 'State: Level 3', 
 									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
-		stateText1 = game.add.text(8, 32, 'Press Spacebar to switch states.', 
+		stateText1 = game.add.text(8, 32, 'Press Q to switch states.', 
 									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
 	},
 	update: function()
 	{
 		//*****TAKE OUT LATER*****
-		//switch states when player presses space
-		if(SPACEBAR.justPressed())
+		//switch states when player presses Q
+		if(Q.justPressed())
 		{
 			game.state.start('GameOver');
 		}

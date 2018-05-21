@@ -1,0 +1,309 @@
+{
+	"dialogue":[
+
+		{
+			"actor": "???",
+			"voice": "queentalk",
+			"line": "No, no, of course I don't have anything planned!\nIt's only our 698,489,985,382,945th anniversary!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "???",
+			"voice": "queentalk",
+			"line": "You don't have to get me anything either!\nWe're keeping it low-key, low-key!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "???",
+			"voice": "none",
+			"line": "Hm... Hum... Ha.... No stars then........\nNo planets................. Okay.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "???",
+			"voice": "queentalk",
+			"line": "Yup, yup! It's like that! You really get me, babe!\nI absolutely did NOT make you a planet! Hahahahaha!!!",
+			"delay": 4,
+			"fade": -1
+		},
+
+		{
+			"actor": "",
+			"voice": "none",
+			"line": "         Cosmopolis, Center of the Universe",
+			"delay": 4,
+			"fade": 1
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Thank you for stopping by, Gravobot.\nHow are your new legs?",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":)!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "That's nice. Is everyone at\nthe Rho Eta Tau center treating you well?",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":D!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Good, good! Now, I, uh, must talk to you, Gravobot,\nabout something, uh, very important...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Something TOP SECRET!!!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":O!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "As you know, I married my wife, the SPACE EMPRESS,\n698,489,985,382,944 years ago.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "As we exchanged vows, the universe was born.\nIt was a humble ceremony.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":,)",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "As you ALSO know, our anniversary is next month.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "We're very busy with you, our precious children,\nso we're not giving each other gifts this year.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "However.",
+			"delay": 8,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I love my wife so much, Gravobot. My love for her\nis weaved into the fabric of time and space itself.",
+			"delay": 8,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I made her another planet.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ">:|",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I know! I'm sorry!! I just couldn't help myself!!!\nShe deserves billions, trillions of planets!!!!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "She deserves a thousand more universes,\neach more perfect than the last!!!!!!!!",
+			"delay": 2,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":|",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "In any case, I made the planet. I can't undo that.\nAnd I need your help, Gravobot.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I've heard that this planet contains some of the\nmost beautiful flowers known to botkind.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Apparently, there are so many that\nthe bots I sent to collect samples weren't enough.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "They're swamped with work!! I feel so bad!!!!!\nWah!!!!!!!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Won't you go help them out, Gravobot?\nYou're so good with your gravity ball these days!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "...\n...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "If you do this for me, you can have\nan extra scoop of light at dinnertime for a decade!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":S...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Okay, okay. You drive a hard bargain.\nHow about this:",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I love you very much!",
+			"delay": 8,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":D!!!!!!!!!!",
+			"delay": 4,
+			"fade": -1
+		},
+
+		{
+			"actor": "",
+			"voice": "none",
+			"line": "    Gravobot agreed to help out at the new planet.",
+			"delay": 4,
+			"fade": 0
+		}
+
+	]
+}

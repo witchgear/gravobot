@@ -1,4 +1,4 @@
-//Player constructor function
+//Gravity Box constructor function
 function GravityBox(game, x, y, key, frame)
 {
 	//call Phaser.Sprite from this object
@@ -6,6 +6,7 @@ function GravityBox(game, x, y, key, frame)
 	
 	//add object properties
 	this.influenced = false;
+	this.direction = "omni"; //direction box can move, do not change
 		
 	//set anchor
 	this.anchor.x = 0.5;
@@ -17,6 +18,9 @@ function GravityBox(game, x, y, key, frame)
 	this.body.gravity.y = worldGravity;
 	this.body.immovable = true; //prevents gravity box from being pushed by player
 	
+	this.originalX = x;
+
+
 	//set collision box
 	//this.body.setSize(44, 46, 2, 2);
 }
@@ -38,4 +42,9 @@ GravityBox.prototype.update = function()
 	}
 	
 	this.body.velocity.x = 0; //reset velocity every frame
+
+	if(this.body.y > this.game.height){ 
+		this.body.x = this.originalX; // put them back at the beginning of the area
+		this.body.y = game.camera.y - this.height ;
+	}
 }

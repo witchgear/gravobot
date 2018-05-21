@@ -3,13 +3,10 @@ Tutorial.prototype =
 {
 	preload: function()
 	{
-		//***TEMP UNTIL ATLAS***
 		//set load path and load assets
 		game.load.path = 'assets/img/sprites/';
-		//game.load.spritesheet('idle', 'idle.png', 49, 64);
-		//game.load.image('ball', 'gravityball.png');
-		//game.load.image('box', 'box.png');
 		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ;
+		game.load.image('radius', 'radius.png');
     
 		//load audio assets
 		game.load.path = 'assets/music/';
@@ -58,7 +55,7 @@ Tutorial.prototype =
 		this.player.animations.play('idle');
 
 		//camera = new Camera(game, player, 0, 0) ;
-		
+
 		//create gravity ball object using prefab
 		this.ball = new GravityBall(game, this.player, 'tutorial_atlas', 'gravityball');
 		
@@ -66,22 +63,41 @@ Tutorial.prototype =
 		this.boxes = game.add.group();
 		
 		//array of gravity box x coordinates
-		this.boxPlacements = [game.width * 2 + 32 * 10, game.width * 3 + 32 * 5]
+		this.boxPlacements = [game.width * 3 + 32 * 6, game.width * 5 +32 * 6,game.width*6+32*4,game.width*7+32*10,game.width*8+32*5]
 		
 		//create boxes
-		for(var i = 0; i < 2; i++)
+		for(var i = 0; i < this.boxPlacements.length; i++)
 		{
 			//create a box using prefab
 			this.box = new GravityBox(game, this.boxPlacements[i], 0, 'tutorial_atlas', 'box');
-			
-			//add the box to the game world and to the group
+						//add the box to the game world and to the group
 			game.add.existing(this.box);
 			this.boxes.add(this.box);
 		}
 		
+		//create group for sliding platforms
+		this.platforms = game.add.group();
+		
+		//2D array of platform of platform parameters, each array contains [x, y, direction, limitA, limitB]
+		this.platformParameters = [[game.width * 4 + 32 * 8, 32*11, "horizontal",game.width * 4 + 32 * 8,game.width * 4 + 32 *16], 
+		[game.width*4+32*22+16, 32*14, "vertical", 32*10,32*14],[game.width*5+32*20+16,32*14,"vertical",32*8,32*14],
+		[game.width*8+32*18,32*13,"horizontal",game.width*8+32*11,game.width*8+32*18],[game.width*8+32*25+16,32*8,"vertical",32*8,32*12],
+		[game.width*8+32*25+16,32*10,"vertical",32*10,32*14]];
+		
+		for(var i = 0; i < this.platformParameters.length; i++)
+		{
+			//create new platform with (game, x, y, key, frame, direction, limitA, limitB)
+			this.platform = new Platform(game, this.platformParameters[i][0], this.platformParameters[i][1],
+										'tutorial_atlas', 'box', this.platformParameters[i][2],
+										this.platformParameters[i][3], this.platformParameters[i][4]);
+			
+			//add the platform to the game world and to the group
+			game.add.existing(this.platform);
+			this.platforms.add(this.platform);
+		}			
 		
 		//create gravity influece object using prefab
-		this.influence = new GravityInfluence(game, this.ball, this.boxes);
+		this.influence = new GravityInfluence(game, 'radius', this.ball, this.boxes, this.platforms);
 		
 		//place the player after the ball so they're always at the front of the screen
 		game.add.existing(this.ball);
@@ -98,19 +114,16 @@ Tutorial.prototype =
 	update: function()
 	{
 		//handle collision
-		this.player.onGround = game.physics.arcade.collide(this.ground, this.player);
-		game.physics.arcade.collide(this.ground, this.boxes);
-		this.player.onBox = game.physics.arcade.collide(this.player, this.boxes) ;
-		game.physics.arcade.collide(this.ball, this.boxes);
+		handleCollision(this.player, this.ball, this.boxes, this.platforms, this.ground);
 		
-		updateCamera(this.player, game, this.ball) ;
+		updateCamera(this.player, game, this.ball);
 
 		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
 		if(Q.justPressed())
 		{
 			this.tutorialTheme.stop(); //stop playing
-			game.state.start('Cutscene');
+			game.state.start('Cutscene2');
 		}
 	},
 	render: function()
@@ -121,4 +134,21 @@ Tutorial.prototype =
 		//game.debug.physicsGroup(this.boxes);
 		//game.debug.body(this.ground) ;
 	}
+}
+
+//function that handles the necessary collision for each state
+handleCollision = function(player, ball, boxes, platforms, ground)
+{
+	//collide player and ground and save result in player
+	player.onGround = game.physics.arcade.collide(ground, player);
+	
+	//collide ground and boxes
+	game.physics.arcade.collide(ground, boxes);
+	
+	//collide player and boxes/platform, save result, and run saveObject
+	player.onBox = game.physics.arcade.collide(player, boxes, player.saveObject);
+	player.onPlatform = game.physics.arcade.collide(player, platforms, player.saveObject);
+	
+	//collide ball and boxes
+	game.physics.arcade.collide(ball, boxes);
 }

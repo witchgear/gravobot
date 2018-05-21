@@ -10,7 +10,7 @@ function Player(game, x, y, key, frame)
 	
 	//add player properties
 	this.walkSpeed = 200;
-	this.jumpSpeed = -450;
+	this.jumpSpeed = -400;
 	
 	this.canWalk = true;
 	this.canJump = true;

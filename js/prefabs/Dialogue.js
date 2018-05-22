@@ -80,6 +80,9 @@ Dialogue.prototype.initializeLine = function()
 	{
 		this.voice.play() ; // play voice blip
 	}
+	else {
+		this.voice.stop() ;
+	}
 
 	// reset text
 	this.text = "" ;

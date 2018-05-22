@@ -52,6 +52,7 @@ Tutorial.prototype =
 		//add player animations
 		this.player.animations.add('idle', Phaser.Animation.generateFrameNames('idle', 1, 4, '', 4), 10, true);
 		this.player.animations.add('walk', Phaser.Animation.generateFrameNames('walk', 1, 4, '', 4), 10, true);
+		this.player.animations.add('crouch', Phaser.Animation.generateFrameNames('crouch', 1, 4, '', 4), 10, true);
 		this.player.animations.play('idle');
 
 		//camera = new Camera(game, player, 0, 0) ;

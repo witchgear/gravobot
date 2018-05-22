@@ -51,6 +51,9 @@ GravityInfluence.prototype.update = function()
 		//set the alpha to 0, making the radius invisible
 		this.alpha = 0;
 	}
+
+	// rotate the circle
+	this.body.rotation += 0.25 ;
 	
 	//exert force on influenced objects
 	this.exertForce(this);

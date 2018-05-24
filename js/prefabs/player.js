@@ -48,6 +48,11 @@ Player.prototype.update = function()
 	//reset velocity every frame
 	this.body.velocity.x = 0;
 	
+	if(this.body.velocity.y > 1000 || this.body.velocity.y < -1000)
+	{
+		this.body.velocity.y = 0
+	}
+	
 	//handle movement if the player can walk
 	if(this.canWalk)
 	{

@@ -7,7 +7,7 @@ function Platform(game, x, y, key, frame, direction, limitA, limitB)
 	//add object properties
 	this.influenced = false;
 	
-	//the direction that the platform can move, only set to either "horizontal" or "vertical"
+	//the direction that the platform can move, only set to "horizontal", "vertical", or "swing"
 	this.direction = direction; 
 	
 	//limitA should always < limitB
@@ -43,4 +43,9 @@ Platform.prototype.update = function()
 	{
 		this.body.velocity.y = 0; //reset velocity every frame
 	}
+}
+
+Platform.prototype.saveSwingPointer = function(swing)
+{
+	this.swing = swing;
 }

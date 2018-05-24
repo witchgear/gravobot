@@ -13,6 +13,7 @@ function GravityInfluence(game, key, gravityBall, boxes, platforms)
 	//set the strength of the gravity that the ball exerts
 	this.strengthX = 20000;
 	this.strengthY = 2000;
+	this.strengthAngular = 60; //in degrees
 	
 	//set anchor and alpha
 	this.anchor.x = 0.5;
@@ -102,7 +103,7 @@ GravityInfluence.prototype.exertForce = function(influence)
 			//if it is a horizontal platform
 			if(this.gravityBall.influencedArray[i].direction == "horizontal")
 			{
-				//if being influenced to the right and the platform is not too far right (bc fuck fascists)
+				//if being influenced to the right and the platform is not too far right
 				if((-Math.PI / 2) <= angle && angle <= (Math.PI / 2) &&
 					this.gravityBall.influencedArray[i].body.x < this.gravityBall.influencedArray[i].limitB)
 				{
@@ -144,6 +145,33 @@ GravityInfluence.prototype.exertForce = function(influence)
 				{
 					//reset gravity
 					this.gravityBall.influencedArray[i].body.gravity.y = 0;
+				}
+			}
+			
+			//if it is a swinging platform
+			if(this.gravityBall.influencedArray[i].direction == "swing")
+			{
+				//if being influenced clockwise and the swing is not too far clockwise
+				if((((Math.PI / 2) < angle && angle < Math.PI) || (-Math.PI < angle && angle < (-Math.PI / 2))) &&
+					this.gravityBall.influencedArray[i].swing.body.rotation <= 90 &&
+					this.gravityBall.influencedArray[i].swing.body.rotation >= -90)
+				{
+					//exert rotational gravity
+					this.gravityBall.influencedArray[i].swing.body.angularAcceleration = this.strengthAngular;
+				}
+				//else being influenced counterclockwise and platform is not too far counterclockwise
+				else if((-Math.PI / 2) <= angle && angle <= (Math.PI / 2) &&
+					this.gravityBall.influencedArray[i].swing.body.rotation >= -90 &&
+					this.gravityBall.influencedArray[i].swing.body.rotation <= 90)
+				{
+					//exert rotational gravity
+					this.gravityBall.influencedArray[i].swing.body.angularAcceleration = -1 * this.strengthAngular;
+				}
+				else //something weird going on
+				{
+					//reset gravity
+					this.gravityBall.influencedArray[i].swing.body.angularAcceleration = 0;
+					this.gravityBall.influencedArray[i].swing.body.angularVelocity = 0;
 				}
 			}
 		}		

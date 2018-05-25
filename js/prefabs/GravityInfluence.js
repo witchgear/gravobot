@@ -103,77 +103,98 @@ GravityInfluence.prototype.exertForce = function(influence)
 			//if it is a horizontal platform
 			if(this.gravityBall.influencedArray[i].direction == "horizontal")
 			{
-				//if being influenced to the right and the platform is not too far right
-				if((-Math.PI / 2) <= angle && angle <= (Math.PI / 2) &&
-					this.gravityBall.influencedArray[i].body.x < this.gravityBall.influencedArray[i].limitB)
-				{
-					//exert gravity
-					this.gravityBall.influencedArray[i].body.gravity.x = Math.cos(angle) * this.strengthX;
-				}
-				//else being influenced to the left and platform is not too far left
-				else if((((Math.PI / 2) < angle && angle < Math.PI) || (-Math.PI < angle && angle < (-Math.PI / 2)))
-					&& this.gravityBall.influencedArray[i].body.x > this.gravityBall.influencedArray[i].limitA)
-				{
-					//exert gravity
-					this.gravityBall.influencedArray[i].body.gravity.x = Math.cos(angle) * this.strengthX;
-				}
-				else //else something weird going on
-				{
-					//reset gravity
-					this.gravityBall.influencedArray[i].body.gravity.x = 0;
-				}
+				this.horizontalForce(this, this.gravityBall.influencedArray[i], angle);
 			}
 		
 			//if it is a vertical platform
 			if(this.gravityBall.influencedArray[i].direction == "vertical")
 			{
-				//if being influenced downwards and the platform is not too down
-				if(0 <= angle && angle <= Math.PI && this.gravityBall.influencedArray[i].body.y <
-					this.gravityBall.influencedArray[i].limitB)
-				{
-					//exert gravity
-					this.gravityBall.influencedArray[i].body.gravity.y = Math.sin(angle) * this.strengthY * 10;
-				}
-				//else being influenced upward and platform is not too far upward
-				else if(-Math.PI <= angle && angle < 0 && this.gravityBall.influencedArray[i].body.y >
-						this.gravityBall.influencedArray[i].limitA)
-				{
-					//exert gravity
-					this.gravityBall.influencedArray[i].body.gravity.y = Math.sin(angle) * this.strengthY * 10;
-				}
-				else //else something weird going on
-				{
-					//reset gravity
-					this.gravityBall.influencedArray[i].body.gravity.y = 0;
-				}
+				this.verticalForce(this, this.gravityBall.influencedArray[i], angle);
 			}
 			
 			//if it is a swinging platform
 			if(this.gravityBall.influencedArray[i].direction == "swing")
 			{
-				//if being influenced clockwise and the swing is not too far clockwise
-				if((((Math.PI / 2) < angle && angle < Math.PI) || (-Math.PI < angle && angle < (-Math.PI / 2))) &&
-					this.gravityBall.influencedArray[i].swing.body.rotation <= 90 &&
-					this.gravityBall.influencedArray[i].swing.body.rotation >= -90)
-				{
-					//exert rotational gravity
-					this.gravityBall.influencedArray[i].swing.body.angularAcceleration = this.strengthAngular;
-				}
-				//else being influenced counterclockwise and platform is not too far counterclockwise
-				else if((-Math.PI / 2) <= angle && angle <= (Math.PI / 2) &&
-					this.gravityBall.influencedArray[i].swing.body.rotation >= -90 &&
-					this.gravityBall.influencedArray[i].swing.body.rotation <= 90)
-				{
-					//exert rotational gravity
-					this.gravityBall.influencedArray[i].swing.body.angularAcceleration = -1 * this.strengthAngular;
-				}
-				else //something weird going on
-				{
-					//reset gravity
-					this.gravityBall.influencedArray[i].swing.body.angularAcceleration = 0;
-					this.gravityBall.influencedArray[i].swing.body.angularVelocity = 0;
-				}
+				this.swingForce(this, this.gravityBall.influencedArray[i], angle);
 			}
 		}		
+	}
+}
+
+GravityInfluence.prototype.horizontalForce = function(influence, influencedBody, angle)
+{
+	//if being influenced to the right and the platform is not too far right
+	if((-Math.PI / 2) <= angle && angle <= (Math.PI / 2) && influencedBody.body.x < influencedBody.limitB)
+	{
+		//exert gravity
+		influencedBody.body.gravity.x = Math.cos(angle) * influence.strengthX;
+	}
+	//else being influenced to the left and platform is not too far left
+	else if((((Math.PI / 2) < angle && angle < Math.PI) || (-Math.PI < angle && angle < (-Math.PI / 2)))
+		&& influencedBody.body.x > influencedBody.limitA)
+	{
+		//exert gravity
+		influencedBody.body.gravity.x = Math.cos(angle) * influence.strengthX;
+	}
+	else //else something weird going on
+	{
+		//reset gravity
+		influencedBody.body.gravity.x = 0;
+	}
+}
+
+GravityInfluence.prototype.verticalForce = function(influence, influencedBody, angle)
+{
+	//if being influenced downwards and the platform is not too down
+	if(0 <= angle && angle <= Math.PI && influencedBody.body.y < influencedBody.limitB)
+	{
+		//exert gravity
+		influencedBody.body.gravity.y = Math.sin(angle) * influence.strengthY * 10;
+	}
+	//else being influenced upward and platform is not too far upward
+	else if(-Math.PI <= angle && angle < 0 && influencedBody.body.y > influencedBody.limitA)
+	{
+		//exert gravity
+		influencedBody.body.gravity.y = Math.sin(angle) * influence.strengthY * 10;
+	}
+	else //else something weird going on
+	{
+		//reset gravity
+		influencedBody.body.gravity.y = 0;
+	}
+}
+
+GravityInfluence.prototype.swingForce = function(influence, influencedBody, angle)
+{
+	//distance between the gravity ball and the swing platform
+	distance = influence.game.physics.arcade.distanceBetween(influence.gravityBall, influencedBody)
+					
+	//if the swing is too close to the gravity ball
+	if(distance < 75)
+	{
+		//stop the swing at the gravity ball
+		influencedBody.swing.body.angularAcceleration = 0;
+		influencedBody.swing.body.angularVelocity = 0;
+	}
+	
+	//if being influenced clockwise and the swing is not too far clockwise
+	if((((Math.PI / 2) < angle && angle < Math.PI) || (-Math.PI < angle && angle < (-Math.PI / 2))) &&
+		influencedBody.swing.body.rotation <= 90 && influencedBody.swing.body.rotation >= -90)
+	{
+		//exert rotational gravity
+		influencedBody.swing.body.angularAcceleration = Math.abs(Math.cos(angle)) * influence.strengthAngular;
+	}
+	//else being influenced counterclockwise and platform is not too far counterclockwise
+	else if((-Math.PI / 2) <= angle && angle <= (Math.PI / 2) &&
+		influencedBody.swing.body.rotation >= -90 && influencedBody.swing.body.rotation <= 90)
+	{
+		//exert rotational gravity
+		influencedBody.swing.body.angularAcceleration = -Math.abs(Math.cos(angle)) * influence.strengthAngular;
+	}
+	else //something weird going on
+	{
+		//reset gravity
+		influencedBody.swing.body.angularAcceleration = 0;
+		influencedBody.swing.body.angularVelocity = 0;
 	}
 }

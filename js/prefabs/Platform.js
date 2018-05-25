@@ -25,6 +25,12 @@ function Platform(game, x, y, key, frame, direction, limitA, limitB)
 	this.body.gravity.y = 0;
 	this.body.immovable = true; //prevents platform from being pushed by player
 	
+	//if this. is a swing platform
+	if(this.direction == "swing")
+	{
+		this.body.allowGravity = false; //disable gravity, platform will sink if not disabled
+	}
+	
 	//set collision box
 	//this.body.setSize(44, 46, 2, 2);
 }

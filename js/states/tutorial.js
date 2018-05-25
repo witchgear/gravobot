@@ -70,11 +70,12 @@ Tutorial.prototype =
 			this.boxes.add(this.box);
 		}
 		
-		//************************************************
-		//limits are irrelevant for swing platforms
+		//*****temp, move this code to level 2 when ready******
+		//note: the order of this code matters, the swing must be created before the
+		//		platforms group or the platform sprite will be behind the swing rope
 		this.swingPlatform = new Platform(game, 50, 50, 'tutorial_atlas', 'box', "swing", 0, 1);
-
-		this.swing = new Swing(game, 500, 80, 'swing', this.swingPlatform);
+		
+		this.swing = new Swing(game, 500, 75, 'swing', this.swingPlatform);
 		this.swingPlatform.saveSwingPointer(this.swing);
 		
 		game.add.existing(this.swingPlatform);
@@ -84,7 +85,7 @@ Tutorial.prototype =
 		//create group for sliding platforms
 		this.platforms = game.add.group();
 		
-		//***************
+		//*****move this to level 2 also, but it must be after creating the platforms group*****
 		this.platforms.add(this.swingPlatform);
 		//***************
 		
@@ -142,9 +143,10 @@ Tutorial.prototype =
 		//game.debug.body(this.influence);
 		//game.debug.body(this.ball);
 		//game.debug.physicsGroup(this.boxes);
-		game.debug.physicsGroup(this.platforms);
+		//game.debug.physicsGroup(this.platforms);
 		//game.debug.body(this.ground) ;
 		//game.debug.body(this.swing);
+		//game.debug.body(this.swingPlatform);
 	}
 }
 

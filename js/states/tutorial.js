@@ -19,6 +19,7 @@ Tutorial.prototype =
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
 		game.load.spritesheet('tutorialtiles', 'tutorialtiles.png', 32, 32) ;
+		game.load.spritesheet('instructiles', 'instructiles.png', 32, 32);
 		game.load.tilemap('map', 'tutorial_map.json', null, Phaser.Tilemap.TILED_JSON);
 	},
 	create: function()
@@ -28,6 +29,7 @@ Tutorial.prototype =
 
 		// add image for the tileset
 		this.terrain.addTilesetImage('tutorial_tiles', 'tutorialtiles') ;
+		this.terrain.addTilesetImage('instruct_tiles', 'instructiles');
 		
 		// create layers
 		this.bg = this.terrain.createLayer('Background') ; // background layer

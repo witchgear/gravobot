@@ -76,6 +76,11 @@ Player.prototype.update = function()
 	else {
 		this.body.immovable = false ; // otherwise the player is immovable
 	}
+
+	// if the player is not touching any object, stop animation
+	if(!this.onGround && !this.onPlatform && !this.onBox) {
+		this.stopAnimation(this) ;
+	}
 	
 	// update the camera
 	//updateCamera(this, this.game) ;
@@ -87,14 +92,19 @@ Player.prototype.handleMovement = function(player)
 	if(A.isDown)
 	{
 		player.body.velocity.x += -player.walkSpeed;
-		player.animations.play('walk') ; // play walk animation
+		if(player.onGround || player.onPlatform || player.onBox){
+			player.animations.play('walk') ; // play walk animation
+		}
+		
 		player.scale.x = -1 ; // flip sprite so it faces left
 	}
 	//walk right if holding D
 	else if(D.isDown)
 	{
 		player.body.velocity.x += player.walkSpeed;
-		player.animations.play('walk') ; // play walk animation
+		if(player.onGround || player.onPlatform || player.onBox){
+			player.animations.play('walk') ; // play walk animation
+		}
 		player.scale.x = 1 ; // make sure sprite is facing right
 	}
 	else if(!this.isCrouching) // if player is not moving horizontally && not crouching
@@ -117,6 +127,7 @@ Player.prototype.handleJump = function(player)
 	&& player.body.touching.down)))
 	{
 		player.isJumping = false;
+		player.animations.play() ;
 	}
 }
 
@@ -129,6 +140,10 @@ Player.prototype.handleCrouch = function(player)
 	{
 		//set isCrouching to true
 		player.isCrouching = true;
+
+		//play crouch animation
+		player.animations.play('crouch');
+		
 		
 		//save the player's position relative to the object
 		player.relativeX = player.body.x - player.objectStandingOn.body.x;
@@ -137,10 +152,7 @@ Player.prototype.handleCrouch = function(player)
 		//disable gravity, jumping, and walking
 		player.body.gravity.y = 0;
 		player.canJump = false;
-		player.canWalk = false;
-		
-		//play crouch animation
-		//player.animations.play('crouch'); uncomment when there is an animation
+		player.canWalk = false;		
 	}
 	
 	//player is crouching
@@ -183,6 +195,15 @@ Player.prototype.saveObject = function(player, object)
 	{
 		//set pointer
 		player.objectStandingOn = object;
+	}
+}
+
+// stops the player's walk animation at the last frame
+Player.prototype.stopAnimation = function(player)
+{
+	if(player.animations.currentAnim.name == 'walk'){ // if the animation is walk
+		player.animations.stop(false) ; // stop the animation
+		player.animations.frameName = 'walk0004' ; // set the frame to the last one
 	}
 }
 

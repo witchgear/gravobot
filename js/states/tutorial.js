@@ -7,6 +7,7 @@ Tutorial.prototype =
 		game.load.path = 'assets/img/sprites/';
 		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ;
 		game.load.image('radius', 'radius.png');
+		game.load.image('swing', 'temp_swing.png');
     
 		//load audio assets
 		game.load.path = 'assets/music/';
@@ -41,13 +42,6 @@ Tutorial.prototype =
 		// set tile bias to 64 so collision is handled better
 		game.physics.arcade.TILE_BIAS = 64 ;
 
-		//*****TAKE OUT LATER*****
-		//display state switching text
-		stateText1 = game.add.text(8, 8, 'State: Tutorial', 
-									{font: 'Courier New', fontSize: '24px', fill: "#000"});
-		stateText2 = game.add.text(8, 32, 'Press Q to switch states.', 
-									{font: 'Courier New', fontSize: '24px', fill: "#000"});
-		
 		//create player object using prefab
 		this.player = new Player(game, 200, 100, 'tutorial_atlas', 'idle0001'); 
 		
@@ -78,8 +72,24 @@ Tutorial.prototype =
 			this.boxes.add(this.box);
 		}
 		
+		//*****temp, move this code to level 2 when ready******
+		//note: the order of this code matters, the swing must be created before the
+		//		platforms group or the platform sprite will be behind the swing rope
+		this.swingPlatform = new Platform(game, 50, 50, 'tutorial_atlas', 'box', "swing", 0, 1);
+		
+		this.swing = new Swing(game, 500, 75, 'swing', this.swingPlatform);
+		this.swingPlatform.saveSwingPointer(this.swing);
+		
+		game.add.existing(this.swingPlatform);
+		game.add.existing(this.swing);
+		//************************************************
+		
 		//create group for sliding platforms
 		this.platforms = game.add.group();
+		
+		//*****move this to level 2 also, but it must be after creating the platforms group*****
+		this.platforms.add(this.swingPlatform);
+		//***************
 		
 		//2D array of platform of platform parameters, each array contains [x, y, direction, limitA, limitB]
 		this.platformParameters = [[game.width * 4 + 32 * 8, 32*11, "horizontal",game.width * 4 + 32 * 8,game.width * 4 + 32 *16], 
@@ -97,7 +107,7 @@ Tutorial.prototype =
 			//add the platform to the game world and to the group
 			game.add.existing(this.platform);
 			this.platforms.add(this.platform);
-		}			
+		}		
 		
 		//create gravity influece object using prefab
 		this.influence = new GravityInfluence(game, 'radius', this.ball, this.boxes, this.platforms);
@@ -120,7 +130,7 @@ Tutorial.prototype =
 		handleCollision(this.player, this.ball, this.boxes, this.platforms, this.ground);
 		
 		updateCamera(this.player, game, this.ball);
-
+		
 		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
 		if(Q.justPressed())
@@ -135,7 +145,10 @@ Tutorial.prototype =
 		//game.debug.body(this.influence);
 		//game.debug.body(this.ball);
 		//game.debug.physicsGroup(this.boxes);
+		//game.debug.physicsGroup(this.platforms);
 		//game.debug.body(this.ground) ;
+		//game.debug.body(this.swing);
+		//game.debug.body(this.swingPlatform);
 	}
 }
 

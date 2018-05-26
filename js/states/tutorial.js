@@ -15,6 +15,7 @@ Tutorial.prototype =
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
 		game.load.spritesheet('tutorialtiles', 'tutorialtiles.png', 32, 32) ;
+		game.load.spritesheet('instructiles', 'instructiles.png', 32, 32);
 		game.load.tilemap('map', 'tutorial_map.json', null, Phaser.Tilemap.TILED_JSON);
 	},
 	create: function()
@@ -24,6 +25,7 @@ Tutorial.prototype =
 
 		// add image for the tileset
 		this.terrain.addTilesetImage('tutorial_tiles', 'tutorialtiles') ;
+		this.terrain.addTilesetImage('instruct_tiles', 'instructiles');
 		
 		// create layers
 		this.bg = this.terrain.createLayer('Background') ; // background layer
@@ -82,8 +84,8 @@ Tutorial.prototype =
 		//2D array of platform of platform parameters, each array contains [x, y, direction, limitA, limitB]
 		this.platformParameters = [[game.width * 4 + 32 * 8, 32*11, "horizontal",game.width * 4 + 32 * 8,game.width * 4 + 32 *16], 
 		[game.width*4+32*22+16, 32*14, "vertical", 32*10,32*14],[game.width*5+32*20+16,32*14,"vertical",32*8,32*14],
-		[game.width*8+32*18,32*13,"horizontal",game.width*8+32*11,game.width*8+32*18],[game.width*8+32*25+16,32*8,"vertical",32*8,32*12],
-		[game.width*8+32*25+16,32*10,"vertical",32*10,32*14]];
+		[game.width*8+32*18,32*13,"horizontal",game.width*8+32*11,game.width*8+32*18],[game.width*8+32*25+16,32*12,"vertical",32*8,32*12],
+		[game.width*8+32*25+16,32*14,"vertical",32*10,32*14]];
 		
 		for(var i = 0; i < this.platformParameters.length; i++)
 		{

@@ -17,13 +17,6 @@ Cutscene1.prototype =
 	},
 	create: function()
 	{
-		//*****TAKE OUT LATER*****
-		//display state switching text
-		stateText1 = game.add.text(8, 8, 'State: Cutscene1', 
-									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
-		stateText1 = game.add.text(8, 32, 'Press Q to switch states.', 
-									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
-
 		this.dialogueBox = game.add.sprite(0, (game.height * 3/4), 'dialogueBox') ;
 
 		var textFile = game.cache.getJSON('cutscene_0');

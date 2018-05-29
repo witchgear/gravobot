@@ -72,26 +72,10 @@ Tutorial.prototype =
 			this.boxes.add(this.box);
 		}
 		
-		//*****temp, move this code to level 2 when ready******
-		//note: the order of this code matters, the swing must be created before the
-		//		platforms group or the platform sprite will be behind the swing rope
-		this.swingPlatform = new Platform(game, 50, 50, 'tutorial_atlas', 'box', "swing", 0, 1);
-		
-		this.swing = new Swing(game, 500, 75, 'swing', this.swingPlatform);
-		this.swingPlatform.saveSwingPointer(this.swing);
-		
-		game.add.existing(this.swingPlatform);
-		game.add.existing(this.swing);
-		//************************************************
-		
 		//create group for sliding platforms
 		this.platforms = game.add.group();
 		
-		//*****move this to level 2 also, but it must be after creating the platforms group*****
-		this.platforms.add(this.swingPlatform);
-		//***************
-		
-		//2D array of platform of platform parameters, each array contains [x, y, direction, limitA, limitB]
+		//2D array of platform parameters, each array contains [x, y, direction, limitA, limitB]
 		this.platformParameters = [[game.width * 4 + 32 * 8, 32*11, "horizontal",game.width * 4 + 32 * 8,game.width * 4 + 32 *16], 
 		[game.width*4+32*22+16, 32*14, "vertical", 32*10,32*14],[game.width*5+32*20+16,32*14,"vertical",32*8,32*14],
 		[game.width*8+32*18,32*13,"horizontal",game.width*8+32*11,game.width*8+32*18],[game.width*8+32*25+16,32*12,"vertical",32*8,32*12],

@@ -19,8 +19,7 @@ function Platform(game, x, y, key, frame, direction, limitA, limitB)
 	this.anchor.y = 0.5;
 	
 	//enable physics & physics settings
-	game.physics.arcade.enable(this);	
-	this.body.collideWorldBounds = true;
+	game.physics.arcade.enable(this);
 	this.body.gravity.x = 0;
 	this.body.gravity.y = 0;
 	this.body.immovable = true; //prevents platform from being pushed by player

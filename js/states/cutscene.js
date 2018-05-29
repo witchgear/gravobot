@@ -17,20 +17,13 @@ Cutscene1.prototype =
 	},
 	create: function()
 	{
-		//*****TAKE OUT LATER*****
-		//display state switching text
-		stateText1 = game.add.text(8, 8, 'State: Cutscene1', 
-									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
-		stateText1 = game.add.text(8, 32, 'Press Q to switch states.', 
-									{font: 'Courier New', fontSize: '24px', fill: "#FFF"});
-
 		this.dialogueBox = game.add.sprite(0, (game.height * 3/4), 'dialogueBox') ;
 
 		var textFile = game.cache.getJSON('cutscene_0');
 
-		var voiceBlip = game.add.audio('queentalk', 0.3, true);
+		this.voiceBlip = game.add.audio('queentalk', 0.3, true);
 
-		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', voiceBlip, this.dialogueBox) ;
+		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', this.voiceBlip, this.dialogueBox) ;
 
 		game.add.existing(this.dialogue) ;
 	},
@@ -40,6 +33,7 @@ Cutscene1.prototype =
 		//switch states when player presses Q
 		if(Q.justPressed() || this.dialogue.finished)
 		{
+			this.voiceBlip.stop();
 			game.state.start('Tutorial');
 		}
 	},

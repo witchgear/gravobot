@@ -103,6 +103,11 @@ Level2.prototype =
 	},
 	update: function()
 	{
+		//handle collision
+		handleCollision(this.player, this.ball, this.boxes, this.platforms, this.ground);
+		
+		updateCamera(this.player, game, this.ball);
+		
 		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
 		if(Q.justPressed())

@@ -126,6 +126,7 @@ Player.prototype.handleJump = function(player)
 		player.body.velocity.y += player.jumpSpeed;
 		player.onBox = false;
 		player.onPlatform = false;
+		jumpSFX.play();
 	}
 	//not jumping if velocity 0 (standing on floor) or standing on box or platform
 	if(player.isJumping && (player.body.velocity.y == 0 || ((player.onBox || player.onPlatform)

@@ -53,7 +53,7 @@ Title.prototype = {
 		//add.audio(key, volume, loop)
 		this.confirmSound = game.add.audio('confirm', 0.7, false);
 		this.scrollSound = game.add.audio('scroll', 0.7, false);
-		this.titleTheme = game.add.audio('title', 0.5, true);
+		this.titleTheme = game.add.audio('title', 0.4, true);
 		
 		//play title
 		this.titleTheme.play();

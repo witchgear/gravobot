@@ -12,7 +12,13 @@ Tutorial.prototype =
 		//load audio assets
 		game.load.path = 'assets/music/';
 		game.load.audio('tutorial', ['tutorial.mp3', 'tutorial.ogg']);
-
+		
+		game.load.path = 'assets/sfx/';
+		game.load.audio('jump', ['jump.mp3', 'jump.ogg']);
+		game.load.audio('deploy', ['deploy.mp3', 'deploy.ogg']);
+		game.load.audio('activate', ['activate.mp3', 'activate.ogg']);
+		game.load.audio('return', ['return.mp3', 'return.ogg']);
+		
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
 		game.load.spritesheet('tutorialtiles', 'tutorialtiles.png', 32, 32) ;
@@ -101,9 +107,13 @@ Tutorial.prototype =
 		game.add.existing(this.influence);
 		game.add.existing(this.player);
 		
-		//create the sound objects
+		//create sound objects
 		//add.audio(key, volume, loop)
-		this.tutorialTheme = game.add.audio('tutorial', 0.5, true);
+		this.tutorialTheme = game.add.audio('tutorial', 0.4, true);
+		jumpSFX = game.add.audio('jump', 0.7, false);
+		deploySFX = game.add.audio('deploy', 0.7, false);
+		activateSFX = game.add.audio('activate', 0.7, false);
+		returnSFX = game.add.audio('return', 0.7, false);
 		
 		//play tutorial
 		this.tutorialTheme.play();

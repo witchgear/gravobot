@@ -96,7 +96,7 @@ Level2.prototype =
 		
 		//create the sound objects
 		//add.audio(key, volume, loop)
-		this.forestTheme = game.add.audio('forest', 0.5, true);
+		this.forestTheme = game.add.audio('forest', 0.4, true);
 		
 		//play forest theme
 		this.forestTheme.play();

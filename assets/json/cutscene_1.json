@@ -1,0 +1,188 @@
+{
+	"dialogue":[
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "???\n????????????",
+			"delay": 4,
+			"fade": 5
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "D:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+			"delay": 2,
+			"fade": 10
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "D:?!!??!?!?!",
+			"delay": 4,
+			"fade": 5
+		},
+
+		{
+			"actor": "RINGTONE",
+			"voice": "none",
+			"line": "***********************",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Hello, Gravobot?\nGravobot???",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "........... :v",
+			"delay": 8,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Is everything all right?!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I'm getting some bad energy from this planet, Gravobot!\nI'm not sure if it's safe right now!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "...\n:'v...............",
+			"delay": 8,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Can you tell me what's going on down there?!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "...",
+			"delay": 8,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Oh. Right. Okay. Um. Stay there, Gravobot.\nI'm coming to pick you up. We can figure this out lat-",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "...",
+			"delay": 8,
+			"fade": 0
+		},
+
+		{
+			"actor": "-",
+			"voice": "none",
+			"line": "             Gravobot shakes their head.",
+			"delay": 8,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "N-\nNo?????",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "-",
+			"voice": "none",
+			"line": "              Gravobot looks determined!",
+			"delay": 8,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "You-- You can handle this?!\nYou're going to fix this?!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "...",
+			"delay": 8,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ">:)!!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I --\nI see!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Good luck, Gravobot!\nI don't know what you need to do,",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "but I believe in you!!!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Be brave!!!!!!!!!!!!!!!!!",
+			"delay": 4,
+			"fade": -3
+		}		
+	]
+}

@@ -182,5 +182,10 @@ Dialogue.prototype.handleFade = function()
 			this.game.add.tween(this.gravobot).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
 			this.game.add.tween(this.bg).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
 		}
+
+		if(this.file.dialogue[this.line].fade % 5 == 0)
+		{
+			this.game.camera.shake(0.01, 1000) ;
+		}
 	}
 }

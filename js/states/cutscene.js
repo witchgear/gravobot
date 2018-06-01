@@ -14,16 +14,28 @@ Cutscene1.prototype =
 
 		game.load.path = 'assets/img/sprites/'
 		game.load.image('dialogueBox', 'dialoguebox.png') ;
+
+		game.load.path = 'assets/img/cutscene/'
+		game.load.image('bg', 'cutscene1bg.png') ;
+		game.load.image('queen', 'queen.png') ;
+		game.load.image('gravobot', 'bot.png') ;
 	},
 	create: function()
 	{
-		this.dialogueBox = game.add.sprite(0, (game.height * 3/4), 'dialogueBox') ;
+		game.stage.backgroundColor = "#000000"; //background is black
+
+		bg = game.add.sprite(0, 0, 'bg') ;
+		bg.alpha = 0 ;
+		queen = game.add.sprite(game.width, game.height, 'queen') ;
+		gravobot = game.add.sprite(game.width, game.height, 'gravobot') ;
 
 		var textFile = game.cache.getJSON('cutscene_0');
 
 		this.voiceBlip = game.add.audio('queentalk', 0.3, true);
 
-		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', this.voiceBlip, this.dialogueBox) ;
+		this.dialogueBox = game.add.sprite(0, (game.height * 3/4), 'dialogueBox') ;
+
+		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', this.voiceBlip, bg, this.dialogueBox, queen, gravobot, null) ;
 
 		game.add.existing(this.dialogue) ;
 	},

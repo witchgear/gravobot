@@ -1,7 +1,9 @@
-function Dialogue(game, file, x, y, font, voice, dialogueBox)
+function Dialogue(game, file, x, y, font, voice, bg, dialogueBox, queen, gravobot, empress)
 {
 	// set pointer to the JSON file
 	this.file = file ;
+
+	this.game = game ;
 
 	// set some other variables
 	this.actor = '' ; // current actor's name
@@ -13,6 +15,16 @@ function Dialogue(game, file, x, y, font, voice, dialogueBox)
 	this.finished = false ; // whether or not the dialogue has finished
 
 	this.dialogueBox = dialogueBox ; // add a pointer to the dialogueBox sprite
+
+	// add pointers to sprites
+	this.queen = queen ;
+	this.gravobot = gravobot ;
+	this.empress = empress ;
+
+	this.bg = bg ;
+
+	console.log(this.queen) ;
+	console.log(this.gravobot) ;
 
 	//call Phaser.bitmapText from this object
 	//call(object to call function in, game object, x, y, font, text)
@@ -72,6 +84,21 @@ Dialogue.prototype.initializeLine = function()
 {
 	// set the current actor to the actor from the json file
 	this.actor = this.file.dialogue[this.line].actor ;
+
+	if(this.actor == 'SPACE QUEEN'){
+		this.queen.position.x = 0 ;
+		this.queen.position.y = this.game.height - this.queen.height ;
+	}
+
+	if(this.actor == 'GRAVOBOT'){
+		this.gravobot.position.x = this.game.width - this.gravobot.width ;
+		this.gravobot.position.y = this.game.height - this.gravobot.height ;
+	}
+
+	// comment this out once empress sprite is done
+	/*if(this.empress != null && this.actor == 'SPACE EMPRESS'){
+		this.empress.position.setTo(this.game.width - this.empress.width, this.game.height - this.empress.height) ;
+	} */
 
 	// set delay equal to delay from json file divided by 2
 	this.delay = this.file.dialogue[this.line].delay / 2 ;
@@ -134,11 +161,26 @@ Dialogue.prototype.progressLine = function()
 // function to handle "fade" (currently just the opacity of the dialogue box)
 Dialogue.prototype.handleFade = function()
 {
-	if(this.file.dialogue[this.line].fade == 1) // if the fade value from the json file is 1
-	{
-		this.dialogueBox.alpha = 1 ; // the dialogue box is visible
-	}
-	else if(this.file.dialogue[this.line].fade == -1){ // if it is -1
-		this.dialogueBox.alpha = 0 ; // the dialogue box is now invisible
+	if(this.file.dialogue[this.line].fade != 0){
+		if(this.file.dialogue[this.line].fade > 0) // if the fade value from the json file is 1
+		{
+			this.dialogueBox.alpha = 1 ; // the dialogue box is visible
+		}
+		else if(this.file.dialogue[this.line].fade < 0){ // if it is -1
+			this.dialogueBox.alpha = 0 ; // the dialogue box is now invisible
+		}
+
+		if(this.file.dialogue[this.line].fade % 2 == 0)
+		{
+			this.game.add.tween(this.queen).to({ alpha: 1}, 200, Phaser.Easing.Linear.Out, true) ;
+			this.game.add.tween(this.gravobot).to({ alpha: 1}, 200, Phaser.Easing.Linear.Out, true) ;
+			this.game.add.tween(this.bg).to({ alpha: 1}, 200, Phaser.Easing.Linear.Out, true) ;
+		}
+		else if(this.file.dialogue[this.line].fade % 3 == 0)
+		{
+			this.game.add.tween(this.queen).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
+			this.game.add.tween(this.gravobot).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
+			this.game.add.tween(this.bg).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
+		}
 	}
 }

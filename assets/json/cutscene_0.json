@@ -30,7 +30,7 @@
 			"voice": "queentalk",
 			"line": "Yup, yup! It's like that! You really get me, babe!\nI absolutely did NOT make you a planet! Hahahahaha!!!",
 			"delay": 4,
-			"fade": -1
+			"fade": -2
 		},
 
 		{
@@ -294,7 +294,7 @@
 			"voice": "none",
 			"line": ":D!!!!!!!!!!",
 			"delay": 4,
-			"fade": -1
+			"fade": -3
 		},
 
 		{

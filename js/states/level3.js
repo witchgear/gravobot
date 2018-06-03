@@ -110,7 +110,7 @@ Level3.prototype =
 		//switch states when player presses Q
 		if(Q.justPressed())
 		{
-			game.state.start('GameOver');
+			game.state.start('Cutscene4');
 		}
 	},
 }

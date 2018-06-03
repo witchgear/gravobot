@@ -96,9 +96,9 @@ Dialogue.prototype.initializeLine = function()
 	}
 
 	// comment this out once empress sprite is done
-	/*if(this.empress != null && this.actor == 'SPACE EMPRESS'){
-		this.empress.position.setTo(this.game.width - this.empress.width, this.game.height - this.empress.height) ;
-	} */
+	if(this.empress != null && this.actor == 'SPACE EMPRESS'){
+		this.empress.position.setTo(this.game.width/2, this.game.height - this.empress.height) ;
+	}
 
 	// set delay equal to delay from json file divided by 2
 	this.delay = this.file.dialogue[this.line].delay / 2 ;
@@ -186,6 +186,11 @@ Dialogue.prototype.handleFade = function()
 		if(this.file.dialogue[this.line].fade % 5 == 0)
 		{
 			this.game.camera.shake(0.01, 1000) ;
+		}
+
+		if(this.file.dialogue[this.line].fade % 7 == 0 && this.empress != null)
+		{
+			this.empress.scale.x *= -1 ;
 		}
 	}
 }

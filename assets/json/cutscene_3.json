@@ -1,0 +1,268 @@
+{
+	"dialogue":[
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "??????",
+			"delay": 4,
+			"fade": 15
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":D!!!!!!!!!!",
+			"delay": 4,
+			"fade": -1
+		},
+
+		{
+			"actor": "",
+			"voice": "none",
+			"line": "         Cosmopolis, Center of the Universe",
+			"delay": 4,
+			"fade": 2
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "YOU did WHAT?!?!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":'V",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I'm so glad you're safe but how does that even\nHAPPEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "GRAVOBOT I AM SO PROUD OF YOU BUT",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I JUST HAVE TO WONDER",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "WHO WOULD MAKE THAT KIND OF BUTTON!!!!!\nONE THAT WOULD BREAK THE WHOLE PLANET",
+			"delay": 2,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "AAAAA I CAN'T BELIEVE ANYONE WOULD BE SO\nIRRESPONSIBLE WHO IS THIS HOOLIGAN I",
+			"delay": 2,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "Um...... Dear....................",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "AH! HELLO I MEAN Hello wonderful how are you\n:)?",
+			"delay": 2,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "Are you......Talking about the planet.........\nthat you made me?",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "The what?! The planet?! Haha, what!!!\nI don't know what you're talking about!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "Well... Hum... You know... I know things...\nabout this universe... that we made together.....",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Oh.",
+			"delay": 18,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "I know... that you tried very hard......\nnot to make a planet... Aha.....",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "But I also know... that you can be......\na little passionate... when it comes to me.....",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Wah!!! She saw right through me!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "I know... about everything......\nAnd I know... that Gravobot... tried very hard.....",
+			"delay": 6,
+			"fade": 7
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "I know... that I'm very proud of Gravobot......\nand... I love them.....",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":D!!!!! <3!!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "Thank you, Gravobot... for helping my silly wife......\nFor saving the planet she made for me.....",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "Thank you, my child.",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":'D!!!!!!!!!!!!!!!!!!!!",
+			"delay": 4,
+			"fade": 7
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "And, my dear... You're very silly......\nAnd you made many mistakes.....",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "You dragged poor Gravobot...\nInto all of this.....",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Oof... I really messed up this time.\nI'm so sorry.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "But... I know... you acted out of love...\nAnd I forgive you.....",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "BABE!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "none",
+			"line": "So I think... We all deserve... to have a bit of rest...\nTo enjoy these flowers... and each other.",
+			"delay": 6,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I LOVE YOU!!!!",
+			"delay": 4,
+			"fade": 7
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":'D!!!!!!!!!!!!!!!!!!!!",
+			"delay": 4,
+			"fade": 0
+		}
+	]
+}

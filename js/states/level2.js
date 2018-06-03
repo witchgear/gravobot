@@ -10,7 +10,7 @@ Level2.prototype =
     
 		//load audio assets
 		game.load.path = 'assets/music/';
-		game.load.audio('tutorial', ['tutorial.mp3', 'tutorial.ogg']);
+		//game.load.audio('tutorial', ['tutorial.mp3', 'tutorial.ogg']);
 
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
@@ -38,11 +38,11 @@ Level2.prototype =
 
 		this.bgobj = this.terrain.createLayer('Background Objects') ; // background objects layer
 		this.ground = this.terrain.createLayer('Ground') ; // ground layer
-		this.water = this.terrain.createLayer('water'); //water layer, probably temporary
+		this.water = this.terrain.createLayer('Water (temp)'); //water layer, probably temporary
 
 		// set collision for the ground tiles on the ground layer
 		// tilemap.setCollision([tiles], collide (boolean), layer)
-		this.terrain.setCollision([1,2,3,11,12,13], true, 'Ground') ;
+		this.terrain.setCollision([1,2,3,17,18,19,49,50,51], true, 'Ground') ;
 
 		// set tile bias to 64 so collision is handled better
 		game.physics.arcade.TILE_BIAS = 64 ;
@@ -56,6 +56,7 @@ Level2.prototype =
 		this.player.animations.add('crouch', Phaser.Animation.generateFrameNames('crouch', 1, 4, '', 4), 10, true);
 		this.player.animations.play('idle');
 
+
 		//camera = new Camera(game, player, 0, 0) ;
 
 		//create gravity ball object using prefab
@@ -64,7 +65,7 @@ Level2.prototype =
 		//create group for gravity boxes
 		this.boxes = game.add.group();
 
-		this.boxPlacements = [];
+		this.boxPlacements = [game.width*0+32*22];
 		
 		//create boxes
 		for(var i = 0; i < this.boxPlacements.length; i++)
@@ -80,7 +81,7 @@ Level2.prototype =
 		this.platforms = game.add.group();
 		
 		//2D array of platform of platform parameters, each array contains [x, y, direction, limitA, limitB]
-		this.platformParameters = [];
+		this.platformParameters = [game.width*2+32*4,32*16,"vertical",32*16,32*12];
 		
 		for(var i = 0; i < this.platformParameters.length; i++)
 		{

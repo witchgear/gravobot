@@ -134,6 +134,7 @@ Player.prototype.handleJump = function(player)
 //handles crouch, allowing player to stick to a box/platform while they're standing on it
 Player.prototype.handleCrouch = function(player)
 {
+
 	//S was pressed down && the player is standing on something
 	if(!player.isCrouching && S.isDown && player.body.touching.down 
 	&& player.objectStandingOn != null)

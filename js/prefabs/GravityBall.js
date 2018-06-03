@@ -71,6 +71,7 @@ setActivationDelay = function(gravityball)
 setActivated = function(gravityball)
 {
 	gravityball.activated = true;
+	activateSFX.play();
 	console.log("Gravity Ball Activated");
 }
 
@@ -84,7 +85,8 @@ setNotTweening = function(gravityball) {
 deployGravityBall = function(game, player, gravityball){
 	console.log(gravityball.body.x) ;
 	gravityball.deployed = true ; // set deployed equal to true
-
+	deploySFX.play();
+	
 	// tween the ball over to where the mouse is in 400 ms 
 	// game.add.tween(object).to({properties to tween to}, time (in ms), easing, auto-start) 
 	var newX = game.camera.x + game.input.activePointer.x ;
@@ -104,7 +106,8 @@ returnGravityBall = function(game, player, gravityball){
 	console.log(gravityball.body.x) ;
 	gravityball.activated = false; //deactivate the ball
 	gravityball.deployed = false ; // set deployed equal to false
-
+	returnSFX.play();
+	
 	// tween the ball to the player is in 100 ms 
 	// game.add.tween(object).to({properties to tween to}, time (in ms), easing, auto-start)
 	game.add.tween(gravityball).to({ x: (player.body.x - player.width), y: player.body.y }, 100, Phaser.Easing.Quadratic.Out, true) ;

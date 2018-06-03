@@ -48,6 +48,11 @@ Player.prototype.update = function()
 	//reset velocity every frame
 	this.body.velocity.x = 0;
 	
+	if(this.body.velocity.y > 1000 || this.body.velocity.y < -1000)
+	{
+		this.body.velocity.y = 0
+	}
+	
 	//handle movement if the player can walk
 	if(this.canWalk)
 	{
@@ -70,7 +75,7 @@ Player.prototype.update = function()
 	}
 
 	// if the player is being hit by a box while touching the ground
-	if(this.onBox && this.onGround && this.body.touching.up) {
+	if(this.onBox && (this.onGround || this.onPlatform) && this.body.touching.up) {
 		this.body.immovable = true ; // temporarily make them immovable so the box doesn't push them into the floor
 	}
 	else {
@@ -121,6 +126,7 @@ Player.prototype.handleJump = function(player)
 		player.body.velocity.y += player.jumpSpeed;
 		player.onBox = false;
 		player.onPlatform = false;
+		jumpSFX.play();
 	}
 	//not jumping if velocity 0 (standing on floor) or standing on box or platform
 	if(player.isJumping && (player.body.velocity.y == 0 || ((player.onBox || player.onPlatform)
@@ -144,7 +150,6 @@ Player.prototype.handleCrouch = function(player)
 
 		//play crouch animation
 		player.animations.play('crouch');
-		
 		
 		//save the player's position relative to the object
 		player.relativeX = player.body.x - player.objectStandingOn.body.x;

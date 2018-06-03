@@ -21,9 +21,9 @@ Cutscene1.prototype =
 
 		var textFile = game.cache.getJSON('cutscene_0');
 
-		var voiceBlip = game.add.audio('queentalk', 0.3, true);
+		this.voiceBlip = game.add.audio('queentalk', 0.3, true);
 
-		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', voiceBlip, this.dialogueBox) ;
+		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', this.voiceBlip, this.dialogueBox) ;
 
 		game.add.existing(this.dialogue) ;
 	},
@@ -33,6 +33,7 @@ Cutscene1.prototype =
 		//switch states when player presses Q
 		if(Q.justPressed() || this.dialogue.finished)
 		{
+			this.voiceBlip.stop();
 			game.state.start('Tutorial');
 		}
 	},

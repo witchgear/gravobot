@@ -7,11 +7,18 @@ Tutorial.prototype =
 		game.load.path = 'assets/img/sprites/';
 		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ;
 		game.load.image('radius', 'radius.png');
+		game.load.image('swing', 'temp_swing.png');
     
 		//load audio assets
 		game.load.path = 'assets/music/';
 		game.load.audio('tutorial', ['tutorial.mp3', 'tutorial.ogg']);
-
+		
+		game.load.path = 'assets/sfx/';
+		game.load.audio('jump', ['jump.mp3', 'jump.ogg']);
+		game.load.audio('deploy', ['deploy.mp3', 'deploy.ogg']);
+		game.load.audio('activate', ['activate.mp3', 'activate.ogg']);
+		game.load.audio('return', ['return.mp3', 'return.ogg']);
+		
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
 		game.load.spritesheet('tutorialtiles', 'tutorialtiles.png', 32, 32) ;
@@ -74,7 +81,7 @@ Tutorial.prototype =
 		//create group for sliding platforms
 		this.platforms = game.add.group();
 		
-		//2D array of platform of platform parameters, each array contains [x, y, direction, limitA, limitB]
+		//2D array of platform parameters, each array contains [x, y, direction, limitA, limitB]
 		this.platformParameters = [[game.width * 4 + 32 * 8, 32*11, "horizontal",game.width * 4 + 32 * 8,game.width * 4 + 32 *16], 
 		[game.width*4+32*22+16, 32*14, "vertical", 32*10,32*14],[game.width*5+32*20+16,32*14,"vertical",32*8,32*14],
 		[game.width*8+32*18,32*13,"horizontal",game.width*8+32*11,game.width*8+32*18],[game.width*8+32*25+16,32*12,"vertical",32*8,32*12],
@@ -90,7 +97,7 @@ Tutorial.prototype =
 			//add the platform to the game world and to the group
 			game.add.existing(this.platform);
 			this.platforms.add(this.platform);
-		}			
+		}		
 		
 		//create gravity influece object using prefab
 		this.influence = new GravityInfluence(game, 'radius', this.ball, this.boxes, this.platforms);
@@ -100,9 +107,13 @@ Tutorial.prototype =
 		game.add.existing(this.influence);
 		game.add.existing(this.player);
 		
-		//create the sound objects
+		//create sound objects
 		//add.audio(key, volume, loop)
-		this.tutorialTheme = game.add.audio('tutorial', 0.5, true);
+		this.tutorialTheme = game.add.audio('tutorial', 0.4, true);
+		jumpSFX = game.add.audio('jump', 0.7, false);
+		deploySFX = game.add.audio('deploy', 0.7, false);
+		activateSFX = game.add.audio('activate', 0.7, false);
+		returnSFX = game.add.audio('return', 0.7, false);
 		
 		//play tutorial
 		this.tutorialTheme.play();
@@ -113,7 +124,7 @@ Tutorial.prototype =
 		handleCollision(this.player, this.ball, this.boxes, this.platforms, this.ground);
 		
 		updateCamera(this.player, game, this.ball);
-
+		
 		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
 		if(Q.justPressed())
@@ -128,7 +139,10 @@ Tutorial.prototype =
 		//game.debug.body(this.influence);
 		//game.debug.body(this.ball);
 		//game.debug.physicsGroup(this.boxes);
+		//game.debug.physicsGroup(this.platforms);
 		//game.debug.body(this.ground) ;
+		//game.debug.body(this.swing);
+		//game.debug.body(this.swingPlatform);
 	}
 }
 

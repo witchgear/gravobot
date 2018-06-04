@@ -1,0 +1,140 @@
+{
+	"dialogue":[
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "GRAVOBOT!!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": "!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "It's been so long since I heard your voice!!!\nDecades, centuries, eons have passed!!!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Maybe even an hour!!!!!!!!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":V",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Right, sorry.\nIs everything all right over there? With the thing?",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "I feel like you're headed somewhere dangerous.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":)...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Oh, I wish you would just tell me what's going on!!!!\nBut I have a feeling that this is important to you.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":X",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "In any case, just know this:\nWhenever things get rough, it's okay to ask for help.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Everyone loves you, Gravobot.\nAnd more than anything, I believe in you!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":D!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Okay, sorry for wasting your time again!\nI love you!!! Be safe!!! Try your best!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":v",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Okay, I'm really hanging up now!!! I really am!!!!!!\nGoodbyeeeeeeeee--",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "-",
+			"voice": "none",
+			"line": "Gravobot hung up.",
+			"delay": 8,
+			"fade": 0
+		}		
+	]
+}

@@ -104,9 +104,15 @@ deployGravityBall = function(game, player, gravityball){
 
 returnGravityBall = function(game, player, gravityball){
 	console.log(gravityball.body.x) ;
+	
+	//only if the ball is activated, prevents sound from playing when moving between camera screens
+	if(gravityball.activated)
+	{
+		returnSFX.play();
+	}
+	
 	gravityball.activated = false; //deactivate the ball
 	gravityball.deployed = false ; // set deployed equal to false
-	returnSFX.play();
 	
 	// tween the ball to the player is in 100 ms 
 	// game.add.tween(object).to({properties to tween to}, time (in ms), easing, auto-start)

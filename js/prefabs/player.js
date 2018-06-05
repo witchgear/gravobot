@@ -52,6 +52,18 @@ Player.prototype.update = function()
 	{
 		this.body.velocity.y = 0
 	}
+
+	if(S.isDown)
+	{
+		this.canJump = false;
+		this.canWalk = false;	
+		this.animations.play('crouch');
+	}
+	else
+	{
+		this.canJump = true;
+		this.canWalk = true;	
+	}
 	
 	//handle movement if the player can walk
 	if(this.canWalk)
@@ -93,12 +105,7 @@ Player.prototype.update = function()
 
 Player.prototype.handleMovement = function(player)
 {
-	if(S.isDown)
-	{
-		player.canJump = false;
-		player.canWalk = false;	
-		player.animations.play('crouch');
-	}
+
 	//walk left if holding A
 	if(A.isDown)
 	{
@@ -118,7 +125,7 @@ Player.prototype.handleMovement = function(player)
 		}
 		player.scale.x = 1 ; // make sure sprite is facing right
 	}
-	else if(!this.isCrouching) // if player is not moving horizontally && not crouching
+	else if(!this.isCrouching && !S.isDown) // if player is not moving horizontally && not crouching
 	{
 		player.animations.play('idle') ; // play idle animation
 	}
@@ -148,20 +155,18 @@ Player.prototype.handleCrouch = function(player)
 {
 
 	//S was pressed down && the player is standing on something
-	if(!player.isCrouching && S.isDown && player.body.touching.down)
+	if(!player.isCrouching && S.isDown && player.body.touching.down 
+	&& player.objectStandingOn != null)
 	{
 		//set isCrouching to true
 		player.isCrouching = true;
 
 		//play crouch animation
 		player.animations.play('crouch');
-
-		if(player.objectStandingOn != null)
-		{
-			//save the player's position relative to the object
-			player.relativeX = player.body.x - player.objectStandingOn.body.x;
-			player.relativeY = player.body.y - player.objectStandingOn.body.y;
-		}
+		
+		//save the player's position relative to the object
+		player.relativeX = player.body.x - player.objectStandingOn.body.x;
+		player.relativeY = player.body.y - player.objectStandingOn.body.y;
 		
 		//disable gravity, jumping, and walking
 		player.body.gravity.y = 0;
@@ -172,8 +177,6 @@ Player.prototype.handleCrouch = function(player)
 	//player is crouching
 	if(player.isCrouching)
 	{
-
-		player.animations.play('crouch');
 		//move the player to the object's location + offset
 		player.body.x = player.objectStandingOn.body.x + player.relativeX;
 		player.body.y = player.objectStandingOn.body.y + player.relativeY;

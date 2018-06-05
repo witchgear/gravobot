@@ -37,7 +37,7 @@ Level2.prototype =
 
 		this.bgobj = this.terrain.createLayer('Background Objects') ; // background objects layer
 		this.ground = this.terrain.createLayer('Ground') ; // ground layer
-		this.water = this.terrain.createLayer('Water (temp)'); //water layer, probably temporary
+		this.water = this.terrain.createLayer('Water (temp)'); //water layer
 		this.rails = this.terrain.createLayer('Rails');
 		this.falls = this.terrain.createLayer('Waterfalls');
 		this.tree1 = this.terrain.createLayer('Treez');
@@ -45,7 +45,8 @@ Level2.prototype =
 		// set collision for the ground tiles on the ground layer
 		// tilemap.setCollision([tiles], collide (boolean), layer)
 		this.terrain.setCollision([1,2,3,17,18,19,49,50,51], true, 'Ground') ;
-
+		this.terrain.setCollision([33, 34, 35], true, 'Water (temp)');
+		
 		// set tile bias to 64 so collision is handled better
 		game.physics.arcade.TILE_BIAS = 64 ;
 
@@ -136,6 +137,9 @@ Level2.prototype =
 		game.add.existing(this.influence);
 		game.add.existing(this.player);
 		
+		//brings water layer to front of the screen
+		this.water.bringToTop();
+		
 		//create the sound objects
 		//add.audio(key, volume, loop)
 		this.forestTheme = game.add.audio('forest', 0.4, true);
@@ -147,6 +151,8 @@ Level2.prototype =
 	{
 		//handle collision
 		handleCollision(this.player, this.ball, this.boxes, this.platforms, this.ground);
+		
+		game.physics.arcade.collide(this.boxes, this.water);
 		
 		updateCamera(this.player, game, this.ball);
 		

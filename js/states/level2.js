@@ -12,7 +12,7 @@ Level2.prototype =
 
 		//set load path and load assets
 		game.load.path = 'assets/img/sprites/';
-		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ;
+		game.load.atlas('tutorial_atlas', 'atlas.png', 'atlas.json') ;
 		game.load.image('radius', 'radius.png');
 		game.load.image('waterfall', 'waterfall.png');
     

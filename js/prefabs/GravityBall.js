@@ -43,7 +43,7 @@ GravityBall.prototype.update = function() {
 		this.body.rotation -= 2 ;
 
 		// if the pointer (mouse, touch, etc) has just been released while the gravity ball is deployed, undeploy it
-		if(this.game.input.activePointer.justPressed(20)){
+		if(this.game.input.activePointer.justPressed(30)){
 			returnGravityBall(this.game, this.player, this) ;
 		}
 	}
@@ -53,7 +53,7 @@ GravityBall.prototype.update = function() {
 		this.body.y = this.player.body.y ;
 
 		// if the pointer (mouse, touch, etc) has just been released, deploy the gravity ball
-		if(this.game.input.activePointer.justPressed(20)){
+		if(this.game.input.activePointer.justPressed(30)){
 			deployGravityBall(this.game, this.player, this) ;
 		}
 	}

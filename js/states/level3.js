@@ -111,6 +111,7 @@ Level3.prototype =
 		//switch states when player presses Q
 		if(Q.justPressed())
 		{
+			this.lavaTheme.stop();
 			game.state.start('Cutscene4');
 		}
 	},

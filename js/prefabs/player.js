@@ -93,6 +93,12 @@ Player.prototype.update = function()
 
 Player.prototype.handleMovement = function(player)
 {
+	if(S.isDown)
+	{
+		player.canJump = false;
+		player.canWalk = false;	
+		player.animations.play('crouch');
+	}
 	//walk left if holding A
 	if(A.isDown)
 	{
@@ -112,7 +118,7 @@ Player.prototype.handleMovement = function(player)
 		}
 		player.scale.x = 1 ; // make sure sprite is facing right
 	}
-	else if(!player.isCrouching) // if player is not moving horizontally && not crouching
+	else if(!this.isCrouching) // if player is not moving horizontally && not crouching
 	{
 		player.animations.play('idle') ; // play idle animation
 	}
@@ -142,25 +148,19 @@ Player.prototype.handleCrouch = function(player)
 {
 
 	//S was pressed down && the player is standing on something
-	if(!player.isCrouching && S.isDown && (player.body.touching.down || player.onGround))
+	if(!player.isCrouching && S.isDown && player.body.touching.down)
 	{
-		console.log(player.isCrouching);
 		//set isCrouching to true
 		player.isCrouching = true;
 
 		//play crouch animation
 		player.animations.play('crouch');
 
-		// if the player is standing on something that's not the ground
-		if(player.objectStandingOn != null && !player.onGround)
+		if(player.objectStandingOn != null)
 		{
 			//save the player's position relative to the object
 			player.relativeX = player.body.x - player.objectStandingOn.body.x;
 			player.relativeY = player.body.y - player.objectStandingOn.body.y;
-		}
-		else if(player.onGround) // else if the player is on the ground
-		{
-			player.objectStandingOn = null ; // the object is null
 		}
 		
 		//disable gravity, jumping, and walking
@@ -174,17 +174,13 @@ Player.prototype.handleCrouch = function(player)
 	{
 
 		player.animations.play('crouch');
-		if(player.objectStandingOn != null && !player.onGround) // if the player is on an object
-		{
-			//move the player to the object's location + offset
-			player.body.x = player.objectStandingOn.body.x + player.relativeX;
-			player.body.y = player.objectStandingOn.body.y + player.relativeY;
+		//move the player to the object's location + offset
+		player.body.x = player.objectStandingOn.body.x + player.relativeX;
+		player.body.y = player.objectStandingOn.body.y + player.relativeY;
 		
-			//reset offset in case player flies off
-			player.relativeX = player.body.x - player.objectStandingOn.body.x;
-			player.relativeY = player.body.y - player.objectStandingOn.body.y;
-		}
-		
+		//reset offset in case player flies off
+		player.relativeX = player.body.x - player.objectStandingOn.body.x;
+		player.relativeY = player.body.y - player.objectStandingOn.body.y;
 	}
 	
 	//S was released or no longer standing on anything
@@ -215,11 +211,6 @@ Player.prototype.saveObject = function(player, object)
 	{
 		//set pointer
 		player.objectStandingOn = object;
-	}
-	else
-	{	
-		// remove pointer
-		player.objectStandingOn = null;
 	}
 }
 

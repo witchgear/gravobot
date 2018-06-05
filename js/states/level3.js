@@ -97,6 +97,7 @@ Level3.prototype =
 		//this.lavaTheme = game.add.audio('lava', 0.4, true);
 		
 		//play lava theme
+		game.sound.stopAll();
 		//this.lavaTheme.play();
 	},
 	update: function()

@@ -116,6 +116,7 @@ Tutorial.prototype =
 		returnSFX = game.add.audio('return', 0.7, false);
 		
 		//play tutorial
+		game.sound.stopAll();
 		this.tutorialTheme.play();
 	},
 	update: function()

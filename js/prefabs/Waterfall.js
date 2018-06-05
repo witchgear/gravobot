@@ -112,8 +112,8 @@ restoreWaterfall = function(waterfall)
 // function to check if the waterfall is unblocked
 checkIfUnblocked = function(waterfall) 
 {
-	var above = (waterfall.above != null) ; // if the waterfall above exists
-	if(above){ // check if it is blocked, proxyblocked or colliding with the box (just in case)
+	var above = (waterfall.above == null) ; // if the waterfall above exists
+	if(!above){ // check if it is blocked, proxyblocked or colliding with the box (just in case)
 		above = !waterfall.above.blocked && !waterfall.above.proxyBlocked && !game.physics.arcade.overlap(waterfall.above, waterfall.blockingBox);
 	} // if the waterfall is in the array but not blocked by proxy, and the waterfall above is not blocked
 	if(disruptedWaterfalls.indexOf(waterfall) > -1 && !waterfall.proxyBlocked && above) {

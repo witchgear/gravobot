@@ -11,6 +11,7 @@ Boot.prototype =
 		A = game.input.keyboard.addKey(Phaser.Keyboard.A); //move left
 		S = game.input.keyboard.addKey(Phaser.Keyboard.S); //crouch, menu down
 		D = game.input.keyboard.addKey(Phaser.Keyboard.D); //move right
+		cursors = game.input.keyboard.createCursorKeys(); //alternate controls
 		SPACEBAR = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); //also jump, confirm
 		Q = game.input.keyboard.addKey(Phaser.Keyboard.Q); //debug functions
 		

@@ -20,7 +20,7 @@ Title.prototype = {
 		game.load.bitmapFont('menutext','font.png','font.fnt'); //loads bitmap font
 
 		game.load.path = 'assets/img/sprites/' ;
-		game.load.atlas('atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ; // load atlas with gravity ball
+		game.load.atlas('atlas', 'atlas.png', 'atlas.json') ; // load atlas with gravity ball
 		
 		//load sound assets
 		game.load.path = 'assets/music/';

@@ -147,7 +147,7 @@ Tutorial.prototype =
 }
 
 //function that handles the necessary collision for each state
-handleCollision = function(player, ball, boxes, platforms, ground)
+var handleCollision = function(player, ball, boxes, platforms, ground)
 {
 	//collide player and ground and save result in player
 	player.onGround = game.physics.arcade.collide(ground, player);

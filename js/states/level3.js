@@ -5,7 +5,7 @@ Level3.prototype =
 	{
 		//load audio assets
 		game.load.path = 'assets/music/';
-		//game.load.audio('lava', ['lava.mp3', 'lava.ogg']);
+		game.load.audio('lava', ['lava.mp3', 'lava.ogg']);
 	},
 	create: function()
 	{
@@ -94,10 +94,11 @@ Level3.prototype =
 		
 		//create the sound objects
 		//add.audio(key, volume, loop)
-		//this.lavaTheme = game.add.audio('lava', 0.4, true);
+		this.lavaTheme = game.add.audio('lava', 0.5, true);
 		
 		//play lava theme
-		//this.lavaTheme.play();
+		game.sound.stopAll();
+		this.lavaTheme.play();
 	},
 	update: function()
 	{

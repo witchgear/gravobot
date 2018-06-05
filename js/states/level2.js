@@ -164,6 +164,7 @@ Level2.prototype =
 		this.forestTheme = game.add.audio('forest', 0.4, true);
 		
 		//play forest theme
+		game.sound.stopAll();
 		this.forestTheme.play();
 	},
 	update: function()

@@ -1,0 +1,144 @@
+{
+	"waterfalls":[
+
+		{
+			"key": "waterfall",
+			"x": 57,
+			"y": 0,
+			"length": 15
+		},
+
+		{
+			"key": "waterfall",
+			"x": 58,
+			"y": 0,
+			"length": 15
+		},
+
+		{
+			"key": "waterfall",
+			"x": 81,
+			"y": 0,
+			"length": 11
+		},
+
+		{
+			"key": "waterfall",
+			"x": 82,
+			"y": 0,
+			"length": 11
+		},
+
+		{
+			"key": "waterfall",
+			"x": 138,
+			"y": 0,
+			"length": 18
+		},
+
+		{
+			"key": "waterfall",
+			"x": 139,
+			"y": 0,
+			"length": 18
+		},
+
+		{
+			"key": "waterfall",
+			"x": 141,
+			"y": 0,
+			"length": 18
+		},
+
+		{
+			"key": "waterfall",
+			"x": 143,
+			"y": 0,
+			"length": 18
+		},
+
+		{
+			"key": "waterfall",
+			"x": 144,
+			"y": 0,
+			"length": 18
+		},
+
+		{
+			"key": "waterfall",
+			"x": 146,
+			"y": 0,
+			"length": 18
+		},
+
+		{
+			"key": "waterfall",
+			"x": 148,
+			"y": 0,
+			"length": 18
+		},
+
+		{
+			"key": "waterfall",
+			"x": 149,
+			"y": 0,
+			"length": 18
+		},
+
+		{
+			"key": "waterfall",
+			"x": 203,
+			"y": 0,
+			"length": 16
+		},
+
+		{
+			"key": "waterfall",
+			"x": 204,
+			"y": 0,
+			"length": 16
+		},
+
+		{
+			"key": "waterfall",
+			"x": 206,
+			"y": 0,
+			"length": 18
+		},
+
+		{
+			"key": "waterfall",
+			"x": 208,
+			"y": 0,
+			"length": 15
+		},
+
+		{
+			"key": "waterfall",
+			"x": 209,
+			"y": 0,
+			"length": 15
+		},
+
+		{
+			"key": "waterfall",
+			"x": 234,
+			"y": 0,
+			"length": 16
+		},
+
+		{
+			"key": "waterfall",
+			"x": 235,
+			"y": 0,
+			"length": 16
+		},
+
+		{
+			"key": "waterfall",
+			"x": 264,
+			"y": 0,
+			"length": 6
+		}
+	]
+}

@@ -1,3 +1,4 @@
+var disruptedWaterfalls = [] ;
 var Level2 = function(game){};
 Level2.prototype =
 {
@@ -5,10 +6,15 @@ Level2.prototype =
 	{
 		//note: if we have a seperate atlas add it here and change parameters in create accordingly
 		
+		// load json assets
+		game.load.path = 'assets/json/';
+		game.load.json('waterfall_placement', 'waterfall_placement.json');
+
 		//set load path and load assets
 		game.load.path = 'assets/img/sprites/';
 		game.load.atlas('tutorial_atlas', 'tutorial_atlas.png', 'tutorial_atlas.json') ;
 		game.load.image('radius', 'radius.png');
+		game.load.image('waterfall', 'waterfall.png');
     
 		//load audio assets
 		game.load.path = 'assets/music/';
@@ -39,7 +45,7 @@ Level2.prototype =
 		this.ground = this.terrain.createLayer('Ground') ; // ground layer
 		this.water = this.terrain.createLayer('Water (temp)'); //water layer, probably temporary
 		this.rails = this.terrain.createLayer('Rails');
-		this.falls = this.terrain.createLayer('Waterfalls');
+		//this.falls = this.terrain.createLayer('Waterfalls');
 		this.tree1 = this.terrain.createLayer('Treez');
 		this.tree2 = this.terrain.createLayer('Treez2');
 		// set collision for the ground tiles on the ground layer
@@ -126,6 +132,19 @@ Level2.prototype =
 			//add the platform to the game world and to the group
 			game.add.existing(this.platform);
 			this.platforms.add(this.platform);
+		}
+
+		// load JSON file with waterfall placements
+		this.wfp = game.cache.getJSON('waterfall_placement');
+
+		this.waterfalls = game.add.group() ;
+
+		for(i = 0 ; i < this.wfp.waterfalls.length ; i++) {
+			x = this.wfp.waterfalls[i].x * 32 ;
+			y = this.wfp.waterfalls[i].y * 32 ;
+			length = this.wfp.waterfalls[i].length ;
+			//createWaterfall = function(game, key, x, y, length, group)
+			createWaterfall(game, 'waterfall', x, y, length, this.waterfalls) ;
 		}		
 
 		//create gravity influece object using prefab
@@ -149,6 +168,10 @@ Level2.prototype =
 		handleCollision(this.player, this.ball, this.boxes, this.platforms, this.ground);
 		
 		updateCamera(this.player, game, this.ball);
+
+		game.physics.arcade.overlap(this.waterfalls, this.boxes, disruptWaterfall);
+		game.physics.arcade.overlap(this.waterfalls, this.platforms, disruptWaterfall);
+		game.physics.arcade.overlap(this.waterfalls, this.player, killGravobot);
 		
 		//*****TAKE OUT LATER*****
 		//switch states when player presses Q

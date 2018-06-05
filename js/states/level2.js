@@ -38,7 +38,10 @@ Level2.prototype =
 		this.bgobj = this.terrain.createLayer('Background Objects') ; // background objects layer
 		this.ground = this.terrain.createLayer('Ground') ; // ground layer
 		this.water = this.terrain.createLayer('Water (temp)'); //water layer, probably temporary
-
+		this.rails = this.terrain.createLayer('Rails');
+		this.falls = this.terrain.createLayer('Waterfalls');
+		this.tree1 = this.terrain.createLayer('Treez');
+		this.tree2 = this.terrain.createLayer('Treez2');
 		// set collision for the ground tiles on the ground layer
 		// tilemap.setCollision([tiles], collide (boolean), layer)
 		this.terrain.setCollision([1,2,3,17,18,19,49,50,51], true, 'Ground') ;
@@ -62,7 +65,7 @@ Level2.prototype =
 		this.boxes = game.add.group();
 		
 		//array of gravity box x coordinates
-		this.boxPlacements = [game.width*0+32*22];
+		this.boxPlacements = [game.width*0+32*22,game.width*1+32*11,game.width*2+32*13,game.width*3+32*6,game.width*7+32*12];
 		
 		//create boxes
 		for(var i = 0; i < this.boxPlacements.length; i++)
@@ -80,7 +83,8 @@ Level2.prototype =
 		this.platforms = game.add.group();
 		
 		//2d array of coordinates for the top of the swing rope, each array contains [x, y]
-		this.swingPlacements = [[500, 75]];
+		this.swingPlacements = [[game.width*5+32*9,32*-1],[game.width*5+32*18,0],[game.width*5+32*25,32*-1],
+		[game.width*7+32*8,0],[game.width*7+32*21,32*-2],[game.width*8+32*16,0]];
 		
 		//create swings
 		for(var i = 0; i < this.swingPlacements.length; i++)
@@ -102,7 +106,15 @@ Level2.prototype =
 		}
 		
 		//2D array of platform parameters, each array contains [x, y, direction, limitA, limitB]
-		this.platformParameters = [game.width*2+32*4,32*16,"vertical",32*16,32*12];
+		this.platformParameters = [[game.width*2+32*2+16,32*14,"vertical",32*10,32*13],
+		[game.width*4+32*12,32*10+16,"horizontal",game.width*4+32*7,game.width*4+32*22],
+		[game.width*4+32*12,32*4+16,"horizontal",game.width*4+32*7,game.width*4+32*22],
+		[game.width*6+32*10,32*10,"horizontal",game.width*6+32*10,game.width*6+32*19],
+		[game.width*6+32*10,32*6,"horizontal",game.width*6+32*10,game.width*6+32*19],
+		[game.width*6+32*10,32*2,"horizontal",game.width*6+32*10,game.width*6+32*19],
+		[game.width*6+32*22+16,32*15,"vertical",32*10,32*14],[game.width*6+32*25+16,32*9,"vertical",32*9,32*14],
+		[game.width*6+32*25+16,32*7,"vertical",32*0,32*6],[game.width*8+32*8+16,32*7,"vertical",32*0,32*7],
+		[game.width*8+32*8+16,32*9,"vertical",32*9,32*18]];
 		
 		for(var i = 0; i < this.platformParameters.length; i++)
 		{

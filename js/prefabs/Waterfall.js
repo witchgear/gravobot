@@ -27,7 +27,7 @@ var Waterfall = function(game, key, x, y, above){
 
 	//enable physics & physics settings
 	game.physics.arcade.enable(this);
-	this.body.setSize(16, 16, 8, 8);
+	this.body.setSize(24, 24, 4, 4);
 	this.body.immovable = true ;
 	
 } ;

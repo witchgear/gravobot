@@ -46,8 +46,8 @@ Level2.prototype =
 		this.terrain.createLayer('Background Objects') ; // background objects layer
 		this.terrain.createLayer('Background Objects 2') ; // background objects layer 2
 		this.terrain.createLayer('Flowers') ; // flower layer
-		this.ground = this.terrain.createLayer('Ground') ; // ground layer
-		this.water = this.terrain.createLayer('Water (temp)'); //water layer
+		this.ground = this.terrain.createLayer('Ground') ; // ground layer\
+		this.water = this.terrain.createLayer('Bottom Water'); //water layer
 		this.rails = this.terrain.createLayer('Rails');
 		//this.falls = this.terrain.createLayer('Waterfalls');
 		this.tree1 = this.terrain.createLayer('Treez');
@@ -55,7 +55,7 @@ Level2.prototype =
 		// set collision for the ground tiles on the ground layer
 		// tilemap.setCollision([tiles], collide (boolean), layer)
 		this.terrain.setCollision([1,2,3,17,18,19,49,50,51], true, 'Ground') ;
-		this.terrain.setCollision([33, 34, 35, 177, 178, 179], true, 'Water (temp)');
+		this.terrain.setCollision([33, 34, 35, 180, 193, 194, 195], true, 'Bottom Water');
 		
 		// set tile bias to 64 so collision is handled better
 		game.physics.arcade.TILE_BIAS = 64 ;
@@ -178,10 +178,11 @@ Level2.prototype =
 		
 		//brings water layer to front of the screen
 		this.water.bringToTop();
+		this.terrain.createLayer('Top Water'); //water layer
 
 		game.add.existing(this.ball);
 		game.add.existing(this.influence);
-		this.balll.tint = 0xfff7e9;
+		this.ball.tint = 0xfff7e9;
 		this.influence.tint = 0xfff7e9;
 		
 		//create the sound objects

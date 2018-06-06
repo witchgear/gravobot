@@ -85,6 +85,7 @@ Level2.prototype =
 			this.box = new GravityBox(game, this.boxPlacements[i], 0, 'tutorial_atlas', 'box');
 						//add the box to the game world and to the group
 			game.add.existing(this.box);
+			this.box.tint = 0xfff7e9;
 			this.boxes.add(this.box);
 		}
 
@@ -110,6 +111,9 @@ Level2.prototype =
 			//add the swing to the game world
 			game.add.existing(this.swing);
 			game.add.existing(this.swingPlatform);
+
+			this.swing.tint = 0xfff7e9;
+			this.swingPlatform.tint = 0xfff7e9;
 			
 			//add objects to respective groups
 			this.swings.add(this.swing);
@@ -147,6 +151,7 @@ Level2.prototype =
 			
 			//add the platform to the game world and to the group
 			game.add.existing(this.platform);
+			this.platform.tint = 0xfff7e9;
 			this.platforms.add(this.platform);
 		}
 
@@ -169,12 +174,15 @@ Level2.prototype =
 		
 		//place the player after the ball so they're always at the front of the screen
 		game.add.existing(this.player);
+		this.player.tint = 0xfff7e9;
 		
 		//brings water layer to front of the screen
 		this.water.bringToTop();
 
 		game.add.existing(this.ball);
 		game.add.existing(this.influence);
+		this.balll.tint = 0xfff7e9;
+		this.influence.tint = 0xfff7e9;
 		
 		//create the sound objects
 		//add.audio(key, volume, loop)

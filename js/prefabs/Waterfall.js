@@ -84,6 +84,7 @@ createWaterfall = function(game, key, x, y, length, group)
 	group.add(aboveWaterfall) ; // add it to the group
 	for(var i = 1 ; i < length ; i++) { // for the length of the waterfall
 		wf = new Waterfall(game, key, x, y + (i * 32), aboveWaterfall) ; // make the next waterfall
+		wf.tint = 0xfff7e9;
 		group.add(wf) ; // add the waterfall to the group
 		aboveWaterfall = wf ; // set the "above" waterfall to the current one so they become linked
 	}

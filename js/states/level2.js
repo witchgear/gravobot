@@ -25,10 +25,6 @@ Level2.prototype =
 		game.load.path = 'assets/img/terrain/';
 		game.load.spritesheet('level2_tiles', 'level2tiles.png', 32, 32) ;
 		game.load.tilemap('map', 'level2_map.json', null, Phaser.Tilemap.TILED_JSON);
-
-		//load audio assets
-		game.load.path = 'assets/music/';
-		game.load.audio('forest', ['forest.mp3', 'forest.ogg']);
 	},
 	create: function()
 	{
@@ -181,7 +177,7 @@ Level2.prototype =
 
 		game.add.existing(this.ball);
 		game.add.existing(this.influence);
-		this.balll.tint = 0xfff7e9;
+		this.ball.tint = 0xfff7e9;
 		this.influence.tint = 0xfff7e9;
 		
 		//create the sound objects

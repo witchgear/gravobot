@@ -105,7 +105,7 @@ disruptWaterfall = function(waterfall, box)
 			waterfall.blocked = true ; // it is now blocked
 			waterfall.blockingBox = box ; // save a pointer to the box blocking it
 
-			console.log(disruptedWaterfalls) ; // log the array
+			//console.log(disruptedWaterfalls) ; // log the array
 		}
 	}
 	

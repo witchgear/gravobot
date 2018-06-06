@@ -42,7 +42,7 @@ Level2.prototype =
 		this.terrain.createLayer('Background Objects') ; // background objects layer
 		this.terrain.createLayer('Background Objects 2') ; // background objects layer 2
 		this.terrain.createLayer('Flowers') ; // flower layer
-		this.ground = this.terrain.createLayer('Ground') ; // ground layer\
+		this.ground = this.terrain.createLayer('Ground') ; // ground layer
 		this.water = this.terrain.createLayer('Bottom Water'); //water layer
 		this.rails = this.terrain.createLayer('Rails');
 		//this.falls = this.terrain.createLayer('Waterfalls');

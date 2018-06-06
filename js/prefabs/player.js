@@ -50,7 +50,7 @@ Player.prototype.update = function()
 	
 	if(this.body.velocity.y > 1000 || this.body.velocity.y < -1000)
 	{
-		this.body.velocity.y = 0
+		this.body.velocity.y = 0;
 	}
 	
 	//handle movement if the player can walk
@@ -98,7 +98,9 @@ Player.prototype.handleMovement = function(player)
 	if(A.isDown || cursors.left.isDown)
 	{
 		player.body.velocity.x += -player.walkSpeed;
-		if(player.onGround || player.onPlatform || player.onBox){
+		
+		if(player.onGround || player.onPlatform || player.onBox)
+		{
 			player.animations.play('walk') ; // play walk animation
 		}
 		
@@ -108,9 +110,12 @@ Player.prototype.handleMovement = function(player)
 	else if(D.isDown || cursors.right.isDown)
 	{
 		player.body.velocity.x += player.walkSpeed;
-		if(player.onGround || player.onPlatform || player.onBox){
+		
+		if(player.onGround || player.onPlatform || player.onBox)
+		{
 			player.animations.play('walk') ; // play walk animation
 		}
+		
 		player.scale.x = 1 ; // make sure sprite is facing right
 	}
 	else if(!this.isCrouching && !S.isDown) // if player is not moving horizontally && not crouching

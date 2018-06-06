@@ -23,8 +23,8 @@ function Dialogue(game, file, x, y, font, voice, bg, dialogueBox, queen, gravobo
 
 	this.bg = bg ;
 
-	console.log(this.queen) ;
-	console.log(this.gravobot) ;
+	//console.log(this.queen) ;
+	//console.log(this.gravobot) ;
 
 	//call Phaser.bitmapText from this object
 	//call(object to call function in, game object, x, y, font, text)

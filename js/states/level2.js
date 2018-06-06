@@ -6,6 +6,8 @@ Level2.prototype =
 	{
 		//note: if we have a seperate atlas add it here and change parameters in create accordingly
 		
+		createLoadingScreen();
+		
 		// load json assets
 		game.load.path = 'assets/json/';
 		game.load.json('waterfall_placement', 'waterfall_placement.json');

@@ -3,6 +3,8 @@ Level3.prototype =
 {
 	preload: function()
 	{
+		createLoadingScreen();
+		
 		//load audio assets
 		game.load.path = 'assets/music/';
 		game.load.audio('lava', ['lava.mp3', 'lava.ogg']);

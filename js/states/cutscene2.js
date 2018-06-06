@@ -3,6 +3,8 @@ Cutscene2.prototype =
 {
 	preload: function()
 	{
+		createLoadingScreen();
+		
 		game.load.path = 'assets/json/';
 		game.load.json('cutscene_1', 'cutscene_1.json');
 

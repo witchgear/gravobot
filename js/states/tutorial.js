@@ -3,6 +3,8 @@ Tutorial.prototype =
 {
 	preload: function()
 	{
+		createLoadingScreen();
+		
 		//set load path and load assets
 		game.load.path = 'assets/img/sprites/';
 		game.load.atlas('tutorial_atlas', 'atlas.png', 'atlas.json') ;

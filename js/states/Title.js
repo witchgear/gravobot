@@ -12,12 +12,12 @@ var menuState = 1;
 var Title = function(game) {};
 Title.prototype = {
 	preload: function() {
+		createLoadingScreen();
+		
 		game.load.path = 'assets/img/backgrounds/';
 		game.load.image('logo','logov1.png'); // loads logo
 		game.load.path = 'assets/img/sprites/';
 		game.load.image('icon','tempicon.png'); //loads an image to be a scroller, its labelled as temp in case we want to use a different image later
-		game.load.path = 'assets/font/';
-		game.load.bitmapFont('menutext','font.png','font.fnt'); //loads bitmap font
 
 		game.load.path = 'assets/img/sprites/' ;
 		game.load.atlas('atlas', 'atlas.png', 'atlas.json') ; // load atlas with gravity ball

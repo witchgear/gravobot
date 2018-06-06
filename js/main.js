@@ -4,6 +4,11 @@ var game = new Phaser.Game(1024, 576, Phaser.AUTO);
 var Boot = function(game){};
 Boot.prototype =
 {
+	preload: function()
+	{
+		game.load.path = 'assets/font/';
+		game.load.bitmapFont('menutext','font.png','font.fnt'); //loads bitmap font
+	},
 	create: function()
 	{
 		//Create input keys
@@ -23,4 +28,27 @@ Boot.prototype =
 		
 		game.state.start('Title');
 	}
+}
+
+var createLoadingScreen = function()
+{
+	//create load text variable and set properties
+	this.loadText = game.add.bitmapText(425, 275, 'menutext', "", '28')
+	
+	//update load progress when loading starts and when a file is done loading
+	game.load.onLoadStart.add(updateLoadProgress);
+	game.load.onFileComplete.add(updateLoadProgress);
+	
+	//erase the loading text when loading is complete
+	game.load.onLoadComplete.add(removeLoadText);
+}
+
+var updateLoadProgress = function()
+{
+	loadText.text = "Loading: " + game.load.progress + "%";
+}
+
+var removeLoadText = function()
+{
+	loadText.text = "";
 }

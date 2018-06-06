@@ -14,7 +14,8 @@ Level2.prototype =
 		game.load.path = 'assets/img/sprites/';
 		game.load.atlas('tutorial_atlas', 'atlas.png', 'atlas.json') ;
 		game.load.image('radius', 'radius.png');
-		game.load.image('waterfall', 'waterfall.png');
+		game.load.spritesheet('waterfall', 'waterfall.png', 32, 32, 4);
+		game.load.image('splash', 'splash.png');
     
 		//load audio assets
 		game.load.path = 'assets/music/';
@@ -41,7 +42,10 @@ Level2.prototype =
 		this.bg = this.terrain.createLayer('Background') ; // background layer
 		this.bg.resizeWorld() ; // resize the world so it's the size of the background
 
-		this.bgobj = this.terrain.createLayer('Background Objects') ; // background objects layer
+
+		this.terrain.createLayer('Background Objects') ; // background objects layer
+		this.terrain.createLayer('Background Objects 2') ; // background objects layer 2
+		this.terrain.createLayer('Flowers') ; // flower layer
 		this.ground = this.terrain.createLayer('Ground') ; // ground layer
 		this.water = this.terrain.createLayer('Water (temp)'); //water layer
 		this.rails = this.terrain.createLayer('Rails');
@@ -51,7 +55,7 @@ Level2.prototype =
 		// set collision for the ground tiles on the ground layer
 		// tilemap.setCollision([tiles], collide (boolean), layer)
 		this.terrain.setCollision([1,2,3,17,18,19,49,50,51], true, 'Ground') ;
-		this.terrain.setCollision([33, 34, 35], true, 'Water (temp)');
+		this.terrain.setCollision([33, 34, 35, 177, 178, 179], true, 'Water (temp)');
 		
 		// set tile bias to 64 so collision is handled better
 		game.physics.arcade.TILE_BIAS = 64 ;
@@ -116,19 +120,30 @@ Level2.prototype =
 		this.platformParameters = [[game.width*2+32*2+16,32*14,"vertical",32*10,32*13],
 		[game.width*4+32*12,32*10+16,"horizontal",game.width*4+32*7,game.width*4+32*22],
 		[game.width*4+32*12,32*4+16,"horizontal",game.width*4+32*7,game.width*4+32*22],
-		[game.width*6+32*10,32*10,"horizontal",game.width*6+32*10,game.width*6+32*19],
-		[game.width*6+32*10,32*6,"horizontal",game.width*6+32*10,game.width*6+32*19],
-		[game.width*6+32*10,32*2,"horizontal",game.width*6+32*10,game.width*6+32*19],
+		[game.width*6+32*10,32*10 - 16,"horizontal",game.width*6+32*10,game.width*6+32*19],
+		[game.width*6+32*10,32*6 - 16,"horizontal",game.width*6+32*10,game.width*6+32*19],
+		[game.width*6+32*10,32*2 - 16,"horizontal",game.width*6+32*10,game.width*6+32*19],
 		[game.width*6+32*22+16,32*15,"vertical",32*10,32*14],[game.width*6+32*25+16,32*9,"vertical",32*9,32*14],
 		[game.width*6+32*25+16,32*7,"vertical",32*0,32*6],[game.width*8+32*8+16,32*7,"vertical",32*0,32*7],
 		[game.width*8+32*8+16,32*9,"vertical",32*9,32*18]];
 		
 		for(var i = 0; i < this.platformParameters.length; i++)
 		{
-			//create new platform with (game, x, y, key, frame, direction, limitA, limitB)
+			if(this.platformParameters[i][2] == "horizontal")
+			{
+				//create new platform with (game, x, y, key, frame, direction, limitA, limitB)
+			this.platform = new Platform(game, this.platformParameters[i][0], this.platformParameters[i][1],
+										'tutorial_atlas', 'longbox', this.platformParameters[i][2],
+										this.platformParameters[i][3], this.platformParameters[i][4]);
+			}
+			else
+			{
+				//create new platform with (game, x, y, key, frame, direction, limitA, limitB)
 			this.platform = new Platform(game, this.platformParameters[i][0], this.platformParameters[i][1],
 										'tutorial_atlas', 'box', this.platformParameters[i][2],
 										this.platformParameters[i][3], this.platformParameters[i][4]);
+			}
+			
 			
 			//add the platform to the game world and to the group
 			game.add.existing(this.platform);
@@ -146,18 +161,20 @@ Level2.prototype =
 			length = this.wfp.waterfalls[i].length ;
 			//createWaterfall = function(game, key, x, y, length, group)
 			createWaterfall(game, 'waterfall', x, y, length, this.waterfalls) ;
-		}		
+		}
+		this.terrain.createLayer('Background2') ; // background layer 2		
 
 		//create gravity influece object using prefab
 		this.influence = new GravityInfluence(game, 'radius', this.ball, this.boxes, this.platforms);
 		
 		//place the player after the ball so they're always at the front of the screen
-		game.add.existing(this.ball);
-		game.add.existing(this.influence);
 		game.add.existing(this.player);
 		
 		//brings water layer to front of the screen
 		this.water.bringToTop();
+
+		game.add.existing(this.ball);
+		game.add.existing(this.influence);
 		
 		//create the sound objects
 		//add.audio(key, volume, loop)
@@ -165,6 +182,7 @@ Level2.prototype =
 		
 		//play forest theme
 		this.forestTheme.play();
+		this.over = false ;
 	},
 	update: function()
 	{
@@ -181,10 +199,31 @@ Level2.prototype =
 		
 		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
-		if(Q.justPressed())
+		if(Q.justPressed() || (this.player.body.x > 283 * 32 && this.player.body.x < 285 * 32 && this.player.onGround))
 		{
+			
+			game.camera.fade(200, "#000000") ;
+			//this.forestTheme.fadeOut(100); //stop playing
 			this.forestTheme.stop();
-			game.state.start('Cutscene3');
+			if(!this.over)
+			{
+				activateSFX.play(false) ;
+			}
+			this.over = true ;
+			//game.state.start('Cutscene3');
+			game.time.events.add(Phaser.Timer.SECOND * 0.2, startCutscene, this, 3);
 		}
 	},
+
+	render: function()
+	{
+		//game.debug.body(this.player);
+		//game.debug.body(this.influence);
+		//game.debug.body(this.ball);
+		//game.debug.physicsGroup(this.waterfalls);
+		//game.debug.physicsGroup(this.platforms);
+		//game.debug.body(this.ground) ;
+		//game.debug.body(this.swing);
+		//game.debug.body(this.swingPlatform);
+	}
 }

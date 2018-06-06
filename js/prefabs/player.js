@@ -63,6 +63,7 @@ Player.prototype.update = function()
 	{
 		this.canJump = true;
 		this.canWalk = true;	
+		this.body.gravity.y = worldGravity;
 	}
 	
 	//handle movement if the player can walk

@@ -141,7 +141,7 @@ Tutorial.prototype =
 		//switch states when player presses Q
 		if(Q.justPressed() || tutorialOver)
 		{
-			activateSFX.play(false) ;
+			//activateSFX.play(false) ;
 			this.camera.fade(500, "#000000") ;
 			this.tutorialTheme.fadeOut(100); //stop playing
 			game.time.events.add(Phaser.Timer.SECOND * 0.5, startCutscene, this, 2);

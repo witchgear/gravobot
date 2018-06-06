@@ -14,13 +14,21 @@ var Waterfall = function(game, key, x, y, above){
 	this.proxyBlocked = false ; // if this waterfall is blocked by proxy
 
 	this.blockingBox = null ; // pointer to the box that might block this
+
+	this.emitter = null ; // no current emitter
+	this.isEmitting = false ; // not currently emitting
 	
 	// call Sprite constructor within this object
 	// put it at the x and y coordinates with the key
 	this.sprite = Phaser.Sprite.call(this, game, x, y, key) ;
 
+	this.animations.add('fall', [0, 1, 2, 3], 6, true) ;
+	this.animations.play('fall') ;
+
 	//enable physics & physics settings
 	game.physics.arcade.enable(this);
+	this.body.setSize(16, 16, 8, 8);
+	this.body.immovable = true ;
 	
 } ;
 
@@ -35,7 +43,7 @@ Waterfall.prototype.update = function()
 	{
 		if(this.alpha > 0) // and it is not currently transparent
 		{
-			this.alpha -= 0.1 ; // reduce opacity
+			this.alpha -= 0.2 ; // reduce opacity
 		}
 		
 	}
@@ -43,12 +51,20 @@ Waterfall.prototype.update = function()
 	{
 		if(this.alpha < 1) // and it is not fully opaque
 		{
-			this.alpha += 0.1 ; // increase opacity
+			this.alpha += 0.2 ; // increase opacity
 		}
 	}
 
 	if(this.blocked) { // if the waterfall is blocked
+		if(this.above != null && !this.above.blocked && !this.proxyBlocked)
+		{
+			generateSplash(this.above) ;
+		}
 		checkIfUnblocked(this) ; // check if it is unblocked
+	}
+	else if(!this.proxyBlocked && this.below == null)
+	{
+		generateSplash(this) ;
 	}
 
 	if(this.above != null) // if there is a waterfall above this
@@ -130,7 +146,42 @@ checkIfUnblocked = function(waterfall)
 killGravobot = function(gravobot, waterfall)
 {
 	if(waterfall.alpha == 1) { // if the waterfall is fully opaque
+		if(gravobot.isCrouching)
+		{
+			gravobot.isCrouching = false ;
+			gravobot.canJump = true;
+			gravobot.canWalk = true;
+			gravobot.body.gravity.y = worldGravity;
+		}
 		gravobot.body.y = 6900 ; // launch gravobot real far down so they automatically reset to the top left of the screen
 	}
 	// this is game design
+}
+
+// cheap and dirty function that kills Gravobot
+generateSplash = function(waterfall)
+{
+	if(waterfall.position.x < (waterfall.game.camera.position.x + waterfall.game.camera.width) &&
+	   waterfall.position.x > waterfall.game.camera.position.x)
+	{
+		if(waterfall.emitter == null) 
+			{ // if the waterfall is fully opaque
+				waterfall.emitter = waterfall.game.add.emitter(waterfall.position.x + 16, waterfall.position.y + 32, 40);
+				let area = new Phaser.Rectangle(waterfall.position.x, waterfall.position.y + 24, 32, 16);
+				waterfall.emitter.area = area ;
+				waterfall.emitter.makeParticles(['splash'], 0, 40, true);
+				waterfall.emitter.start(false, 100, 25, 20) ;
+				game.time.events.add(Phaser.Timer.SECOND * 0.5, setNotEmitting, this, waterfall);
+				//waterfall.emitter.area = new Phaser.Rectangle(game.world.centerX, 0, game.world.width, 1);
+			}
+	}
+	
+}
+
+setNotEmitting = function(waterfall)
+{
+	waterfall.isEmitting = false ;
+	//waterfall.emitter.kill() ;
+	waterfall.emitter.destroy() ;
+	waterfall.emitter = null ;
 }

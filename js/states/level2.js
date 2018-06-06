@@ -25,10 +25,6 @@ Level2.prototype =
 		game.load.path = 'assets/img/terrain/';
 		game.load.spritesheet('level2_tiles', 'level2tiles.png', 32, 32) ;
 		game.load.tilemap('map', 'level2_map.json', null, Phaser.Tilemap.TILED_JSON);
-
-		//load audio assets
-		game.load.path = 'assets/music/';
-		game.load.audio('forest', ['forest.mp3', 'forest.ogg']);
 	},
 	create: function()
 	{

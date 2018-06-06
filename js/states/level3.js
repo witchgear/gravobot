@@ -8,9 +8,41 @@ Level3.prototype =
 		//load audio assets
 		game.load.path = 'assets/music/';
 		game.load.audio('lava', ['lava.mp3', 'lava.ogg']);
+
+		// load json assets
+		game.load.path = 'assets/json/';
+		game.load.json('waterfall_placement', 'waterfall_placement.json');
+
+		//set load path and load assets
+		game.load.path = 'assets/img/sprites/';
+		game.load.atlas('tutorial_atlas', 'atlas.png', 'atlas.json') ;
+		game.load.image('radius', 'radius.png');
+
+		// load spritesheet and tilemap for terrain
+		game.load.path = 'assets/img/terrain/';
+		game.load.spritesheet('level3_tiles', 'level3tiles.png', 32, 32) ;
+		game.load.tilemap('map', 'level3_map.json', null, Phaser.Tilemap.TILED_JSON);
+
 	},
 	create: function()
 	{
+		// add tileset from json file
+		this.terrain = game.add.tilemap('map') ;
+
+		// add image for the tileset
+		this.terrain.addTilesetImage('level3tiles', 'level3_tiles');
+		
+		// create layers
+		this.bg = this.terrain.createLayer('Background') ; // background layer
+		this.bg.resizeWorld() ; // resize the world so it's the size of the background
+		this.lava = this.terrain.createLayer('Lava') ; // lava layer
+		this.ground = this.terrain.createLayer('Ground') ;
+		// set collision for the ground tiles on the ground layer
+		// tilemap.setCollision([tiles], collide (boolean), layer)
+		this.terrain.setCollision([1,2,3,9,10,11,17,18], true, 'Ground') ;
+		
+		// set tile bias to 64 so collision is handled better
+		game.physics.arcade.TILE_BIAS = 64 ;
 		//create player object using prefab
 		this.player = new Player(game, 200, 100, 'tutorial_atlas', 'idle0001'); 
 		
@@ -27,10 +59,10 @@ Level3.prototype =
 		this.boxes = game.add.group();
 		
 		//array of gravity box x coordinates
-		//this.boxPlacements = [game.width * 3 + 32 * 6, game.width * 5 +32 * 6,game.width*6+32*4,game.width*7+32*10,game.width*8+32*5]
+		this.boxPlacements = [game.width*0+32*12]
 		
 		//create boxes
-		/* uncomment when there are new box placements
+		
 		for(var i = 0; i < this.boxPlacements.length; i++)
 		{
 			//create a box using prefab
@@ -39,7 +71,7 @@ Level3.prototype =
 			game.add.existing(this.box);
 			this.boxes.add(this.box);
 		}
-		*/
+		
 
 		//note: the order of this code matters, the swing group must be created before the
 		//		platforms group or the platform sprite will be behind the swing rope

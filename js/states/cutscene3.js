@@ -18,7 +18,7 @@ Cutscene3.prototype =
 		game.load.image('dialogueBox', 'dialoguebox.png') ;
 
 		game.load.path = 'assets/img/cutscene/'
-		game.load.image('bg', 'cutscene2bg.png') ;
+		game.load.image('bg', 'cutscene3bg.png') ;
 		game.load.image('queen', 'phonequeen.png') ;
 		game.load.image('gravobot', 'bot.png') ;
 	},

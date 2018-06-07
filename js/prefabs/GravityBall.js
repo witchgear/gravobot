@@ -65,25 +65,25 @@ setActivationDelay = function(gravityball)
 	//set a timer to run setDeployed after a second
 	//time.events.add(period, function, context, args);
 	game.time.events.add(Phaser.Timer.SECOND * 0.8, setActivated, this, gravityball);
-	console.log("Activating Gravity Ball...");
+	//console.log("Activating Gravity Ball...");
 }
 
 setActivated = function(gravityball)
 {
 	gravityball.activated = true;
 	activateSFX.play();
-	console.log("Gravity Ball Activated");
+	//console.log("Gravity Ball Activated");
 }
 
 // set the ball to not tweening so it follows the player again
 setNotTweening = function(gravityball) {
 	gravityball.tweening = false ;
-	console.log("Gravity Ball Finished Tweening") ;
+	//console.log("Gravity Ball Finished Tweening") ;
 }
 
 
 deployGravityBall = function(game, player, gravityball){
-	console.log(gravityball.body.x) ;
+	//console.log(gravityball.body.x) ;
 	gravityball.deployed = true ; // set deployed equal to true
 	deploySFX.play();
 	
@@ -92,7 +92,7 @@ deployGravityBall = function(game, player, gravityball){
 	var newX = game.camera.x + game.input.activePointer.x ;
 	var newY = game.camera.y + game.input.activePointer.y ;
 	game.add.tween(gravityball).to({ x: newX, y: newY }, 400, Phaser.Easing.Quadratic.Out, true) ;
-	console.log("Gravity Ball Tweening...") ;
+	//console.log("Gravity Ball Tweening...") ;
 
 	// put the gravity ball where the mouse (or touch) is
 	//gravityball.body.x = game.input.activePointer.x ;
@@ -103,7 +103,7 @@ deployGravityBall = function(game, player, gravityball){
 }
 
 returnGravityBall = function(game, player, gravityball){
-	console.log(gravityball.body.x) ;
+	//console.log(gravityball.body.x) ;
 	
 	//only if the ball is activated, prevents sound from playing when moving between camera screens
 	if(gravityball.activated)

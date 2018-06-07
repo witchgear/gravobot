@@ -33,12 +33,16 @@ Level3.prototype =
 		this.terrain.addTilesetImage('level3tiles', 'level3_tiles');
 		
 		// create layers
-		this.lavafall = this.terrain.createLayer('LavaFall');
-		this.lava = this.terrain.createLayer('Lava') ; // lava layer
-		this.ground = this.terrain.createLayer('Ground') ;
-		this.bgobj = this.terrain.createLayer('Background Object');
 		this.bg = this.terrain.createLayer('Background') ; // background layer
-		this.bg.resizeWorld() ; // resize the world so it's the size of the background
+		this.bg.resizeWorld() ;
+		this.bgobj = this.terrain.createLayer('Background Object');
+		this.ground = this.terrain.createLayer('Ground') ;
+		this.lava = this.terrain.createLayer('Lava') ;
+		this.lavafall = this.terrain.createLayer('LavaFall');
+		 // lava layer
+		
+		
+		 // resize the world so it's the size of the background
 
 		// set collision for the ground tiles on the ground layer
 		// tilemap.setCollision([tiles], collide (boolean), layer)
@@ -111,7 +115,7 @@ Level3.prototype =
 		[game.width*2+32*3,32*11,"horizontal",game.width*2+32*2,game.width*2+32*11],
 		[game.width*2+32*18+16,32*6,"vertical",32*6,32*12],[game.width*3+32*5,32*14,"vertical",32*11,32*14],
 		[game.width*3+32*21+16,32*9,"vertical",32*9,32*12],[game.width*4+32*15+16,32*10,"vertical",32*10,32*13],
-		[game.width*4+32*5,32*7,"horizontal",game.width*4+32*5,game.width*4+32*18]];
+		[game.width*4+32*5,32*7,"horizontal",game.width*4+32*7,game.width*4+32*18]];
 		
 		for(var i = 0; i < this.platformParameters.length; i++)
 		{

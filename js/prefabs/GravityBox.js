@@ -81,7 +81,8 @@ GravityBox.prototype.update = function()
 	//if the box clips through the ground
 	if(this.body.y > this.game.height)
 	{ 
-		this.body.x = this.originalX; // put them back at the beginning of the area
+		this.body.x = this.originalX-32; // put them back at the beginning of the area
+
 		this.body.y = game.camera.y - this.height ;
 	}
 }

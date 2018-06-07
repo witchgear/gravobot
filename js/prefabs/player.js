@@ -118,7 +118,7 @@ Player.prototype.handleMovement = function(player)
 		
 		player.scale.x = 1 ; // make sure sprite is facing right
 	}
-	else if(!this.isCrouching && !S.isDown) // if player is not moving horizontally && not crouching
+	else if(!this.isCrouching && !S.isDown && !cursors.down.isDown) // if player is not moving horizontally && not crouching
 	{
 		player.animations.play('idle') ; // play idle animation
 	}

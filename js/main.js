@@ -33,7 +33,7 @@ Boot.prototype =
 var createLoadingScreen = function()
 {
 	//create load text variable and set properties
-	this.loadText = game.add.bitmapText(425, 275, 'menutext', "", '28')
+	this.loadText = game.add.bitmapText(420, 275, 'menutext', "", '28')
 	
 	//update load progress when loading starts and when a file is done loading
 	game.load.onLoadStart.add(updateLoadProgress);

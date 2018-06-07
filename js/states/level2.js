@@ -197,7 +197,7 @@ Level2.prototype =
 		//handle collision
 		handleCollision(this.player, this.ball, this.boxes, this.platforms, this.ground);
 		
-		game.physics.arcade.collide(this.boxes, this.water);
+		game.physics.arcade.collide(this.boxes, this.water, floatBox);
 		
 		updateCamera(this.player, game, this.ball);
 
@@ -234,4 +234,9 @@ Level2.prototype =
 		//game.debug.body(this.swing);
 		//game.debug.body(this.swingPlatform);
 	}
+}
+
+var floatBox = function(box)
+{
+	box.floating = true;
 }

@@ -29,9 +29,6 @@ function Platform(game, x, y, key, frame, direction, limitA, limitB)
 	{
 		this.body.allowGravity = false; //disable gravity, platform will sink if not disabled
 	}
-	
-	//set collision box
-	//this.body.setSize(44, 46, 2, 2);
 }
 
 //link the object's prototype to the Phaser.Sprite object
@@ -40,13 +37,17 @@ Platform.prototype.constructor = Platform;
 
 Platform.prototype.update = function()
 {
-	if(this.direction == "horizontal")
+	//only update if on camera
+	if(!offCamera(this, 100))
 	{
-		this.body.velocity.x = 0; //reset velocity every frame
-	}
-	else if(this.direction == "vertical")
-	{
-		this.body.velocity.y = 0; //reset velocity every frame
+		if(this.direction == "horizontal")
+		{
+			this.body.velocity.x = 0; //reset velocity every frame
+		}
+		else if(this.direction == "vertical")
+		{
+			this.body.velocity.y = 0; //reset velocity every frame
+		}
 	}
 }
 

@@ -86,9 +86,6 @@ Player.prototype.update = function()
 	if(!this.onGround && !this.onPlatform && !this.onBox) {
 		this.stopAnimation(this) ;
 	}
-	
-	// update the camera
-	//updateCamera(this, this.game) ;
 }
 
 Player.prototype.handleMovement = function(player)
@@ -118,7 +115,7 @@ Player.prototype.handleMovement = function(player)
 		
 		player.scale.x = 1 ; // make sure sprite is facing right
 	}
-	else if(!this.isCrouching && !S.isDown) // if player is not moving horizontally && not crouching
+	else if(!this.isCrouching && !S.isDown && !cursors.down.isDown) // if player is not moving horizontally && not crouching
 	{
 		player.animations.play('idle') ; // play idle animation
 	}
@@ -232,17 +229,37 @@ Player.prototype.stopAnimation = function(player)
 
 // update the game camera depending on the player's position
 // moves by snapping to the next area when the player begins to go off-screen
-updateCamera = function(player, game, gravityball)
+var updateCamera = function(player, game, gravityball)
 {
-	// console.log('updating Camera') ;
 	// if the player is to the right of the camera's position plus the game width
-	if(player.position.x > (game.camera.position.x + game.width)) {
+	if(player.position.x > (game.camera.position.x + game.width)) 
+	{
 		game.camera.x += game.width ; // move the camera to the right by the game's width
 		returnGravityBall(game, player, gravityball) ; // return the gravity ball
 	}
 	// if the player is to the left of the camera
-	else if(player.position.x < game.camera.position.x) {
+	else if(player.position.x < game.camera.position.x) 
+	{
 		game.camera.x -= game.width ; // move the camera to the left by the game's width
 		returnGravityBall(game, player, gravityball) ; // return the gravity ball
+	}
+}
+
+
+//checks if an object is on camera
+var offCamera = function(obj, leniency)
+{
+	//if the object is off the right side of the camera
+	if(obj.body.x > (game.camera.position.x + game.width + leniency))
+	{
+		return "right";
+	}
+	else if(obj.body.x < (game.camera.position.x - leniency)) //else off the left side
+	{
+		return "left";
+	}
+	else //the object is on camera
+	{
+		return false;
 	}
 }

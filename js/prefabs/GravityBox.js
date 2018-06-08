@@ -26,9 +26,6 @@ function GravityBox(game, x, y, key, frame)
 	
 	//create timer
 	this.timer = game.time.create();
-	
-	//set collision box
-	//this.body.setSize(44, 46, 2, 2);
 }
 
 //link the object's prototype to the Phaser.Sprite object
@@ -37,17 +34,40 @@ GravityBox.prototype.constructor = GravityBox;
 
 GravityBox.prototype.update = function()
 {
-	//unset immovable if being influenced, otherwise box will pass through the gravity ball
-	if(this.influenced)
+	//only update if the object is on screen to reduce lag
+	if(!offCamera(this, 100))
 	{
-		this.body.immovable = false;
-		this.floating = false;
+		//unset immovable if being influenced, otherwise box will pass through the gravity ball
+		if(this.influenced)
+		{
+			this.body.immovable = false;
+			this.floating = false;
+		}
+		else
+		{
+			this.body.immovable = true;
+		}
+		
+		this.handleFloating();
+		
+		this.respawn();
+		
+		this.body.velocity.x = 0; //reset velocity every frame
 	}
-	else
-	{
-		this.body.immovable = true;
+}
+
+GravityBox.prototype.respawn = function()
+{
+	//if the box clips through the ground
+	if(this.body.y > this.game.height)
+	{ 
+		this.body.x = this.originalX; // put them back at the beginning of the area
+		this.body.y = game.camera.y - this.height ;
 	}
-	
+}
+
+GravityBox.prototype.handleFloating = function()
+{
 	//make the box bounce to create floating effect
 	if(this.floating && !this.influenced)
 	{
@@ -74,16 +94,6 @@ GravityBox.prototype.update = function()
 			//reset gravity
 			this.body.gravity.y = worldGravity;
 		}
-	}
-	
-	this.body.velocity.x = 0; //reset velocity every frame
-	
-	//if the box clips through the ground
-	if(this.body.y > this.game.height)
-	{ 
-		this.body.x = this.originalX-32; // put them back at the beginning of the area
-
-		this.body.y = game.camera.y - this.height ;
 	}
 }
 

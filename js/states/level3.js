@@ -11,12 +11,15 @@ Level3.prototype =
 
 		// load json assets
 		game.load.path = 'assets/json/';
-		game.load.json('waterfall_placement', 'waterfall_placement.json');
+		game.load.json('lava_placement', 'lava_placement.json');
 
 		//set load path and load assets
 		game.load.path = 'assets/img/sprites/';
 		game.load.atlas('tutorial_atlas', 'atlas.png', 'atlas.json') ;
 		game.load.image('radius', 'radius.png');
+		game.load.spritesheet('llava', 'llava.png', 32, 32, 4);
+		game.load.spritesheet('rlava', 'rlava.png', 32, 32, 4);
+		game.load.image('lavasplash', 'lavasplash.png');
 
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
@@ -37,8 +40,8 @@ Level3.prototype =
 		this.bg.resizeWorld() ;
 		this.bgobj = this.terrain.createLayer('Background Object');
 		this.ground = this.terrain.createLayer('Ground') ;
-		this.lava = this.terrain.createLayer('Lava') ;
-		this.lavafall = this.terrain.createLayer('LavaFall');
+		this.lava = this.terrain.createLayer('Bottom Lava') ;
+		//this.lavafall = this.terrain.createLayer('LavaFall');
 		 // lava layer
 		
 		
@@ -47,7 +50,7 @@ Level3.prototype =
 		// set collision for the ground tiles on the ground layer
 		// tilemap.setCollision([tiles], collide (boolean), layer)
 		this.terrain.setCollision([1,2,3,9,10,11,17,18], true, 'Ground') ;
-		this.terrain.setCollision([25,26,27,33,34,35], true, 'Lava');
+		this.terrain.setCollision([33,34,35,36,38], true, 'Bottom Lava');
 		
 		// set tile bias to 64 so collision is handled better
 		game.physics.arcade.TILE_BIAS = 64 ;
@@ -78,6 +81,7 @@ Level3.prototype =
 			this.box = new GravityBox(game, this.boxPlacements[i], 0, 'tutorial_atlas', 'box');
 						//add the box to the game world and to the group
 			game.add.existing(this.box);
+			this.box.tint = 0xffd8cc;
 			this.boxes.add(this.box);
 		}
 		
@@ -103,6 +107,7 @@ Level3.prototype =
 			
 			//add the swing to the game world
 			game.add.existing(this.swing);
+			this.swing.tint = 0xffd8cc;
 			game.add.existing(this.swingPlatform);
 			
 			//add objects to respective groups
@@ -127,18 +132,40 @@ Level3.prototype =
 			
 			//add the platform to the game world and to the group
 			game.add.existing(this.platform);
+			this.platform.tint = 0xffd8cc;
 			this.platforms.add(this.platform);
+		}
+
+		// load JSON file with lava placements
+		this.lp = game.cache.getJSON('lava_placement');
+
+		this.lavas = game.add.group() ;
+
+		for(i = 0 ; i < this.lp.lavas.length ; i++) {
+			x = this.lp.lavas[i].x * 32 ;
+			y = this.lp.lavas[i].y * 32 ;
+			length = this.lp.lavas[i].length ;
+			key = this.lp.lavas[i].key ;
+			//createWaterfall = function(game, key, x, y, length, group)
+			createLava(game, key, x, y, length, this.lavas) ;
 		}		
 		
 		//create gravity influece object using prefab
 		this.influence = new GravityInfluence(game, 'radius', this.ball, this.boxes, this.platforms);
 		
 		//place the player after the ball so they're always at the front of the screen
+		//game.add.existing(this.ball);
+		//game.add.existing(this.influence);
+		game.add.existing(this.player);
+		this.player.tint = 0xffd8cc;
+		
+		this.terrain.createLayer('Top Lava') ;
+		this.lava.bringToTop();
+
 		game.add.existing(this.ball);
 		game.add.existing(this.influence);
-		game.add.existing(this.player);
-		
-		this.lava.bringToTop();
+		this.ball.tint = 0xffd8cc;
+		this.influence.tint = 0xffd8cc;
 
 		//create the sound objects
 		//add.audio(key, volume, loop)
@@ -156,13 +183,25 @@ Level3.prototype =
 		game.physics.arcade.collide(this.boxes, this.lava, floatBox);
 		
 		updateCamera(this.player, game, this.ball);
+
+		game.physics.arcade.overlap(this.lavas, this.boxes, disruptLava);
+		game.physics.arcade.overlap(this.lavas, this.platforms, disruptLava);
+		game.physics.arcade.overlap(this.lavas, this.player, killGravobot);
 		
 		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
-		if(Q.justPressed())
+		if(Q.justPressed() || (this.player.body.x > 173 * 32 && this.player.onGround))
 		{
+			game.camera.fade(200, "#000000") ;
+			//this.forestTheme.fadeOut(100); //stop playing
 			this.lavaTheme.stop();
-			game.state.start('Cutscene4');
+			if(!this.over)
+			{
+				activateSFX.play(false) ;
+			}
+			this.over = true ;
+			//game.state.start('Cutscene3');
+			game.time.events.add(Phaser.Timer.SECOND * 0.2, startCutscene, this, 4);
 		}
 	},
 }

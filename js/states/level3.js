@@ -47,6 +47,7 @@ Level3.prototype =
 		// set collision for the ground tiles on the ground layer
 		// tilemap.setCollision([tiles], collide (boolean), layer)
 		this.terrain.setCollision([1,2,3,9,10,11,17,18], true, 'Ground') ;
+		this.terrain.setCollision([25,26,27,33,34,35], true, 'Lava');
 		
 		// set tile bias to 64 so collision is handled better
 		game.physics.arcade.TILE_BIAS = 64 ;
@@ -66,7 +67,7 @@ Level3.prototype =
 		this.boxes = game.add.group();
 		
 		//array of gravity box x coordinates
-		this.boxPlacements = [game.width*0+32*14,game.width*1+32*3,game.width*2+32*2,game.width*2+32*28,
+		this.boxPlacements = [game.width*0+32*14,game.width*1+32*3,game.width*1+32*17,game.width*2+32*2-16,game.width*2+32*28,
 		game.width*3+32*18,game.width*4+32*3];
 		
 		//create boxes
@@ -87,8 +88,8 @@ Level3.prototype =
 		this.platforms = game.add.group();
 		
 		//2d array of coordinates for the top of the swing rope, each array contains [x, y]
-		this.swingPlacements = [[game.width*1+32*15,32*-5],[game.width*2+32*2,32*-4],
-		[game.width*3+32*16,32*-1],[game.width*4+32*12,32*-1],[game.width*4+32*24,32*-6]];
+		this.swingPlacements = [[game.width*1+32*15,32*-5],[game.width*2+32*2,32*-6],
+		[game.width*3+32*18,0],[game.width*4+32*12,32*-1],[game.width*4+32*24,32*-6]];
 		
 		//create swings
 		for(var i = 0; i < this.swingPlacements.length; i++)
@@ -110,12 +111,12 @@ Level3.prototype =
 		}
 
 		//2D array of platform parameters, each array contains [x, y, direction, limitA, limitB]
-		this.platformParameters = [[game.width*1+32*27+16,32*5,"vertical",32*4,32*7],
-		[game.width*1+32*15,32*11,"horizontal",game.width*1+32*15,game.width*1+32*29],
-		[game.width*2+32*3,32*11,"horizontal",game.width*2+32*2,game.width*2+32*11],
-		[game.width*2+32*18+16,32*6,"vertical",32*6,32*12],[game.width*3+32*5,32*14,"vertical",32*11,32*14],
+		this.platformParameters = [[game.width*1+32*27+16,32*5,"vertical",32*4,32*9],
+		[game.width*1+32*19,32*12+16,"horizontal",game.width*1+32*19,game.width*1+32*28],
+		[game.width*2+32*9,32*7+16,"horizontal",game.width*2+32*2,game.width*2+32*9],
+		[game.width*2+32*22+16,32*6,"vertical",32*6,32*12],[game.width*3+32*5,32*14,"vertical",32*11,32*14],
 		[game.width*3+32*21+16,32*9,"vertical",32*9,32*12],[game.width*4+32*15+16,32*10,"vertical",32*10,32*13],
-		[game.width*4+32*5,32*7,"horizontal",game.width*4+32*7,game.width*4+32*18]];
+		[game.width*4+32*7,32*7,"horizontal",game.width*4+32*7,game.width*4+32*18]];
 		
 		for(var i = 0; i < this.platformParameters.length; i++)
 		{
@@ -137,6 +138,8 @@ Level3.prototype =
 		game.add.existing(this.influence);
 		game.add.existing(this.player);
 		
+		this.lava.bringToTop();
+
 		//create the sound objects
 		//add.audio(key, volume, loop)
 		this.lavaTheme = game.add.audio('lava', 0.5, true);
@@ -149,6 +152,8 @@ Level3.prototype =
 	{
 		//handle collision
 		handleCollision(this.player, this.ball, this.boxes, this.platforms, this.ground);
+
+		game.physics.arcade.collide(this.boxes, this.lava, floatBox);
 		
 		updateCamera(this.player, game, this.ball);
 		

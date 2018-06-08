@@ -79,7 +79,8 @@ Tutorial.prototype =
 		{
 			//create a box using prefab
 			this.box = new GravityBox(game, this.boxPlacements[i], 0, 'tutorial_atlas', 'box');
-						//add the box to the game world and to the group
+		
+			//add the box to the game world and to the group
 			game.add.existing(this.box);
 			this.boxes.add(this.box);
 		}
@@ -140,7 +141,6 @@ Tutorial.prototype =
 
 		var tutorialOver = game.physics.arcade.overlap(this.platforms, this.button);
 		
-		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
 		if(Q.justPressed() || tutorialOver)
 		{
@@ -148,19 +148,7 @@ Tutorial.prototype =
 			this.camera.fade(500, "#000000") ;
 			this.tutorialTheme.fadeOut(100); //stop playing
 			game.time.events.add(Phaser.Timer.SECOND * 0.5, startCutscene, this, 2);
-			
 		}
-	},
-	render: function()
-	{
-		//game.debug.body(this.player);
-		//game.debug.body(this.influence);
-		//game.debug.body(this.ball);
-		//game.debug.physicsGroup(this.boxes);
-		//game.debug.physicsGroup(this.platforms);
-		//game.debug.body(this.ground) ;
-		//game.debug.body(this.swing);
-		//game.debug.body(this.swingPlatform);
 	}
 }
 

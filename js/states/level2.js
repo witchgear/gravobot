@@ -199,13 +199,12 @@ Level2.prototype =
 		
 		game.physics.arcade.collide(this.boxes, this.water, floatBox);
 		
-		updateCamera(this.player, game, this.ball);
-
 		game.physics.arcade.overlap(this.waterfalls, this.boxes, disruptWaterfall);
 		game.physics.arcade.overlap(this.waterfalls, this.platforms, disruptWaterfall);
 		game.physics.arcade.overlap(this.waterfalls, this.player, killGravobot);
 		
-		//*****TAKE OUT LATER*****
+		updateCamera(this.player, game, this.ball);	
+
 		//switch states when player presses Q
 		if(Q.justPressed() || (this.player.body.x > 283 * 32 && this.player.body.x < 285 * 32 && this.player.onGround))
 		{
@@ -213,26 +212,14 @@ Level2.prototype =
 			game.camera.fade(200, "#000000") ;
 			//this.forestTheme.fadeOut(100); //stop playing
 			this.forestTheme.stop();
+			
 			if(!this.over)
 			{
 				activateSFX.play(false) ;
 			}
 			this.over = true ;
-			//game.state.start('Cutscene3');
 			game.time.events.add(Phaser.Timer.SECOND * 0.2, startCutscene, this, 3);
 		}
-	},
-
-	render: function()
-	{
-		//game.debug.body(this.player);
-		//game.debug.body(this.influence);
-		//game.debug.body(this.ball);
-		//game.debug.physicsGroup(this.waterfalls);
-		//game.debug.physicsGroup(this.platforms);
-		//game.debug.body(this.ground) ;
-		//game.debug.body(this.swing);
-		//game.debug.body(this.swingPlatform);
 	}
 }
 

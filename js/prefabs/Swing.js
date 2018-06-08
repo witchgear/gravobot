@@ -26,6 +26,10 @@ Swing.prototype.constructor = Swing;
 
 Swing.prototype.update = function()
 {
+	//move the platform to the end of the swing each frame
+	this.platform.x = this.x - this.height * Math.sin(this.rotation);
+	this.platform.y = this.y + this.height * Math.cos(this.rotation);
+	
 	//if not being influenced
 	if(!this.platform.influenced)
 	{
@@ -42,6 +46,13 @@ Swing.prototype.update = function()
 			this.body.angularAcceleration = -60;
 		}
 		
+		//swinging too far
+		if(this.body.rotation < -90 && this.body.rotation > 90)
+		{
+			//reset velocity
+			this.body.angularVelocity = 0;
+		}
+		
 		//if the angular velocity is 0, meaning the swing is at maximum height
 		if(this.body.angularVelocity == 0)
 		{
@@ -49,7 +60,7 @@ Swing.prototype.update = function()
 		}
 		
 		//if the swing has reached maximum 4 times and is at resting position
-		if(this.body.rotation < 1 && this.body.rotation > -1 && this.numMax == 4)
+		if(this.body.rotation < 5 && this.body.rotation > -5 && this.numMax >= 4)
 		{
 			this.numMax = 0; //reset numMax
 			
@@ -61,10 +72,10 @@ Swing.prototype.update = function()
 	}
 	else
 	{
-		this.numMax = 0; //reset numMax if being influenced
+		//reset numMax if being influenced
+		if(this.numMax != 0)
+		{
+			this.numMax = 0; 
+		}
 	}
-	
-	//move the platform to the end of the swing each frame
-	this.platform.x = this.x - this.height * Math.sin(this.rotation);
-	this.platform.y = this.y + this.height * Math.cos(this.rotation);
-}
+}	

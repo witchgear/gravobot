@@ -38,42 +38,44 @@ Waterfall.prototype.constructor = Waterfall;
 
 Waterfall.prototype.update = function() 
 {
-	// manage alpha
-	if(this.blocked || this.proxyBlocked) // if the waterfall is blocked or blocked by proxy
+	//if on camera
+	if(!offCamera(this, 0))
 	{
-		if(this.alpha > 0) // and it is not currently transparent
+		// manage alpha
+		if(this.blocked || this.proxyBlocked) // if the waterfall is blocked or blocked by proxy
 		{
-			this.alpha -= 0.2 ; // reduce opacity
+			if(this.alpha > 0) // and it is not currently transparent
+			{
+				this.alpha -= 0.2 ; // reduce opacity
+			}
 		}
-		
-	}
-	else // if the waterfall is not blocked
-	{
-		if(this.alpha < 1) // and it is not fully opaque
+		else // if the waterfall is not blocked
 		{
-			this.alpha += 0.2 ; // increase opacity
+			if(this.alpha < 1) // and it is not fully opaque
+			{
+				this.alpha += 0.2 ; // increase opacity
+			}
 		}
-	}
 
-	if(this.blocked) { // if the waterfall is blocked
-		if(this.above != null && !this.above.blocked && !this.proxyBlocked)
+		if(this.blocked) { // if the waterfall is blocked
+			if(this.above != null && !this.above.blocked && !this.proxyBlocked)
+			{
+				generateSplash(this.above) ;
+			}
+			checkIfUnblocked(this) ; // check if it is unblocked
+		}
+		else if(!this.proxyBlocked && this.below == null)
 		{
-			generateSplash(this.above) ;
+			generateSplash(this) ;
 		}
-		checkIfUnblocked(this) ; // check if it is unblocked
-	}
-	else if(!this.proxyBlocked && this.below == null)
-	{
-		generateSplash(this) ;
-	}
 
-	if(this.above != null) // if there is a waterfall above this
-	{
-		if(this.above.proxyBlocked || this.above.blocked) { // and the waterfall above is blocked or proxy blocked
-			this.proxyBlocked = true ; // this is blocked by proxy
+		if(this.above != null) // if there is a waterfall above this
+		{
+			if(this.above.proxyBlocked || this.above.blocked) { // and the waterfall above is blocked or proxy blocked
+				this.proxyBlocked = true ; // this is blocked by proxy
+			}
 		}
 	}
-
 }
 
 // function to create a waterfall at a certain coordinate with a certain length
@@ -104,8 +106,6 @@ disruptWaterfall = function(waterfall, box)
 			disruptedWaterfalls.push(waterfall) ;
 			waterfall.blocked = true ; // it is now blocked
 			waterfall.blockingBox = box ; // save a pointer to the box blocking it
-
-			//console.log(disruptedWaterfalls) ; // log the array
 		}
 	}
 	

@@ -66,9 +66,8 @@ GravityInfluence.prototype.influenceObject = function(influence, influencedBody)
 	//if the body is not currently being influenced
 	if(influencedBody.influenced == false)
 	{
-		//if the body is on screen
-		if(influencedBody.body.x > game.camera.position.x 
-		&& influencedBody.body.x < game.camera.position.x + game.width)
+		//if the body is on camera
+		if(!offCamera(influencedBody, 0))
 		{
 			//set influenced property to true
 			influencedBody.influenced = true;

@@ -70,6 +70,79 @@
 			"x": 89,
 			"y": 15,
 			"length": 13
+		},
+		{
+			"key": "llava",
+			"x": 107,
+			"y": 16,
+			"length": 13
+		},
+		{
+			"key": "rlava",
+			"x": 108,
+			"y": 16,
+			"length": 13
+		},
+		{
+			"key": "llava",
+			"x": 113,
+			"y": 16,
+			"length": 15	
+		},
+		{
+			"key": "rlava",
+			"x": 114,
+			"y": 16,
+			"length": 15
+		},
+		{
+			"key": "llava",
+			"x": 118,
+			"y": 16,
+			"length": 13
+		},
+		{
+			"key": "rlava",
+			"x": 119,
+			"y": 16,
+			"length": 13
+		},
+		{
+			"key": "llava",
+			"x": 136,
+			"y": 16,
+			"length": 13
+		},
+		{
+			"key": "rlava",
+			"x": 137,
+			"y": 16,
+			"length": 13
+		},
+		{
+			"key": "llava",
+			"x": 143,
+			"y": 16,
+			"length": 13
+		},
+		{
+			"key": "rlava",
+			"x": 144,
+			"y": 16,
+			"length": 15
+		},
+		{
+			"key": "llava",
+			"x": 150,
+			"y": 16,
+			"length": 13
+		},
+		{
+			"key": "rlava",
+			"x": 151,
+			"y": 16,
+			"length": 13
 		}
+
 	]
 }

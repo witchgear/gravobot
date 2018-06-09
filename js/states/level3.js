@@ -78,8 +78,7 @@ Level3.prototype =
 		this.boxes = game.add.group();
 		
 		//array of gravity box x coordinates
-		this.boxPlacements = [game.width*0+32*14,game.width*1+32*17,game.width*2+32*9,game.width*2+32*28,
-		game.width*4+32*29,game.width*5+32*18];
+		this.boxPlacements = [game.width*0+32*14,game.width*1+32*17,game.width*2+32*9,game.width*2+32*28];
 		
 		//create boxes
 		
@@ -107,8 +106,12 @@ Level3.prototype =
 		for(var i = 0; i < this.swingPlacements.length; i++)
 		{
 			//create a swing platform (coordinates and limits are irrelevant for swings)
-			this.swingPlatform = new Platform(game, 50, 50, 'tutorial_atlas', 'box', "swing", 0, 1);
-			
+			if (i == 2){
+				this.swingPlatform = new Platform(game, 50, 50, 'tutorial_atlas', 'longbox', "swing", 0, 1);
+			}
+			else {
+				this.swingPlatform = new Platform(game, 50, 50, 'tutorial_atlas', 'box', "swing", 0, 1);
+			}
 			//create the swing rope and save a pointer to the swing object
 			this.swing = new Swing(game, this.swingPlacements[i][0], this.swingPlacements[i][1], 'swing', this.swingPlatform);
 			this.swingPlatform.saveSwingPointer(this.swing);
@@ -130,7 +133,6 @@ Level3.prototype =
 		[game.width*2+32*3,32*8+16,"horizontal",game.width*2+32*2,game.width*2+32*9],
 		[game.width*2+32*22+16,32*6,"vertical",32*6,32*12],[game.width*3+32*5,32*14,"vertical",32*11,32*14],
 		[game.width*3+32*25+16,32*9,"vertical",32*9,32*12],
-		[game.width*4+32*8,32*13+16,"horizontal",game.width*4+32*8,game.width*4+32*18],
 		[game.width*5+32*12,32*7,"horizontal",game.width*5+32*12,game.width*5+32*18]];
 		
 		for(var i = 0; i < this.platformParameters.length; i++)

@@ -44,7 +44,7 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "Right, sorry.\nIs everything all right over there? With the thing?",
+			"line": "Right, sorry. There's a fissure nearby\nthat will lead to the planet's core.",
 			"delay": 4,
 			"fade": 0
 		},
@@ -52,7 +52,7 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "I feel like you're headed somewhere dangerous.",
+			"line": "Now all you need to do is\nplace your gravity ball in the tunnel!",
 			"delay": 4,
 			"fade": 0
 		},
@@ -60,7 +60,7 @@
 		{
 			"actor": "GRAVOBOT",
 			"voice": "none",
-			"line": ":)...",
+			"line": ">:D!!!!!!!!!!",
 			"delay": 4,
 			"fade": 0
 		},
@@ -68,73 +68,17 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "Oh, I wish you would just tell me what's going on!!!!\nBut I have a feeling that this is important to you.",
+			"line": "It all comes down to this.\nBe strong, be safe, and come home soon!",
 			"delay": 4,
-			"fade": 0
+			"fade": -3
 		},
 
 		{
-			"actor": "GRAVOBOT",
-			"voice": "none",
-			"line": ":X",
+			"actor": "",
+			"voice": "",
+			"line": "                     It's a promise!",
 			"delay": 4,
 			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "In any case, just know this:\nWhenever things get rough, it's okay to ask for help.",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "Everyone loves you, Gravobot.\nAnd more than anything, I believe in you!!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "GRAVOBOT",
-			"voice": "none",
-			"line": ":D!!!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "Okay, sorry for wasting your time again!\nI love you!!! Be safe!!! Try your best!!!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "GRAVOBOT",
-			"voice": "none",
-			"line": ":v",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "Okay, I'm really hanging up now!!! I really am!!!!!!\nGoodbyeeeeeeeee--",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "-",
-			"voice": "none",
-			"line": "Gravobot hung up.",
-			"delay": 8,
-			"fade": 0
-		}		
+		}	
 	]
 }

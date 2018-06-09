@@ -52,71 +52,7 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "Is everything all right?!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "I'm getting some bad energy from this planet, Gravobot!\nI'm not sure if it's safe right now!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "GRAVOBOT",
-			"voice": "none",
-			"line": "...\n:'v...............",
-			"delay": 8,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "Can you tell me what's going on down there?!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "GRAVOBOT",
-			"voice": "none",
-			"line": "...",
-			"delay": 8,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "Oh. Right. Okay. Um. Stay there, Gravobot.\nI'm coming to pick you up. We can figure this out lat-",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "GRAVOBOT",
-			"voice": "none",
-			"line": "...",
-			"delay": 8,
-			"fade": 0
-		},
-
-		{
-			"actor": "-",
-			"voice": "none",
-			"line": "             Gravobot shakes their head.",
-			"delay": 8,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "N-\nNo?????",
+			"line": "I felt a strong gravitational pull just now!\nDid you press the button?",
 			"delay": 4,
 			"fade": 0
 		},
@@ -124,15 +60,31 @@
 		{
 			"actor": "-",
 			"voice": "none",
-			"line": "              Gravobot looks determined!",
-			"delay": 8,
+			"line": "Gravobot nods furiously.",
+			"delay": 4,
 			"fade": 0
 		},
 
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "You-- You can handle this?!\nYou're going to fix this?!",
+			"line": "AH! Something must have gone wrong\nwith the gravity tunnel!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "It must have pushed too hard\nand broken the planet from the inside!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "If only there were some way to pull it back together...",
 			"delay": 4,
 			"fade": 0
 		},
@@ -140,8 +92,64 @@
 		{
 			"actor": "GRAVOBOT",
 			"voice": "none",
-			"line": "...",
-			"delay": 8,
+			"line": ">:O!!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Oh, your gravity ball!\nThat might just work...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "But it would be so dangerous!!!\nWe bots can't handle water, let alone lava!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "-",
+			"voice": "none",
+			"line": "Gravobot looks at the SPACE QUEEN determinedly.\nThey can do this!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Are you sure?! Positive?! Wah!! You are!!!\nOkay, okay. Here's what we can do.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "The impact probably knocked boxes around the planet.\nYou can use them to get to the core.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "And whenever you get too close to anything dangerous,\nyour body's core will zap you back to safety.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "It's not perfect, so you can't totally rely on it.\nBut you won't die. You'll be okay.",
+			"delay": 4,
 			"fade": 0
 		},
 
@@ -156,7 +164,15 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "I --\nI see!",
+			"line": "So if you want to save this planet, I won't stop you!\nI'll cheer you on!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":D!!!!!!!!!!",
 			"delay": 4,
 			"fade": 0
 		},
@@ -164,25 +180,17 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "Good luck, Gravobot!\nI don't know what you need to do,",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "but I believe in you!!!!!!!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "Be brave!!!!!!!!!!!!!!!!!",
+			"line": "You're so brave, Gravobot!!!\nGood luck!!!!!!!",
 			"delay": 4,
 			"fade": -3
-		}		
+		},
+
+		{
+			"actor": "",
+			"voice": "none",
+			"line": "         Gravobot ventures into the planet!",
+			"delay": 4,
+			"fade": 0
+		}	
 	]
 }

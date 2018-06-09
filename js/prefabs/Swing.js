@@ -47,7 +47,7 @@ Swing.prototype.update = function()
 		}
 		
 		//swinging too far
-		if(this.body.rotation < -90 && this.body.rotation > 90)
+		if(this.body.rotation < -90 || this.body.rotation > 90)
 		{
 			//reset velocity
 			this.body.angularVelocity = 0;
@@ -60,7 +60,7 @@ Swing.prototype.update = function()
 		}
 		
 		//if the swing has reached maximum 4 times and is at resting position
-		if(this.body.rotation < 5 && this.body.rotation > -5 && this.numMax >= 4)
+		if(this.body.rotation < 3 && this.body.rotation > -3 && this.numMax >= 4)
 		{
 			this.numMax = 0; //reset numMax
 			

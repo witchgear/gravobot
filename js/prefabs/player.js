@@ -210,8 +210,8 @@ Player.prototype.handleCrouch = function(player)
 //saves a pointer to the object the player is standing on
 Player.prototype.saveObject = function(player, object)
 {
-	//if standing on the object and not colliding from side
-	if(player.body.touching.down)
+	//if standing on the object and not already crouching
+	if(player.body.touching.down && !player.isCrouching)
 	{
 		//set pointer
 		player.objectStandingOn = object;

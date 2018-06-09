@@ -40,8 +40,8 @@ GravityBall.prototype.update = function() {
 		// rotate the ball
 		this.body.rotation -= 2 ;
 
-		// if the pointer (mouse, touch, etc) has just been released while the gravity ball is deployed, undeploy it
-		if(this.game.input.activePointer.justPressed(30)){
+		// if the pointer (mouse, touch, etc) has just been pressed while the gravity ball is deployed, undeploy it
+		if(this.game.input.activePointer.justPressed(40)){
 			returnGravityBall(this.game, this.player, this) ;
 		}
 	}
@@ -50,8 +50,8 @@ GravityBall.prototype.update = function() {
 		this.body.x = this.player.body.x - this.player.width ;
 		this.body.y = this.player.body.y ;
 
-		// if the pointer (mouse, touch, etc) has just been released, deploy the gravity ball
-		if(this.game.input.activePointer.justPressed(30)){
+		// if the pointer (mouse, touch, etc) has just been pressed, deploy the gravity ball
+		if(this.game.input.activePointer.justPressed(40)){
 			deployGravityBall(this.game, this.player, this) ;
 		}
 	}

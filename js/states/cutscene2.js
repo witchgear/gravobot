@@ -47,7 +47,7 @@ Cutscene2.prototype =
 		this.dialogueBox = game.add.sprite(0, (game.height * 3/4), 'dialogueBox') ;
 
 		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', this.queenVoice, 
-									 this.empressVoice, shattered, this.dialogueBox, queen, gravobot, null, bb) ;
+									 this.empressVoice, shattered, this.dialogueBox, queen, gravobot, null, bb, null) ;
 
 		game.add.existing(this.dialogue) ;
 	},

@@ -46,7 +46,7 @@ Cutscene1.prototype =
 		this.dialogueBox = game.add.sprite(0, (game.height * 3/4), 'dialogueBox') ;
 
 		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', this.queenVoice, 
-									 this.empressVoice, bg, this.dialogueBox, queen, gravobot, null, bb);
+									 this.empressVoice, bg, this.dialogueBox, queen, gravobot, null, bb, null);
 
 		this.game.input.mouse.capture = true ; // allow for mouse input
 		game.add.existing(this.dialogue) ;

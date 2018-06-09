@@ -1,4 +1,4 @@
-function Dialogue(game, file, x, y, font, voice1, voice2, bg, dialogueBox, queen, gravobot, empress, blackbox)
+function Dialogue(game, file, x, y, font, voice1, voice2, bg, dialogueBox, queen, gravobot, empress, blackbox, bg2)
 {
 	// set pointer to the JSON file
 	this.file = file ;
@@ -25,6 +25,8 @@ function Dialogue(game, file, x, y, font, voice1, voice2, bg, dialogueBox, queen
 	this.bg = bg ;
 
 	this.bb = blackbox ;
+
+	this.bg2 = bg2 ;
 
 	//console.log(this.queen) ;
 	//console.log(this.gravobot) ;
@@ -208,6 +210,10 @@ Dialogue.prototype.handleFade = function()
 			this.game.add.tween(this.queen).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
 			this.game.add.tween(this.gravobot).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
 			this.game.add.tween(this.bg).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
+			if(this.bg2 != null)
+			{
+				this.bg2.kill() ;
+			}
 		}
 
 		if(this.file.dialogue[this.line].fade % 7 == 0 && this.empress != null)

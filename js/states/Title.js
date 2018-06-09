@@ -16,6 +16,7 @@ Title.prototype = {
 		
 		game.load.path = 'assets/img/backgrounds/';
 		game.load.image('logo','logov1.png'); // loads logo
+		game.load.image('titlescreen','titlescreen.png'); // loads title screen
 		game.load.path = 'assets/img/sprites/';
 		game.load.image('icon','tempicon.png'); //loads an image to be a scroller, its labelled as temp in case we want to use a different image later
 
@@ -37,17 +38,25 @@ Title.prototype = {
 		menuExists = false ; // reset menuExists to false
 		
 		game.stage.backgroundColor = "#0b094e"; //background
+
+		this.add.sprite(0, 0, 'titlescreen') ;
 		//space to start text
-		this.titleText = game.add.bitmapText(500, 450, 'menutext','Click to Start', 32);
+		this.titleText = game.add.bitmapText(510, 400, 'menutext','Click to Start', 32);
 		this.titleText.anchor.x = 0.5;
 		this.titleText.anchor.y = 0.5;
+		this.titleText.tint = 0x192035 ;
 		//logo
-		this.logo = this.add.sprite(500,250,'logo');
+		this.logo = this.add.sprite(500,234,'logo');
 		this.logo.anchor.x = 0.5;
 		this.logo.anchor.y = 0.5;
 
-		this.ball = this.add.sprite(598, 216, 'atlas', 'gravityball') ; // add gravity ball to logo
+		this.ball = this.add.sprite(598, 200, 'atlas', 'gravityball') ; // add gravity ball to logo
 		this.ball.anchor.x = this.ball.anchor.y = 0.5; // set anchor to middle of ball
+
+		this.player = this.add.sprite(775, 385, 'atlas', 'idle0001') ; // add gravity ball to logo
+		this.player.animations.add('idle', Phaser.Animation.generateFrameNames('idle', 1, 4, '', 4), 10, true);
+		this.player.animations.play('idle') ;
+		this.player.scale.x *= -1 ;
 
 		game.input.mouse.capture = true ; // allow for mouse input
 		
@@ -71,7 +80,7 @@ Title.prototype = {
 		if (this.game.input.activePointer.justPressed(30)&&menuExists==false){
 				this.titleTheme.stop();
 				this.confirmSound.play();
-				game.state.start('Cutscene1');
+				game.time.events.add(Phaser.Timer.SECOND * 0.2, startCutscene, this, 1);
 		}
 
 		this.ball.angle += 1 ; // rotate ball

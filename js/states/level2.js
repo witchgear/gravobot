@@ -59,7 +59,7 @@ Level2.prototype =
 		game.physics.arcade.TILE_BIAS = 64 ;
 
 		//create player object using prefab
-		this.player = new Player(game, 200, 100, 'tutorial_atlas', 'idle0001'); 
+		this.player = new Player(game, game.width/4, game.height *3/4, 'tutorial_atlas', 'idle0001'); 
 		
 		//add player animations
 		this.player.animations.add('idle', Phaser.Animation.generateFrameNames('idle', 1, 4, '', 4), 10, true);

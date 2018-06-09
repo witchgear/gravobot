@@ -20,6 +20,11 @@ Level3.prototype =
 		game.load.spritesheet('llava', 'llava.png', 32, 32, 4);
 		game.load.spritesheet('rlava', 'rlava.png', 32, 32, 4);
 		game.load.image('lavasplash', 'lavasplash.png');
+		game.load.image('tunnel1', 'tunnel1.png');
+		game.load.image('tunnel2', 'tunnel2.png');
+		game.load.image('tunnel3', 'tunnel3.png');
+		game.load.image('tunnel4', 'tunnel4.png');
+		game.load.image('tunnel5', 'tunnel5.png');
 
 		// load spritesheet and tilemap for terrain
 		game.load.path = 'assets/img/terrain/';
@@ -39,6 +44,9 @@ Level3.prototype =
 		this.bg = this.terrain.createLayer('Background') ; // background layer
 		this.bg.resizeWorld() ;
 		this.bgobj = this.terrain.createLayer('Background Object');
+		this.terrain.createLayer('Drip');
+		this.terrain.createLayer('Drip2');
+		this.terrain.createLayer('Border');
 		this.ground = this.terrain.createLayer('Ground') ;
 		this.lava = this.terrain.createLayer('Bottom Lava') ;
 		//this.lavafall = this.terrain.createLayer('LavaFall');
@@ -55,7 +63,7 @@ Level3.prototype =
 		// set tile bias to 64 so collision is handled better
 		game.physics.arcade.TILE_BIAS = 64 ;
 		//create player object using prefab
-		this.player = new Player(game, 200, 100, 'tutorial_atlas', 'idle0001'); 
+		this.player = new Player(game, game.width/4, game.height/2, 'tutorial_atlas', 'idle0001'); 
 		
 		//add player animations
 		this.player.animations.add('idle', Phaser.Animation.generateFrameNames('idle', 1, 4, '', 4), 10, true);
@@ -107,7 +115,7 @@ Level3.prototype =
 			
 			//add the swing to the game world
 			game.add.existing(this.swing);
-			this.swing.tint = 0xffd8cc;
+			this.swingPlatform.tint = 0xffd8cc;
 			game.add.existing(this.swingPlatform);
 			
 			//add objects to respective groups
@@ -150,7 +158,15 @@ Level3.prototype =
 			key = this.lp.lavas[i].key ;
 			//createWaterfall = function(game, key, x, y, length, group)
 			createLava(game, key, x, y, length, this.lavas) ;
-		}		
+		}
+
+		var t4 = game.add.sprite(game.width, game.height, 'tunnel5') ;
+		var t1 = game.add.sprite(game.width, game.height, 'tunnel1') ;
+		var t2 = game.add.sprite(game.width, game.height, 'tunnel2') ;
+		var t3 = game.add.sprite(game.width, game.height, 'tunnel3') ;
+		
+		this.tunnel = new Tunnel(game, t1, t2, t3, t4, 220 * 32, 4*32, 'tunnel4') ;
+		game.add.existing(this.tunnel);		
 		
 		//create gravity influece object using prefab
 		this.influence = new GravityInfluence(game, 'radius', this.ball, this.boxes, this.platforms);
@@ -189,12 +205,13 @@ Level3.prototype =
 		game.physics.arcade.overlap(this.lavas, this.boxes, disruptLava);
 		game.physics.arcade.overlap(this.lavas, this.platforms, disruptLava);
 		game.physics.arcade.overlap(this.lavas, this.player, killGravobot);
+
 		
 		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
-		if(Q.justPressed() || (this.player.body.x > 173 * 32 && this.player.onGround))
+		if(Q.justPressed() || (game.physics.arcade.overlap(this.tunnel, this.ball) && this.ball.activated))
 		{
-			game.camera.fade(200, "#000000") ;
+			game.camera.fade(1, "#000000") ;
 			//this.forestTheme.fadeOut(100); //stop playing
 			this.lavaTheme.stop();
 			if(!this.over)
@@ -203,7 +220,7 @@ Level3.prototype =
 			}
 			this.over = true ;
 			//game.state.start('Cutscene3');
-			game.time.events.add(Phaser.Timer.SECOND * 0.2, startCutscene, this, 4);
+			game.time.events.add(Phaser.Timer.SECOND * 1, startCutscene, this, 4);
 		}
 	},
 }

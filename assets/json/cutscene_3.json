@@ -14,11 +14,11 @@
 			"voice": "none",
 			"line": ":D!!!!!!!!!!",
 			"delay": 4,
-			"fade": -1
+			"fade": 0
 		},
 
 		{
-			"actor": "",
+			"actor": "-",
 			"voice": "none",
 			"line": "         Cosmopolis, Center of the Universe",
 			"delay": 4,
@@ -180,7 +180,7 @@
 		{
 			"actor": "",
 			"voice": "",
-			"line": " And so the SPACE QUEEN, the SPACE EMPRESS, GRAVOBOT \n        and THEIR FAMILY went on a trip,",
+			"line": " And so the SPACE QUEEN, the SPACE EMPRESS, GRAVOBOT \n         and THEIR FAMILY went on a trip,",
 			"delay": 4,
 			"fade": 0
 		},
@@ -188,7 +188,7 @@
 		{
 			"actor": "",
 			"voice": "",
-			"line": "         and on that trip, they picked many flowers.",
+			"line": "     and on that trip, they picked many flowers.",
 			"delay": 4,
 			"fade": 0
 		},

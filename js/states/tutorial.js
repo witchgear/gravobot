@@ -131,6 +131,8 @@ Tutorial.prototype =
 		//play tutorial
 		game.sound.stopAll();
 		this.tutorialTheme.play();
+
+		this.over = false ;
 	},
 	update: function()
 	{
@@ -144,6 +146,11 @@ Tutorial.prototype =
 		//switch states when player presses Q
 		if(Q.justPressed() || tutorialOver)
 		{
+			if(!this.over)
+			{
+				this.over = true ;
+				activateSFX.play(false) ;
+			}
 			//activateSFX.play(false) ;
 			this.camera.fade(500, "#000000") ;
 			this.tutorialTheme.fadeOut(100); //stop playing

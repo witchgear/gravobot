@@ -209,9 +209,8 @@ Level3.prototype =
 		game.physics.arcade.overlap(this.lavas, this.player, killGravobot);
 
 		
-		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
-		if(Q.justPressed() || (game.physics.arcade.overlap(this.tunnel, this.ball) && this.ball.activated))
+		if(game.physics.arcade.overlap(this.tunnel, this.ball) && this.ball.activated)
 		{
 			game.camera.fade(1, "#000000") ;
 			//this.forestTheme.fadeOut(100); //stop playing

@@ -30,6 +30,8 @@ function Dialogue(game, file, x, y, font, voice, bg, dialogueBox, queen, gravobo
 	//call(object to call function in, game object, x, y, font, text)
 	Phaser.BitmapText.call(this, game, x, y, font, '') ;
 
+	this.game.input.mouse.capture = true ; // allow for mouse input
+
 }
 
 //link the player object's prototype to the Phaser.Sprite object
@@ -38,6 +40,9 @@ Dialogue.prototype.constructor = Dialogue;
 
 Dialogue.prototype.update = function()
 {
+	if(this.game.input.activePointer.justPressed(30)){
+		console.log("click!");
+	}
 	// if there are no more lines of dialogue, do nothing
 	if(this.line == this.file.dialogue.length)
 	{
@@ -50,7 +55,7 @@ Dialogue.prototype.update = function()
 	else if((this.frameBuffer / this.delay) >= this.file.dialogue[this.line].line.length)
 	{
 		this.voice.stop() ;
-		if(SPACEBAR.justPressed()) // if the player presses the spacebar
+		if(this.game.input.activePointer.justPressed(30)) // if the player clicks
 		{
 			this.handleFade() ;
 			this.line++ ; // go to the next line
@@ -59,9 +64,9 @@ Dialogue.prototype.update = function()
 	}
 	else if(this.frameBuffer % this.delay == 0) // else if the delay is complete
 	{
-		if(SPACEBAR.justPressed())
+		if(this.game.input.activePointer.justPressed(30))
 		{
-			this.skipToEndOfLine() ; // skip to the end of the line if the spacebar is pressed
+			this.skipToEndOfLine() ; // skip to the end of the line if click
 		}
 		else 
 		{
@@ -72,7 +77,7 @@ Dialogue.prototype.update = function()
 	{
 		this.frameBuffer++ ;
 
-		if(SPACEBAR.justPressed()) // and if the spacebar is pressed
+		if(this.game.input.activePointer.justPressed(30)) // and if click
 		{
 			this.skipToEndOfLine() ; // skip to the end of the line
 		}

@@ -38,7 +38,7 @@ Title.prototype = {
 		
 		game.stage.backgroundColor = "#0b094e"; //background
 		//space to start text
-		this.titleText = game.add.bitmapText(500, 450, 'menutext','Press Space to Start', 32);
+		this.titleText = game.add.bitmapText(500, 450, 'menutext','Click to Start', 32);
 		this.titleText.anchor.x = 0.5;
 		this.titleText.anchor.y = 0.5;
 		//logo
@@ -48,6 +48,8 @@ Title.prototype = {
 
 		this.ball = this.add.sprite(598, 216, 'atlas', 'gravityball') ; // add gravity ball to logo
 		this.ball.anchor.x = this.ball.anchor.y = 0.5; // set anchor to middle of ball
+
+		game.input.mouse.capture = true ; // allow for mouse input
 		
 		//create the sound objects
 		//add.audio(key, volume, loop)
@@ -66,9 +68,10 @@ Title.prototype = {
 		}
 		
 		//calls create menu
-		if (SPACEBAR.justPressed()&&menuExists==false){
-			this.confirmSound.play();
-			this.createMenu();
+		if (this.game.input.activePointer.justPressed(30)&&menuExists==false){
+				this.titleTheme.stop();
+				this.confirmSound.play();
+				game.state.start('Cutscene1');
 		}
 
 		this.ball.angle += 1 ; // rotate ball
@@ -81,9 +84,9 @@ Title.prototype = {
 		this.newGame.anchor.x=0.5;
 		this.newGame.anchor.y=0.5
 		//creates an option for menustate2, in this case settings
-		this.settings = game.add.bitmapText(500,475,'menutext', 'Settings',32);
-		this.settings.anchor.x=0.5;
-		this.settings.anchor.y=0.5;
+		//this.settings = game.add.bitmapText(500,475,'menutext', 'Settings',32);
+		//this.settings.anchor.x=0.5;
+		//this.settings.anchor.y=0.5;
 
 		//if a third menustate wants to add it would go here, use the following settings
 		/*

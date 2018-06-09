@@ -144,7 +144,7 @@ Tutorial.prototype =
 		var tutorialOver = game.physics.arcade.overlap(this.platforms, this.button);
 		
 		//switch states when player presses Q
-		if(tutorialOver)
+		if(Q.justPressed() || tutorialOver)
 		{
 			if(!this.over)
 			{

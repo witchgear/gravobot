@@ -122,9 +122,9 @@ Level2.prototype =
 		this.platformParameters = [[game.width*3+32*2+16,32*14,"vertical",32*10,32*13],
 		[game.width*4+32*12,32*10+16,"horizontal",game.width*4+32*7,game.width*4+32*22],
 		[game.width*4+32*12,32*4+16,"horizontal",game.width*4+32*7,game.width*4+32*22],
-		[game.width*6+32*10,32*10 - 16,"horizontal",game.width*6+32*10,game.width*6+32*19],
-		[game.width*6+32*10,32*6 - 16,"horizontal",game.width*6+32*10,game.width*6+32*19],
-		[game.width*6+32*10,32*2 - 16,"horizontal",game.width*6+32*10,game.width*6+32*19],
+		[game.width*6+32*19,32*10 - 16,"horizontal",game.width*6+32*10,game.width*6+32*19],
+		[game.width*6+32*19,32*6 - 16,"horizontal",game.width*6+32*10,game.width*6+32*19],
+		[game.width*6+32*19,32*2 - 16,"horizontal",game.width*6+32*10,game.width*6+32*19],
 		[game.width*6+32*22+16,32*15,"vertical",32*10,32*14],[game.width*6+32*25+16,32*9,"vertical",32*9,32*14],
 		[game.width*6+32*25+16,32*7,"vertical",32*0,32*6],[game.width*7+32*16+16,32*11,"vertical",32*11,32*14],
 		[game.width*8+32*8+16,32*7,"vertical",32*0,32*7],[game.width*8+32*8+16,32*9,"vertical",32*9,32*18]];
@@ -206,7 +206,7 @@ Level2.prototype =
 		updateCamera(this.player, game, this.ball);	
 
 		//switch states when player presses Q
-		if(this.player.body.x > 283 * 32 && this.player.body.x < 285 * 32 && this.player.onGround)
+		if(Q.justPressed() || (this.player.body.x > 283 * 32 && this.player.body.x < 285 * 32 && this.player.onGround))
 		{
 			
 			game.camera.fade(200, "#000000") ;

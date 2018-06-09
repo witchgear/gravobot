@@ -78,7 +78,7 @@ Level3.prototype =
 		this.boxes = game.add.group();
 		
 		//array of gravity box x coordinates
-		this.boxPlacements = [game.width*0+32*14,game.width*1+32*17,game.width*2+32*9,game.width*2+32*28];
+		this.boxPlacements = [game.width*0+32*14,game.width*2+32*9,game.width*2+32*28];
 		
 		//create boxes
 		
@@ -130,6 +130,7 @@ Level3.prototype =
 		this.platformParameters = [[game.width*1+32*27+16,32*5,"vertical",32*4,32*9],
 		[game.width*1+32*5,32*9+16,"horizontal",game.width*1+32*4,game.width*1+32*8],
 		[game.width*1+32*19,32*12+16,"horizontal",game.width*1+32*19,game.width*1+32*26],
+		[game.width*1+32*17,32*16,"horizontal",game.width*1+32*12,game.width*1+32*30],
 		[game.width*2+32*3,32*8+16,"horizontal",game.width*2+32*2,game.width*2+32*9],
 		[game.width*2+32*22+16,32*6,"vertical",32*6,32*12],[game.width*3+32*5,32*14,"vertical",32*11,32*14],
 		[game.width*3+32*25+16,32*9,"vertical",32*9,32*12],
@@ -209,8 +210,9 @@ Level3.prototype =
 		game.physics.arcade.overlap(this.lavas, this.player, killGravobot);
 
 		
+		//*****TAKE OUT LATER*****
 		//switch states when player presses Q
-		if(game.physics.arcade.overlap(this.tunnel, this.ball) && this.ball.activated)
+		if(/*Q.justPressed() || */(game.physics.arcade.overlap(this.tunnel, this.ball) && this.ball.activated))
 		{
 			game.camera.fade(1, "#000000") ;
 			//this.forestTheme.fadeOut(100); //stop playing

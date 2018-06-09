@@ -19,7 +19,7 @@
 
 		{
 			"actor": "???",
-			"voice": "queentalk",
+			"voice": "empresstalk",
 			"line": "Hm... Hum... Ha.... No stars then........\nNo planets................. Okay.",
 			"delay": 4,
 			"fade": 0
@@ -228,7 +228,7 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "Apparently, there are so many that\nthe bots I sent to collect samples weren't enough.",
+			"line": "Apparently, there are so many that the bots I sent\nto collect samples couldn't finish the job!",
 			"delay": 4,
 			"fade": 0
 		},
@@ -236,7 +236,7 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "They're swamped with work!! I feel so bad!!!!!\nWah!!!!!!!!!!!",
+			"line": "They worked so hard, I had to send them home!!\nIt's such a shame!!",
 			"delay": 4,
 			"fade": 0
 		},
@@ -244,7 +244,47 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "Won't you go help them out, Gravobot?\nYou're so good with your gravity ball these days!!",
+			"line": "I would just give up on this whole thing,\nbut they were so close to finishing!!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "All that's left is to transport the boxes of flowers\nback up to Cosmopolis.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "If you're willing, I'll zap you down\nto one of the storage units on the planet.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "From there, you just need to press the big red button \nby the exit.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "It'll activate a gravity funnel at the planet's core,\nand all the boxes packed with flowers will float over.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "It's easy, but I need your help. Will you do\nthis for me? I'm sure the Empress will love it!",
 			"delay": 4,
 			"fade": 0
 		},
@@ -252,7 +292,7 @@
 		{
 			"actor": "GRAVOBOT",
 			"voice": "none",
-			"line": "...\n...",
+			"line": ":D!",
 			"delay": 4,
 			"fade": 0
 		},
@@ -260,15 +300,23 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "If you do this for me, you can have\nan extra scoop of light at dinnertime for a decade!",
+			"line": "Oh, thank you so much!!",
 			"delay": 4,
 			"fade": 0
 		},
 
 		{
-			"actor": "GRAVOBOT",
+			"actor": "SPACE QUEEN",
+			"voice": "queentalk",
+			"line": "Do you have your gravity ball with you?\nYou can use it to move the boxes around!",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "-",
 			"voice": "none",
-			"line": ":S...",
+			"line": "Gravobot nods.",
 			"delay": 4,
 			"fade": 0
 		},
@@ -276,23 +324,7 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "Okay, okay. You drive a hard bargain.\nHow about this:",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "I love you very much!",
-			"delay": 8,
-			"fade": 0
-		},
-
-		{
-			"actor": "GRAVOBOT",
-			"voice": "none",
-			"line": ":D!!!!!!!!!!",
+			"line": "Then I'll send you off now!\nThank you so much, Gravobot!",
 			"delay": 4,
 			"fade": -3
 		},
@@ -300,7 +332,7 @@
 		{
 			"actor": "",
 			"voice": "none",
-			"line": "    Gravobot agrees to help out at the new planet.",
+			"line": " Gravobot is sent to the planet. An adventure awaits!",
 			"delay": 4,
 			"fade": 0
 		}

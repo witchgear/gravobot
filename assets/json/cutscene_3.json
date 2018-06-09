@@ -6,7 +6,7 @@
 			"voice": "none",
 			"line": "??????",
 			"delay": 4,
-			"fade": 15
+			"fade": 55
 		},
 
 		{
@@ -28,7 +28,7 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "YOU did WHAT?!?!",
+			"line": "Gravobot!!! I'm so glad you're back safe!!!!",
 			"delay": 4,
 			"fade": 0
 		},
@@ -36,7 +36,7 @@
 		{
 			"actor": "GRAVOBOT",
 			"voice": "none",
-			"line": ":'V",
+			"line": ":')!!!!!!",
 			"delay": 4,
 			"fade": 0
 		},
@@ -44,7 +44,7 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "I'm so glad you're safe but how does that even\nHAPPEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+			"line": "It's a shame about the flowers, though.\nI'm sorry we couldn't bring them back in the end.",
 			"delay": 4,
 			"fade": 0
 		},
@@ -52,7 +52,7 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "GRAVOBOT I AM SO PROUD OF YOU BUT",
+			"line": "I'm also sorry that you had to\nleave your gravity ball behind.",
 			"delay": 4,
 			"fade": 0
 		},
@@ -60,7 +60,15 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "I JUST HAVE TO WONDER",
+			"line": "You all try so hard, even for my silly requests.\nI'm so glad I have such wonderful children.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "???",
+			"voice": "empresstalk",
+			"line": "Um... Hello... May I intrude here...",
 			"delay": 4,
 			"fade": 0
 		},
@@ -68,199 +76,128 @@
 		{
 			"actor": "SPACE QUEEN",
 			"voice": "queentalk",
-			"line": "WHO WOULD MAKE THAT KIND OF BUTTON!!!!!\nONE THAT WOULD BREAK THE WHOLE PLANET",
-			"delay": 2,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "AAAAA I CAN'T BELIEVE ANYONE WOULD BE SO\nIRRESPONSIBLE WHO IS THIS HOOLIGAN I",
-			"delay": 2,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "Um...... Dear....................",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "AH! HELLO I MEAN Hello wonderful how are you\n:)?",
-			"delay": 2,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "Are you......Talking about the planet.........\nthat you made me?",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "The what?! The planet?! Haha, what!!!\nI don't know what you're talking about!!!!!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "Well... Hum... You know... I know things...\nabout this universe... that we made together.....",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "Oh.",
-			"delay": 18,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "I know... that you tried very hard......\nnot to make a planet... Aha.....",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "But I also know... that you can be......\na little passionate... when it comes to me.....",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "Wah!!! She saw right through me!!!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "I know... about everything......\nAnd I know... that Gravobot... tried very hard.....",
-			"delay": 6,
-			"fade": 7
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "I know... that I'm very proud of Gravobot......\nand... I love them.....",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "GRAVOBOT",
-			"voice": "none",
-			"line": ":D!!!!! <3!!!!!!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "Thank you, Gravobot... for helping my silly wife......\nFor saving the planet she made for me.....",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "Thank you, my child.",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "GRAVOBOT",
-			"voice": "none",
-			"line": ":'D!!!!!!!!!!!!!!!!!!!!",
+			"line": "AH!!! BABE!!!!! GRAVOBOT IS BACK!!!!!!!!!",
 			"delay": 4,
 			"fade": 7
 		},
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "And, my dear... You're very silly......\nAnd you made many mistakes.....",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "You dragged poor Gravobot...\nInto all of this.....",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "Oof... I really messed up this time.\nI'm so sorry.",
+			"voice": "empresstalk",
+			"line": "Ah, so they are...\nHow are you doing, my child...?",
 			"delay": 4,
 			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "But... I know... you acted out of love...\nAnd I forgive you.....",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "BABE!!!!",
-			"delay": 4,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE EMPRESS",
-			"voice": "empress",
-			"line": "So I think... We all deserve... to have a bit of rest...\nTo enjoy these flowers... and each other.",
-			"delay": 6,
-			"fade": 0
-		},
-
-		{
-			"actor": "SPACE QUEEN",
-			"voice": "queentalk",
-			"line": "I LOVE YOU!!!!",
-			"delay": 4,
-			"fade": 7
 		},
 
 		{
 			"actor": "GRAVOBOT",
 			"voice": "none",
-			"line": ":'D!!!!!!!!!!!!!!!!!!!!",
+			"line": "^u^",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "empresstalk",
+			"line": "That's good... Um... Hm...\nI'm not good with words, but...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "empresstalk",
+			"line": "My wife told me about the planet...\nand how it broke...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "empresstalk",
+			"line": "She also told me...\nThat you fixed it... all on your own...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "empresstalk",
+			"line": "You have done a great thing, Gravobot.\nWe will cherish this planet as long as it lives.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":'''''D",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "empresstalk",
+			"line": "I, uh, was also told that...\nthis planet was a gift for me....",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "empresstalk",
+			"line": "So if you would allow me to be selfish...\nI would like to see it...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "empresstalk",
+			"line": "I would like to take my lovely wife...\nand all of my lovely children...",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "SPACE EMPRESS",
+			"voice": "empresstalk",
+			"line": "On a trip to this lovely planet.",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "GRAVOBOT",
+			"voice": "none",
+			"line": ":D!!!!!!!!!!",
+			"delay": 4,
+			"fade": -3
+		},
+
+		{
+			"actor": "",
+			"voice": "",
+			"line": " And so the SPACE QUEEN, the SPACE EMPRESS, GRAVOBOT \n        and THEIR FAMILY went on a trip,",
+			"delay": 4,
+			"fade": 0
+		},
+
+		{
+			"actor": "",
+			"voice": "",
+			"line": "         and on that trip, they picked many flowers.",
+			"delay": 4,
+			"fade": 0
+		},
+
+
+		{
+			"actor": "",
+			"voice": "",
+			"line": "                       - FIN -",
 			"delay": 4,
 			"fade": 0
 		}

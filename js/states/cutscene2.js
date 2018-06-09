@@ -17,6 +17,7 @@ Cutscene2.prototype =
 		game.load.image('dialogueBox', 'dialoguebox.png') ;
 
 		game.load.path = 'assets/img/cutscene/'
+		game.load.image('blackbox', 'blackbox.png');
 		game.load.image('bg', 'cutscene2bg.png') ;
 		game.load.image('queen', 'phonequeen.png') ;
 		game.load.image('gravobot', 'bot.png') ;
@@ -34,6 +35,10 @@ Cutscene2.prototype =
 		queen = game.add.sprite(game.width, game.height, 'queen') ;
 		gravobot = game.add.sprite(game.width, game.height, 'gravobot') ;
 
+		bb = game.add.sprite(0, 0, 'blackbox') ;
+		bb.scale.x = bb.scale.y = 8;
+		bb.alpha = 0 ;
+
 		var textFile = game.cache.getJSON('cutscene_1');
 
 		this.queenVoice = game.add.audio('queenVoice', 0.3, true);
@@ -42,7 +47,7 @@ Cutscene2.prototype =
 		this.dialogueBox = game.add.sprite(0, (game.height * 3/4), 'dialogueBox') ;
 
 		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', this.queenVoice, 
-									 this.empressVoice, shattered, this.dialogueBox, queen, gravobot, null) ;
+									 this.empressVoice, shattered, this.dialogueBox, queen, gravobot, null, bb) ;
 
 		game.add.existing(this.dialogue) ;
 	},

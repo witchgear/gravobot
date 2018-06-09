@@ -1,4 +1,4 @@
-function Dialogue(game, file, x, y, font, voice1, voice2, bg, dialogueBox, queen, gravobot, empress)
+function Dialogue(game, file, x, y, font, voice1, voice2, bg, dialogueBox, queen, gravobot, empress, blackbox)
 {
 	// set pointer to the JSON file
 	this.file = file ;
@@ -23,6 +23,8 @@ function Dialogue(game, file, x, y, font, voice1, voice2, bg, dialogueBox, queen
 	this.empress = empress ;
 
 	this.bg = bg ;
+
+	this.bb = blackbox ;
 
 	//console.log(this.queen) ;
 	//console.log(this.gravobot) ;
@@ -115,7 +117,7 @@ Dialogue.prototype.initializeLine = function()
 	{
 		this.voice1.play(); // play voice blip
 	}
-	else if(this.file.dialogue[this.line].voice == "empress")
+	else if(this.file.dialogue[this.line].voice == "empresstalk")
 	{
 		this.voice2.play();
 	}
@@ -192,14 +194,20 @@ Dialogue.prototype.handleFade = function()
 		}
 		else if(this.file.dialogue[this.line].fade % 3 == 0)
 		{
-			this.game.add.tween(this.queen).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
-			this.game.add.tween(this.gravobot).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
-			this.game.add.tween(this.bg).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
+			this.game.add.tween(this.bb).to({ alpha: 1}, 200, Phaser.Easing.Linear.Out, true) ;
+			
 		}
 
 		if(this.file.dialogue[this.line].fade % 5 == 0)
 		{
 			this.game.camera.shake(0.01, 1000) ;
+		}
+
+		if(this.file.dialogue[this.line].fade % 11 == 0)
+		{
+			this.game.add.tween(this.queen).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
+			this.game.add.tween(this.gravobot).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
+			this.game.add.tween(this.bg).to({ alpha: 0}, 200, Phaser.Easing.Linear.Out, true) ;
 		}
 
 		if(this.file.dialogue[this.line].fade % 7 == 0 && this.empress != null)

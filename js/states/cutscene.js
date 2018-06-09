@@ -9,7 +9,8 @@ Cutscene1.prototype =
 		game.load.json('cutscene_0', 'cutscene_0.json');
 
 		game.load.path = 'assets/sfx/';
-		game.load.audio('queentalk', 'queentalk.wav') ;
+		game.load.audio('queenVoice', ['queen_voice.mp3', 'queen_voice.ogg']);
+		game.load.audio('empressVoice', ['empress_voice.mp3', 'empress_voice.ogg']);
 
 		game.load.path = 'assets/font/';
 		game.load.bitmapFont('dialogueText','font.png','font.fnt');
@@ -34,11 +35,13 @@ Cutscene1.prototype =
 
 		var textFile = game.cache.getJSON('cutscene_0');
 
-		this.voiceBlip = game.add.audio('queentalk', 0.3, true);
+		this.queenVoice = game.add.audio('queenVoice', 0.3, true);
+		this.empressVoice = game.add.audio('empressVoice', 0.3, true);
 
 		this.dialogueBox = game.add.sprite(0, (game.height * 3/4), 'dialogueBox') ;
 
-		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', this.voiceBlip, bg, this.dialogueBox, queen, gravobot, null) ;
+		this.dialogue = new Dialogue(game, textFile, 16, game.height * 3/4 + 3, 'dialogueText', this.queenVoice, 
+									 this.empressVoice, bg, this.dialogueBox, queen, gravobot, null);
 
 		this.game.input.mouse.capture = true ; // allow for mouse input
 		game.add.existing(this.dialogue) ;
@@ -49,7 +52,7 @@ Cutscene1.prototype =
 		//switch states when player presses Q
 		if(Q.justPressed() || this.dialogue.finished)
 		{
-			this.voiceBlip.stop();
+			game.sound.stopAll();
 			game.state.start('Tutorial');
 		}
 	},

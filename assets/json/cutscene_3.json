@@ -83,7 +83,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "Um...... Dear....................",
 			"delay": 6,
 			"fade": 0
@@ -99,7 +99,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "Are you......Talking about the planet.........\nthat you made me?",
 			"delay": 6,
 			"fade": 0
@@ -115,7 +115,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "Well... Hum... You know... I know things...\nabout this universe... that we made together.....",
 			"delay": 6,
 			"fade": 0
@@ -131,7 +131,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "I know... that you tried very hard......\nnot to make a planet... Aha.....",
 			"delay": 6,
 			"fade": 0
@@ -139,7 +139,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "But I also know... that you can be......\na little passionate... when it comes to me.....",
 			"delay": 6,
 			"fade": 0
@@ -155,7 +155,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "I know... about everything......\nAnd I know... that Gravobot... tried very hard.....",
 			"delay": 6,
 			"fade": 7
@@ -163,7 +163,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "I know... that I'm very proud of Gravobot......\nand... I love them.....",
 			"delay": 6,
 			"fade": 0
@@ -179,7 +179,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "Thank you, Gravobot... for helping my silly wife......\nFor saving the planet she made for me.....",
 			"delay": 6,
 			"fade": 0
@@ -187,7 +187,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "Thank you, my child.",
 			"delay": 6,
 			"fade": 0
@@ -203,7 +203,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "And, my dear... You're very silly......\nAnd you made many mistakes.....",
 			"delay": 6,
 			"fade": 0
@@ -211,7 +211,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "You dragged poor Gravobot...\nInto all of this.....",
 			"delay": 6,
 			"fade": 0
@@ -227,7 +227,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "But... I know... you acted out of love...\nAnd I forgive you.....",
 			"delay": 6,
 			"fade": 0
@@ -243,7 +243,7 @@
 
 		{
 			"actor": "SPACE EMPRESS",
-			"voice": "none",
+			"voice": "empress",
 			"line": "So I think... We all deserve... to have a bit of rest...\nTo enjoy these flowers... and each other.",
 			"delay": 6,
 			"fade": 0

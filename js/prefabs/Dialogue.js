@@ -1,4 +1,4 @@
-function Dialogue(game, file, x, y, font, voice, bg, dialogueBox, queen, gravobot, empress)
+function Dialogue(game, file, x, y, font, voice1, voice2, bg, dialogueBox, queen, gravobot, empress)
 {
 	// set pointer to the JSON file
 	this.file = file ;
@@ -8,7 +8,8 @@ function Dialogue(game, file, x, y, font, voice, bg, dialogueBox, queen, gravobo
 	// set some other variables
 	this.actor = '' ; // current actor's name
 	this.line = 0 ; // current line of text
-	this.voice = voice ; // current voice
+	this.voice1 = voice1; // current voice
+	this.voice2 = voice2;
 	//this.char = '' ; // current character
 	this.frameBuffer = 0 ; // frame buffer for parsing text
 	this.delay = 4 ; // delay
@@ -54,7 +55,9 @@ Dialogue.prototype.update = function()
 	} // else if the end of the current line has already been reached
 	else if((this.frameBuffer / this.delay) >= this.file.dialogue[this.line].line.length)
 	{
-		this.voice.stop() ;
+		this.voice1.stop();
+		this.voice2.stop();
+		
 		if(this.game.input.activePointer.justPressed(30)) // if the player clicks
 		{
 			this.handleFade() ;
@@ -108,12 +111,18 @@ Dialogue.prototype.initializeLine = function()
 	// set delay equal to delay from json file divided by 2
 	this.delay = this.file.dialogue[this.line].delay / 2 ;
 	
-	if(this.file.dialogue[this.line].voice != "none")
+	if(this.file.dialogue[this.line].voice == "queentalk")
 	{
-		this.voice.play() ; // play voice blip
+		this.voice1.play(); // play voice blip
 	}
-	else {
-		this.voice.stop() ;
+	else if(this.file.dialogue[this.line].voice == "empress")
+	{
+		this.voice2.play();
+	}
+	else
+	{
+		this.voice1.stop();
+		this.voice2.stop();
 	}
 
 	// reset text

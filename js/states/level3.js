@@ -70,8 +70,8 @@ Level3.prototype =
 		this.boxes = game.add.group();
 		
 		//array of gravity box x coordinates
-		this.boxPlacements = [game.width*0+32*14,game.width*1+32*3,game.width*1+32*17,game.width*2+32*2-16,game.width*2+32*28,
-		game.width*3+32*18,game.width*4+32*3];
+		this.boxPlacements = [game.width*0+32*14,game.width*1+32*3,game.width*1+32*17,game.width*2+32*9,game.width*2+32*28,
+		game.width*4+32*29,game.width*5+32*18];
 		
 		//create boxes
 		
@@ -93,7 +93,7 @@ Level3.prototype =
 		
 		//2d array of coordinates for the top of the swing rope, each array contains [x, y]
 		this.swingPlacements = [[game.width*1+32*15,32*-5],[game.width*2+32*2,32*-6],
-		[game.width*3+32*18,0],[game.width*4+32*12,32*-1],[game.width*4+32*24,32*-6]];
+		[game.width*3+32*18,0],[game.width*4+32*16,32*0],[game.width*5+32*24,32*-6]];
 		
 		//create swings
 		for(var i = 0; i < this.swingPlacements.length; i++)
@@ -117,11 +117,12 @@ Level3.prototype =
 
 		//2D array of platform parameters, each array contains [x, y, direction, limitA, limitB]
 		this.platformParameters = [[game.width*1+32*27+16,32*5,"vertical",32*4,32*9],
-		[game.width*1+32*19,32*12+16,"horizontal",game.width*1+32*19,game.width*1+32*28],
-		[game.width*2+32*9,32*7+16,"horizontal",game.width*2+32*2,game.width*2+32*9],
+		[game.width*1+32*19,32*12+16,"horizontal",game.width*1+32*19,game.width*1+32*26],
+		[game.width*2+32*3,32*8+16,"horizontal",game.width*2+32*2,game.width*2+32*9],
 		[game.width*2+32*22+16,32*6,"vertical",32*6,32*12],[game.width*3+32*5,32*14,"vertical",32*11,32*14],
-		[game.width*3+32*21+16,32*9,"vertical",32*9,32*12],[game.width*4+32*15+16,32*10,"vertical",32*10,32*13],
-		[game.width*4+32*7,32*7,"horizontal",game.width*4+32*7,game.width*4+32*18]];
+		[game.width*3+32*25+16,32*9,"vertical",32*9,32*12],
+		[game.width*4+32*8,32*13+16,"horizontal",game.width*4+32*8,game.width*4+32*18],
+		[game.width*5+32*12,32*7,"horizontal",game.width*5+32*12,game.width*5+32*18]];
 		
 		for(var i = 0; i < this.platformParameters.length; i++)
 		{

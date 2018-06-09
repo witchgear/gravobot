@@ -43,13 +43,13 @@ Level2.prototype =
 
 		this.terrain.createLayer('Background Objects') ; // background objects layer
 		this.terrain.createLayer('Background Objects 2') ; // background objects layer 2
+		this.rails = this.terrain.createLayer('Rails');
 		this.terrain.createLayer('Flowers') ; // flower layer
 		this.ground = this.terrain.createLayer('Ground') ; // ground layer
-		this.water = this.terrain.createLayer('Bottom Water'); //water layer
-		this.rails = this.terrain.createLayer('Rails');
-		//this.falls = this.terrain.createLayer('Waterfalls');
-		this.tree1 = this.terrain.createLayer('Treez');
 		this.tree2 = this.terrain.createLayer('Treez2');
+		this.tree1 = this.terrain.createLayer('Treez');
+		this.water = this.terrain.createLayer('Bottom Water'); //water layer
+		//this.falls = this.terrain.createLayer('Waterfalls');
 		// set collision for the ground tiles on the ground layer
 		// tilemap.setCollision([tiles], collide (boolean), layer)
 		this.terrain.setCollision([1,2,3,17,18,19,49,50,51], true, 'Ground') ;

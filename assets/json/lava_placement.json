@@ -1,0 +1,75 @@
+{
+	"lavas":[
+
+
+		{
+			"key": "llava",
+			"x": 10,
+			"y": 16,
+			"length": 9
+		},
+
+		{
+			"key": "rlava",
+			"x": 11,
+			"y": 16,
+			"length": 9
+		},
+
+		{
+			"key": "llava",
+			"x": 23,
+			"y": 16,
+			"length": 10
+		},
+
+		{
+			"key": "rlava",
+			"x": 24,
+			"y": 16,
+			"length": 10
+		},
+
+		{
+			"key": "llava",
+			"x": 38,
+			"y": 16,
+			"length": 14
+		},
+
+		{
+			"key": "rlava",
+			"x": 39,
+			"y": 16,
+			"length": 14
+		},
+
+		{
+			"key": "llava",
+			"x": 61,
+			"y": 16,
+			"length": 15
+		},
+
+		{
+			"key": "rlava",
+			"x": 62,
+			"y": 16,
+			"length": 15
+		},
+
+		{
+			"key": "llava",
+			"x": 88,
+			"y": 15,
+			"length": 13
+		},
+
+		{
+			"key": "rlava",
+			"x": 89,
+			"y": 15,
+			"length": 13
+		}
+	]
+}

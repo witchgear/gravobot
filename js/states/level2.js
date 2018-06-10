@@ -206,7 +206,7 @@ Level2.prototype =
 		updateCamera(this.player, game, this.ball);	
 
 		//switch states when player presses Q
-		if(Q.justPressed() || (this.player.body.x > 283 * 32 && this.player.body.x < 285 * 32 && this.player.onGround))
+		if((this.player.body.x > 283 * 32 && this.player.body.x < 285 * 32 && this.player.onGround))
 		{
 			
 			game.camera.fade(200, "#000000") ;

@@ -65,7 +65,7 @@ Cutscene4.prototype =
 		if(Q.justPressed() || this.dialogue.finished)
 		{
 			game.sound.stopAll();
-			game.state.start('Title');
+			game.state.start('Credits');
 		}
 	},
 }

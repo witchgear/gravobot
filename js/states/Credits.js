@@ -16,6 +16,9 @@ Credits.prototype =
 	},
 	create: function()
 	{
+		this.theme = game.add.sound('title', 0.4, true);
+		this.theme.play();
+		
 		game.stage.backgroundColor = "#000000"; //background is black
 
 		this.credits = game.add.bitmapText(game.width/2, game.height/2, 'menutext',
@@ -35,8 +38,6 @@ Credits.prototype =
 	},
 	update: function()
 	{
-		//*****TAKE OUT LATER*****
-		//switch states when player presses Q
 		if(this.game.input.activePointer.justPressed(30))
 		{
 			this.mouseClicks++ ;
@@ -45,7 +46,9 @@ Credits.prototype =
 		if(this.mouseClicks == 1){
 			game.add.tween(this.thankyou).to({ alpha: 1}, 100, Phaser.Easing.Linear.Out, true) ;
 		}
-		else if(this.thankyou.alpha == 1 && this.game.input.activePointer.justPressed(30)){
+		else if(this.thankyou.alpha == 1 && this.game.input.activePointer.justPressed(30))
+		{
+			this.theme.stop();
 			game.state.start('Title');
 		}
 	},

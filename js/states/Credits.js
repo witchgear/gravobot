@@ -22,7 +22,7 @@ Credits.prototype =
 		game.stage.backgroundColor = "#000000"; //background is black
 
 		this.credits = game.add.bitmapText(game.width/2, game.height/2, 'menutext',
-			'CREDITS\n\n\nTEAM DUCK SLAP IS:\n\nHana Cho - Programming, Music\nGigi Bachtel - Art, Programming, Writing\nRuth Schoenberg - Level Design/Implementation\n\nFont: VCR OSD Mono by Riciery Leal', 32);
+			'CREDITS\n\n\nTEAM DUCK SLAP IS:\n\nHana Cho - Programming, Music\nGigi Bachtel - Art, Programming, Writing\nRuth "Phi" Schoenberg - Level Design/Implementation\n\nFont: VCR OSD Mono by Riciery Leal', 32);
 
 		this.credits.anchor.x = 0.5 ;
 		this.credits.anchor.y = 0.5 ;

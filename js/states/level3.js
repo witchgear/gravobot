@@ -133,7 +133,6 @@ Level3.prototype =
 		[game.width*1+32*17,32*16,"horizontal",game.width*1+32*12,game.width*1+32*30],
 		[game.width*2+32*3,32*8+16,"horizontal",game.width*2+32*2,game.width*2+32*9],
 		[game.width*2+32*22+16,32*6,"vertical",32*6,32*12],[game.width*3+32*5,32*14,"vertical",32*11,32*14],
-		[game.width*3+32*25+16,32*9,"vertical",32*9,32*12],
 		[game.width*5+32*12,32*7,"horizontal",game.width*5+32*12,game.width*5+32*18]];
 		
 		for(var i = 0; i < this.platformParameters.length; i++)

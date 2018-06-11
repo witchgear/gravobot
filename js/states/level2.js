@@ -208,7 +208,6 @@ Level2.prototype =
 		//switch states when player presses Q
 		if(this.player.body.x > 283 * 32 && this.player.body.x < 285 * 32 && this.player.onGround)
 		{
-			
 			game.camera.fade(200, "#000000") ;
 			//this.forestTheme.fadeOut(100); //stop playing
 			this.forestTheme.stop();
